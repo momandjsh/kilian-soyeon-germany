@@ -328,6 +328,7 @@
     }
     .swiper-pagination-bullet-active {
       background-color: var(--primary-color) !important;
+      transform: scale(0.8);
     }
     .swiper-button-next, .swiper-button-prev {
       color: var(--primary-color) !important;
@@ -384,6 +385,39 @@
       font-size: 16px;
       cursor: pointer;
     }
+
+    /* 💡 [여기에 모달 CSS 추가] */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      padding-top: 50px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #fff;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
   </style>
 </head>
 <body>
@@ -485,60 +519,6 @@
         </ul>
       </section>
 
-      <!-- 스냅 사진 갤러리 (Swiper 적용) -->
-      <section class="content-section">
-        <h2 class="section-title" data-i18n="galleryTitle">Gallery</h2>
-        <div class="swiper gallery-swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="image/20260726_162618.jpg" alt="Wedding Snap 0"></div>
-            <div class="swiper-slide"><img src="image/IMG_2962.MP.jpg" alt="Wedding Snap 1"></div>
-            <div class="swiper-slide"><img src="image/IMG_2970.MP.jpg" alt="Wedding Snap 2"></div>
-            <div class="swiper-slide"><img src="image/IMG_2972.MP.jpg" alt="Wedding Snap 3"></div>
-            <div class="swiper-slide"><img src="image/IMG_2979.MP.jpg" alt="Wedding Snap 4"></div>
-            <div class="swiper-slide"><img src="image/IMG_2997.MP.jpg" alt="Wedding Snap 5"></div>
-            <div class="swiper-slide"><img src="image/IMG_3001.jpg" alt="Wedding Snap 6"></div>
-            <div class="swiper-slide"><img src="image/IMG_3010.jpg" alt="Wedding Snap 7"></div>
-            <div class="swiper-slide"><img src="image/IMG_3012.MP.jpg" alt="Wedding Snap 8"></div>
-            <div class="swiper-slide"><img src="image/IMG_3022.MP.jpg" alt="Wedding Snap 9"></div>
-            <div class="swiper-slide"><img src="image/IMG_3050.jpg" alt="Wedding Snap 10"></div>
-            <div class="swiper-slide"><img src="image/IMG_3064.MP.jpg" alt="Wedding Snap 11"></div>
-            <div class="swiper-slide"><img src="image/IMG_3066.MP.jpg" alt="Wedding Snap 12"></div>
-            <div class="swiper-slide"><img src="image/IMG_3077.MP.jpg" alt="Wedding Snap 13"></div>
-            <div class="swiper-slide"><img src="image/IMG_3080.MP.jpg" alt="Wedding Snap 14"></div>
-            <div class="swiper-slide"><img src="image/IMG_3086.jpg" alt="Wedding Snap 15"></div>
-            <div class="swiper-slide"><img src="image/IMG_3096.MP.jpg" alt="Wedding Snap 16"></div>
-            <div class="swiper-slide"><img src="image/IMG_3100.jpg" alt="Wedding Snap 17"></div>
-            <div class="swiper-slide"><img src="image/IMG_3107.MP.jpg" alt="Wedding Snap 18"></div>
-            <div class="swiper-slide"><img src="image/IMG_3111.MP.jpg" alt="Wedding Snap 19"></div>
-            <div class="swiper-slide"><img src="image/IMG_3115.jpg" alt="Wedding Snap 20"></div>
-            <div class="swiper-slide"><img src="image/IMG_3120.MP.jpg" alt="Wedding Snap 21"></div>
-            <div class="swiper-slide"><img src="image/IMG_3183.MP.jpg" alt="Wedding Snap 22"></div>
-            <div class="swiper-slide"><img src="image/IMG_3190.MP.jpg" alt="Wedding Snap 23"></div>
-            <div class="swiper-slide"><img src="image/IMG_3195.MP.jpg" alt="Wedding Snap 24"></div>
-            <div class="swiper-slide"><img src="image/IMG_3199.MP.jpg" alt="Wedding Snap 25"></div>
-            <div class="swiper-slide"><img src="image/IMG_3217.MP.jpg" alt="Wedding Snap 26"></div>
-            <div class="swiper-slide"><img src="image/IMG_3224.MP.jpg" alt="Wedding Snap 27"></div>
-            <div class="swiper-slide"><img src="image/IMG_3234.MP.jpg" alt="Wedding Snap 28"></div>
-            <div class="swiper-slide"><img src="image/IMG_3258.MP.jpg" alt="Wedding Snap 29"></div>
-            <div class="swiper-slide"><img src="image/IMG_3266.MP.jpg" alt="Wedding Snap 30"></div>
-            <div class="swiper-slide"><img src="image/IMG_3273.MP.jpg" alt="Wedding Snap 31"></div>
-            <div class="swiper-slide"><img src="image/IMG_3282.MP.jpg" alt="Wedding Snap 32"></div>
-            <div class="swiper-slide"><img src="image/IMG_3310.jpg" alt="Wedding Snap 33"></div>
-            <div class="swiper-slide"><img src="image/IMG_3316.MP.jpg" alt="Wedding Snap 34"></div>
-            <div class="swiper-slide"><img src="image/IMG_3327.MP.jpg" alt="Wedding Snap 35"></div>
-            <div class="swiper-slide"><img src="image/IMG_3330.jpg" alt="Wedding Snap 36"></div>
-            <div class="swiper-slide"><img src="image/IMG_3340.MP.jpg" alt="Wedding Snap 37"></div>
-            <div class="swiper-slide"><img src="image/IMG_3341.MP.jpg" alt="Wedding Snap 38"></div>
-            <div class="swiper-slide"><img src="image/IMG_3344.MP.jpg" alt="Wedding Snap 39"></div>
-            <div class="swiper-slide"><img src="image/IMG_3351.MP.jpg" alt="Wedding Snap 40"></div>
-            <div class="swiper-slide"><img src="image/IMG_3357.jpg" alt="Wedding Snap 41"></div>
-            <div class="swiper-slide"><img src="image/IMG_3358.jpg" alt="Wedding Snap 42"></div>
-          </div>
-          <div class="swiper-pagination"></div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-      </section>
 
       <!-- 오시는 길 & 숙박 -->
       <section class="content-section" style="background: #f4efe6;">
@@ -600,6 +580,61 @@
         </div>
       </section>
 
+      <!-- 스냅 사진 갤러리 (Swiper 적용) -->
+      <section class="content-section">
+        <h2 class="section-title" data-i18n="galleryTitle">Gallery</h2>
+        <div class="swiper gallery-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="image/20260726_162618.jpg" alt="Wedding Snap 0"></div>
+            <div class="swiper-slide"><img src="image/IMG_2962.MP.jpg" alt="Wedding Snap 1"></div>
+            <div class="swiper-slide"><img src="image/IMG_2970.MP.jpg" alt="Wedding Snap 2"></div>
+            <div class="swiper-slide"><img src="image/IMG_2972.MP.jpg" alt="Wedding Snap 3"></div>
+            <div class="swiper-slide"><img src="image/IMG_2979.MP.jpg" alt="Wedding Snap 4"></div>
+            <div class="swiper-slide"><img src="image/IMG_2997.MP.jpg" alt="Wedding Snap 5"></div>
+            <div class="swiper-slide"><img src="image/IMG_3001.jpg" alt="Wedding Snap 6"></div>
+            <div class="swiper-slide"><img src="image/IMG_3010.jpg" alt="Wedding Snap 7"></div>
+            <div class="swiper-slide"><img src="image/IMG_3012.MP.jpg" alt="Wedding Snap 8"></div>
+            <div class="swiper-slide"><img src="image/IMG_3022.MP.jpg" alt="Wedding Snap 9"></div>
+            <div class="swiper-slide"><img src="image/IMG_3050.jpg" alt="Wedding Snap 10"></div>
+            <div class="swiper-slide"><img src="image/IMG_3064.MP.jpg" alt="Wedding Snap 11"></div>
+            <div class="swiper-slide"><img src="image/IMG_3066.MP.jpg" alt="Wedding Snap 12"></div>
+            <div class="swiper-slide"><img src="image/IMG_3077.MP.jpg" alt="Wedding Snap 13"></div>
+            <div class="swiper-slide"><img src="image/IMG_3080.MP.jpg" alt="Wedding Snap 14"></div>
+            <div class="swiper-slide"><img src="image/IMG_3086.jpg" alt="Wedding Snap 15"></div>
+            <div class="swiper-slide"><img src="image/IMG_3096.MP.jpg" alt="Wedding Snap 16"></div>
+            <div class="swiper-slide"><img src="image/IMG_3100.jpg" alt="Wedding Snap 17"></div>
+            <div class="swiper-slide"><img src="image/IMG_3107.MP.jpg" alt="Wedding Snap 18"></div>
+            <div class="swiper-slide"><img src="image/IMG_3111.MP.jpg" alt="Wedding Snap 19"></div>
+            <div class="swiper-slide"><img src="image/IMG_3115.jpg" alt="Wedding Snap 20"></div>
+            <div class="swiper-slide"><img src="image/IMG_3120.MP.jpg" alt="Wedding Snap 21"></div>
+            <div class="swiper-slide"><img src="image/IMG_3183.MP.jpg" alt="Wedding Snap 22"></div>
+            <div class="swiper-slide"><img src="image/IMG_3190.MP.jpg" alt="Wedding Snap 23"></div>
+            <div class="swiper-slide"><img src="image/IMG_3195.MP.jpg" alt="Wedding Snap 24"></div>
+            <div class="swiper-slide"><img src="image/IMG_3199.MP.jpg" alt="Wedding Snap 25"></div>
+            <div class="swiper-slide"><img src="image/IMG_3217.MP.jpg" alt="Wedding Snap 26"></div>
+            <div class="swiper-slide"><img src="image/IMG_3224.MP.jpg" alt="Wedding Snap 27"></div>
+            <div class="swiper-slide"><img src="image/IMG_3234.MP.jpg" alt="Wedding Snap 28"></div>
+            <div class="swiper-slide"><img src="image/IMG_3258.MP.jpg" alt="Wedding Snap 29"></div>
+            <div class="swiper-slide"><img src="image/IMG_3266.MP.jpg" alt="Wedding Snap 30"></div>
+            <div class="swiper-slide"><img src="image/IMG_3273.MP.jpg" alt="Wedding Snap 31"></div>
+            <div class="swiper-slide"><img src="image/IMG_3282.MP.jpg" alt="Wedding Snap 32"></div>
+            <div class="swiper-slide"><img src="image/IMG_3310.jpg" alt="Wedding Snap 33"></div>
+            <div class="swiper-slide"><img src="image/IMG_3316.MP.jpg" alt="Wedding Snap 34"></div>
+            <div class="swiper-slide"><img src="image/IMG_3327.MP.jpg" alt="Wedding Snap 35"></div>
+            <div class="swiper-slide"><img src="image/IMG_3330.jpg" alt="Wedding Snap 36"></div>
+            <div class="swiper-slide"><img src="image/IMG_3340.MP.jpg" alt="Wedding Snap 37"></div>
+            <div class="swiper-slide"><img src="image/IMG_3341.MP.jpg" alt="Wedding Snap 38"></div>
+            <div class="swiper-slide"><img src="image/IMG_3344.MP.jpg" alt="Wedding Snap 39"></div>
+            <div class="swiper-slide"><img src="image/IMG_3351.MP.jpg" alt="Wedding Snap 40"></div>
+            <div class="swiper-slide"><img src="image/IMG_3357.jpg" alt="Wedding Snap 41"></div>
+            <div class="swiper-slide"><img src="image/IMG_3358.jpg" alt="Wedding Snap 42"></div>
+          </div>
+        
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </section>
+      
       <!-- RSVP 폼 -->
       <section class="content-section" id="rsvp">
         <h2 class="section-title">RSVP</h2>
@@ -615,9 +650,6 @@
             <option value="No">Nein / No / 마음으로 축하합니다</option>
           </select>
 
-          <label data-i18n="lblPlusOne">Guests / 동반 인원수</label>
-          <input type="number" id="plusOne" value="0" min="0">
-
           <label data-i18n="lblDiet">Dietary Restrictions / 식사 및 알레르기</label>
           <input type="text" id="diet" placeholder="e.g. Vegetarian, Nut allergy">
 
@@ -627,6 +659,12 @@
           <button type="submit" class="btn-submit" data-i18n="btnSubmit">Send RSVP</button>
         </form>
       </section>
+
+      <!-- 💡 [여기에 모달 HTML 추가] -->
+      <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImg">
+      </div>
 
     </main>
 
@@ -665,7 +703,6 @@
         rsvpDeadline: "원활한 예식 준비를 위해 참석 여부를 알려주시면 감사하겠습니다.",
         lblName: "성함 (Name)",
         lblAttend: "참석 여부 (Attendance)",
-        lblPlusOne: "동반 인원수",
         lblDiet: "식성 및 알레르기 안내 (Dietary Requirement)",
         lblMessage: "축하 메시지",
         btnSubmit: "RSVP 제출하기"
@@ -696,7 +733,6 @@
         rsvpDeadline: "Please kindly respond at your earliest convenience.",
         lblName: "Full Name",
         lblAttend: "Attendance",
-        lblPlusOne: "Additional Guests",
         lblDiet: "Dietary Restrictions / Allergies",
         lblMessage: "Message for Groom & Bride",
         btnSubmit: "Submit RSVP"
@@ -727,7 +763,6 @@
         rsvpDeadline: "Bitte antwortet uns so bald wie möglich.",
         lblName: "Name",
         lblAttend: "Teilnahme",
-        lblPlusOne: "Begleitpersonen",
         lblDiet: "Unverträglichkeiten / Allergien",
         lblMessage: "Nachricht an das Brautpaar",
         btnSubmit: "RSVP Absenden"
@@ -743,10 +778,6 @@
         autoplay: {
           delay: 3500,
           disableOnInteraction: false,
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
         },
         navigation: {
           nextEl: '.swiper-button-next',
@@ -815,6 +846,22 @@
         setLanguage('de');
       }
 
+      // 💡 [여기 추가: 페이지 로드 후 이미지 클릭 이벤트 등록]
+      document.querySelectorAll('.gallery-swiper .swiper-slide img').forEach(img => {
+        img.addEventListener('click', function() {
+          const modal = document.getElementById('imageModal');
+          const modalImg = document.getElementById('modalImg');
+          modal.style.display = "flex";
+          modalImg.src = this.src;
+        });
+      });
+    });
+
+    // 💡 [여기 추가: 모달 닫기 함수]
+    function closeModal() {
+      document.getElementById('imageModal').style.display = "none";
+    }
+      
       initGallerySwiper();
     });
 
