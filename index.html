@@ -320,17 +320,32 @@
     .timeline-desc { font-size: 15px; color: #555; margin-top: 2px; }
 
     
-     /* 갤러리 */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-    .gallery-grid img {
+     /* 갤러리 (Swiper 스타일 커스텀) */
+    .gallery-swiper {
       width: 100%;
-      height: 150px;
+      padding-bottom: 35px;
+      border-radius: 8px;
+    }
+    .gallery-swiper .swiper-slide {
+      width: 100%;
+      height: 280px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .gallery-swiper .swiper-slide img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border-radius: 6px;
+      display: block;
+    }
+    /* Swiper 커스텀 컬러 설정 */
+    .swiper-pagination-bullet-active {
+      background-color: var(--primary-color) !important;
+    }
+    .swiper-button-next, .swiper-button-prev {
+      color: var(--primary-color) !important;
+      transform: scale(0.6);
     }
 
     /* FAQ */
@@ -484,15 +499,21 @@
         </ul>
       </section>
 
-       <!-- 스냅 사진 갤러리 -->
+      <!-- 스냅 사진 갤러리 (Swiper 적용) -->
       <section class="content-section">
         <h2 class="section-title" data-i18n="galleryTitle">Gallery</h2>
-        <div class="gallery-grid">
-          <div class="swiper-slide"><img src="image/IMG_2962.MP.jpg" alt=" "></div>
-          <div class="swiper-slide"><img src="image/IMG_2967.MP.jpg" alt=" "></div>
-          <div class="swiper-slide"><img src="image/IMG_2970.MP.jpg" alt=" "></div>
-          <div class="swiper-slide"><img src="image/IMG_2972.MP.jpg" alt=" "></div>
-          <div class="swiper-slide"><img src="image/IMG_2975.MP.jpg" alt=" "></div>
+        <div class="swiper gallery-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="image/IMG_2962.MP.jpg" alt="Wedding Snap 1"></div>
+            <div class="swiper-slide"><img src="image/IMG_2967.MP.jpg" alt="Wedding Snap 2"></div>
+            <div class="swiper-slide"><img src="image/IMG_2970.MP.jpg" alt="Wedding Snap 3"></div>
+            <div class="swiper-slide"><img src="image/IMG_2972.MP.jpg" alt="Wedding Snap 4"></div>
+            <div class="swiper-slide"><img src="image/IMG_2975.MP.jpg" alt="Wedding Snap 5"></div>
+          </div>
+          <!-- 페이지네이션 & 화살표 컨트롤 -->
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </section>
 
@@ -588,7 +609,13 @@
     </main>
 
   </div>
+  
+  <!-- Swiper.js 스크립트 추가 -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+  <script>
+    let gallerySwiper = null;
+    
   <script>
     const translations = {
       ko: {
@@ -686,6 +713,28 @@
       }
     };
 
+    // Swiper 초기화 함수
+    function initGallerySwiper() {
+      if (gallerySwiper) gallerySwiper.destroy();
+      gallerySwiper = new Swiper('.gallery-swiper', {
+        loop: true,
+        spaceBetween: 15,
+        centeredSlides: true,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    } 
+    
     // D-Day 실시간 계산 함수 (목표일: 2027년 6월 12일 15:00)
     const weddingDate = new Date("2027-06-12T15:00:00").getTime();
 
@@ -744,6 +793,25 @@
       }
     });
 
+    // 언어 변경 시 레이아웃 재생성을 위해 Swiper 업데이트
+      if (gallerySwiper) {
+        setTimeout(() => { gallerySwiper.update(); }, 100);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
+
+      if (urlLang && translations[urlLang]) {
+        setLanguage(urlLang);
+      } else {
+        setLanguage('de');
+      }
+
+      initGallerySwiper();
+    });
+     
     // 편지 열기 애니메이션
     function openLetter() {
       const flap = document.getElementById('envelopeFlap');
@@ -766,6 +834,10 @@
       setTimeout(() => {
         hero.style.display = 'none';
         window.scrollTo(0, 0);
+        // 편지 오픈 완료 후 슬라이더 레이아웃 재계산
+        if (gallerySwiper) {
+          gallerySwiper.update();
+        }
       }, 2200);
     }
 
