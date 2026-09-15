@@ -776,27 +776,6 @@
       });
     }
 
-    // 3. 이미지 모달(팝업) 클릭 이벤트 설정
-    function setupImageModal() {
-      document.querySelectorAll('.gallery-swiper .swiper-slide img').forEach(img => {
-        img.onclick = function(e) {
-          e.stopPropagation(); // 슬라이드 넘김 이벤트와 충돌 방지
-          const modal = document.getElementById('imageModal');
-          const modalImg = document.getElementById('modalImg');
-          if (modal && modalImg) {
-            modal.style.display = "flex";
-            modalImg.src = this.src;
-          }
-        };
-      });
-    }
-
-    // 4. 모달 닫기 함수
-    function closeModal() {
-      const modal = document.getElementById('imageModal');
-      if (modal) modal.style.display = "none";
-    }
-
     // 5. 카운트다운 로직
     const weddingDate = new Date("2027-06-12T15:00:00").getTime();
 
