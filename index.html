@@ -18,7 +18,7 @@
 
   <!-- Swiper.js CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  
+
   <style>
     :root {
       --primary-color: #2b3a2a;
@@ -35,6 +35,7 @@
       display: flex;
       justify-content: center;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     .app-container {
@@ -43,7 +44,6 @@
       background: var(--bg-cream);
       position: relative;
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      overflow-x: hidden;
       min-height: 100vh;
     }
 
@@ -70,11 +70,11 @@
     }
     .lang-btn.active { color: var(--primary-color); text-decoration: underline; }
 
-    /* 1. INTRO HERO */
+    /* 1. INTRO HERO (오프닝 봉투 영역 수정) */
     .intro-hero {
       width: 100%;
       height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
                   url('https://images.pexels.com/photos/30374289/pexels-photo-30374289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center/cover no-repeat;
       display: flex;
       flex-direction: column;
@@ -82,17 +82,14 @@
       align-items: center;
       text-align: center;
       padding: 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      position: relative;
       z-index: 100;
     }
 
     /* 3D 입체 편지 봉투 */
     .envelope-container {
-      width: 340px;
-      height: 220px;
+      width: 320px;
+      height: 210px;
       background-color: #f3efe6;
       border-radius: 8px;
       position: relative;
@@ -104,7 +101,7 @@
       align-items: center;
       border: 1px solid #e2dad0;
       transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
-      animation: floatUp 1.5s ease-out forwards;
+      animation: floatUp 1.2s ease-out forwards;
       padding: 0 15px;
       will-change: transform, opacity;
     }
@@ -124,43 +121,41 @@
       left: 0;
       width: 0;
       height: 0;
-      border-left: 170px solid transparent;
-      border-right: 170px solid transparent;
-      border-top: 115px solid #e7e0d3;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 110px solid #e7e0d3;
       transform-origin: top;
-      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 2;
     }
 
     .wax-seal {
-      width: 55px;
-      height: 55px;
+      width: 50px;
+      height: 50px;
       position: absolute;
-      top: 85px;
+      top: 80px;
       z-index: 3;
       display: flex;
       justify-content: center;
       align-items: center;
       background: url('https://png.pngtree.com/png-clipart/20230508/original/pngtree-red-wax-seal-stamp-transparent-background-png-image_9151528.png') center/contain no-repeat;
       filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
-      color: #ffd700;
-      font-size: 18px;
     }
 
     .envelope-info {
-      margin-top: 110px;
+      margin-top: 100px;
       z-index: 1;
       width: 100%;
     }
     .invited-tag {
       font-size: 11px;
-      letter-spacing: 2.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--accent-color);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .groom-bride-names {
-      font-size: 17px;
+      font-size: 16px;
       color: var(--primary-color);
       margin-bottom: 6px;
       font-weight: 600;
@@ -175,37 +170,33 @@
 
     .open-hint {
       margin-top: 25px;
-      font-size: 13px;
+      font-size: 14px;
       color: #ffffff;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
       animation: pulse 1.5s infinite;
       transition: opacity 0.3s ease;
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(60px); opacity: 0; }
+      0% { transform: translateY(40px); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
     @keyframes pulse {
-      0%, 100% { opacity: 0.6; }
+      0%, 100% { opacity: 0.7; }
       50% { opacity: 1; }
     }
 
     /* 2. 메인 컨텐츠 영역 */
     #mainContent {
-      display: block;
+      display: none;
       opacity: 0;
-      transform: translateY(100vh);
-      transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.2s ease;
-      position: relative;
-      z-index: 20;
+      transition: opacity 1s ease;
       background: var(--bg-cream);
-      will-change: transform, opacity;
     }
 
     #mainContent.slide-up-show {
+      display: block;
       opacity: 1;
-      transform: translateY(0);
     }
 
     .content-section {
@@ -261,7 +252,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* 구글 지도 직접 구현 스티커 카드 */
+    /* 구글 지도 스티커 카드 */
     .google-map-box {
       display: block;
       text-decoration: none;
@@ -271,11 +262,10 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       margin-bottom: 25px;
       background: #e8f5e9;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease;
     }
     .google-map-box:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     }
     
     .map-svg-container {
@@ -322,8 +312,7 @@
     .timeline-time { font-weight: bold; color: var(--primary-color); font-size: 14px; }
     .timeline-desc { font-size: 15px; color: #555; margin-top: 2px; }
 
-    
-     /* 갤러리 (Swiper 스타일 커스텀) */
+    /* 갤러리 (Swiper 스타일) */
     .gallery-swiper {
       width: 100%;
       padding-bottom: 35px;
@@ -342,7 +331,6 @@
       object-fit: cover;
       display: block;
     }
-    /* Swiper 커스텀 컬러 설정 */
     .swiper-pagination-bullet-active {
       background-color: var(--primary-color) !important;
     }
@@ -513,7 +501,6 @@
             <div class="swiper-slide"><img src="image/IMG_2972.MP.jpg" alt="Wedding Snap 4"></div>
             <div class="swiper-slide"><img src="image/IMG_2975.MP.jpg" alt="Wedding Snap 5"></div>
           </div>
-          <!-- 페이지네이션 & 화살표 컨트롤 -->
           <div class="swiper-pagination"></div>
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
@@ -524,7 +511,7 @@
       <section class="content-section" style="background: #f4efe6;">
         <h2 class="section-title" data-i18n="travelTitle">Travel & Stay</h2>
         
-        <!-- SVG 구글 맵 그래픽 카드 -->
+        <!-- SVG 구글 맵 카드 -->
         <a href="https://maps.google.com/?q=Schloss+Hohenkammer" target="_blank" class="google-map-box" rel="noopener noreferrer">
           <div class="map-svg-container">
             <svg width="100%" height="100%" viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
@@ -560,7 +547,6 @@
           <div class="map-btn-bar" data-i18n="btnOpenMap">📍 Open in Google Maps</div>
         </a>
 
-        <!-- 오시는 길 상세 설명 (주차장 항목 포함) -->
         <p style="font-size: 15px; line-height: 1.8;" data-i18n="travelDesc"></p>
       </section>
 
@@ -581,7 +567,7 @@
         </div>
       </section>
 
-      <!-- RSVP 제출 폼 -->
+      <!-- RSVP 폼 -->
       <section class="content-section" id="rsvp">
         <h2 class="section-title">RSVP</h2>
         <p style="text-align: center; font-size: 14px; margin-bottom: 20px;" data-i18n="rsvpDeadline"></p>
@@ -612,14 +598,13 @@
     </main>
 
   </div>
-  
-  <!-- Swiper.js 스크립트 추가 -->
+
+  <!-- Swiper.js 스크립트 -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
     let gallerySwiper = null;
-    
-  <script>
+
     const translations = {
       ko: {
         clickToOpen: "✉️ 편지 봉투를 클릭하여 열기",
@@ -716,7 +701,6 @@
       }
     };
 
-    // Swiper 초기화 함수
     function initGallerySwiper() {
       if (gallerySwiper) gallerySwiper.destroy();
       gallerySwiper = new Swiper('.gallery-swiper', {
@@ -736,9 +720,8 @@
           prevEl: '.swiper-button-prev',
         },
       });
-    } 
-    
-    // D-Day 실시간 계산 함수 (목표일: 2027년 6월 12일 15:00)
+    }
+
     const weddingDate = new Date("2027-06-12T15:00:00").getTime();
 
     function updateCountdown() {
@@ -783,20 +766,7 @@
 
       const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + lang;
       window.history.replaceState({ path: newUrl }, '', newUrl);
-    }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlLang = urlParams.get('lang');
-
-      if (urlLang && translations[urlLang]) {
-        setLanguage(urlLang);
-      } else {
-        setLanguage('de');
-      }
-    });
-
-    // 언어 변경 시 레이아웃 재생성을 위해 Swiper 업데이트
       if (gallerySwiper) {
         setTimeout(() => { gallerySwiper.update(); }, 100);
       }
@@ -814,7 +784,7 @@
 
       initGallerySwiper();
     });
-     
+
     // 편지 열기 애니메이션
     function openLetter() {
       const flap = document.getElementById('envelopeFlap');
@@ -823,25 +793,25 @@
       const hero = document.getElementById('heroSection');
       const mainContent = document.getElementById('mainContent');
 
+      // 1. 봉투 뚜껑 열림
       flap.style.transform = 'rotateX(180deg)';
       hint.style.opacity = '0';
 
+      // 2. 봉투 아래로 내려감
       setTimeout(() => {
         container.classList.add('open-slide-down');
-      }, 300);
+      }, 400);
 
+      // 3. 메인 본문 표시
       setTimeout(() => {
         mainContent.classList.add('slide-up-show');
-      }, 500);
-
-      setTimeout(() => {
         hero.style.display = 'none';
         window.scrollTo(0, 0);
-        // 편지 오픈 완료 후 슬라이더 레이아웃 재계산
+
         if (gallerySwiper) {
           gallerySwiper.update();
         }
-      }, 2200);
+      }, 1000);
     }
 
     function toggleFaq(element) {
@@ -851,7 +821,6 @@
       element.querySelector('span:last-child').textContent = isVisible ? '+' : '-';
     }
 
-    // 구글 시트 연동 RSVP 제출 함수
     async function handleRsvpSubmit(e) {
       e.preventDefault();
 
