@@ -326,7 +326,9 @@
       object-fit: cover;
       display: block;
     }
-    
+    .swiper-pagination-bullet-active {
+      background-color: var(--primary-color) !important;
+    }
     .swiper-button-next, .swiper-button-prev {
       color: var(--primary-color) !important;
       transform: scale(0.8);
@@ -382,39 +384,6 @@
       font-size: 16px;
       cursor: pointer;
     }
-
-    /* 💡 [여기에 모달 CSS 추가] */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      padding-top: 50px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      margin: auto;
-      display: block;
-      max-width: 90%;
-      max-height: 80vh;
-      border-radius: 8px;
-      object-fit: contain;
-    }
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: #fff;
-      font-size: 35px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    
   </style>
 </head>
 <body>
@@ -647,6 +616,9 @@
             <option value="No">Nein / No / 마음으로 축하합니다</option>
           </select>
 
+          <label data-i18n="lblPlusOne">Guests / 동반 인원수</label>
+          <input type="number" id="plusOne" value="0" min="0">
+
           <label data-i18n="lblDiet">Dietary Restrictions / 식사 및 알레르기</label>
           <input type="text" id="diet" placeholder="e.g. Vegetarian, Nut allergy">
 
@@ -656,12 +628,6 @@
           <button type="submit" class="btn-submit" data-i18n="btnSubmit">Send RSVP</button>
         </form>
       </section>
-
-      <!-- 💡 [여기에 모달 HTML 추가] -->
-      <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="modal-close">&times;</span>
-        <img class="modal-content" id="modalImg">
-      </div>
 
     </main>
 
@@ -700,6 +666,7 @@
         rsvpDeadline: "원활한 예식 준비를 위해 참석 여부를 알려주시면 감사하겠습니다.",
         lblName: "성함 (Name)",
         lblAttend: "참석 여부 (Attendance)",
+        lblPlusOne: "동반 인원수",
         lblDiet: "식성 및 알레르기 안내 (Dietary Requirement)",
         lblMessage: "축하 메시지",
         btnSubmit: "RSVP 제출하기"
@@ -730,6 +697,7 @@
         rsvpDeadline: "Please kindly respond at your earliest convenience.",
         lblName: "Full Name",
         lblAttend: "Attendance",
+        lblPlusOne: "Additional Guests",
         lblDiet: "Dietary Restrictions / Allergies",
         lblMessage: "Message for Groom & Bride",
         btnSubmit: "Submit RSVP"
@@ -760,6 +728,7 @@
         rsvpDeadline: "Bitte antwortet uns so bald wie möglich.",
         lblName: "Name",
         lblAttend: "Teilnahme",
+        lblPlusOne: "Begleitpersonen",
         lblDiet: "Unverträglichkeiten / Allergien",
         lblMessage: "Nachricht an das Brautpaar",
         btnSubmit: "RSVP Absenden"
@@ -775,6 +744,10 @@
         autoplay: {
           delay: 3500,
           disableOnInteraction: false,
+        },
+        //pagination: {
+        //  el: '.swiper-pagination',
+        //  clickable: true,
         },
         navigation: {
           nextEl: '.swiper-button-next',
@@ -843,99 +816,4 @@
         setLanguage('de');
       }
 
-      // 💡 [여기 추가: 페이지 로드 후 이미지 클릭 이벤트 등록]
-      document.querySelectorAll('.gallery-swiper .swiper-slide img').forEach(img => {
-        img.addEventListener('click', function() {
-          const modal = document.getElementById('imageModal');
-          const modalImg = document.getElementById('modalImg');
-          modal.style.display = "flex";
-          modalImg.src = this.src;
-        });
-      });
-    });
-
-    // 💡 [여기 추가: 모달 닫기 함수]
-    function closeModal() {
-      document.getElementById('imageModal').style.display = "none";
-    }
-      
-      initGallerySwiper();
-    });
-
-    // 편지 열기 애니메이션
-    function openLetter() {
-      const flap = document.getElementById('envelopeFlap');
-      const container = document.getElementById('envelopeContainer');
-      const hint = document.getElementById('openHint');
-      const hero = document.getElementById('heroSection');
-      const mainContent = document.getElementById('mainContent');
-
-      // 1. 봉투 뚜껑 열림
-      flap.style.transform = 'rotateX(180deg)';
-      hint.style.opacity = '0';
-
-      // 2. 봉투 아래로 내려감
-      setTimeout(() => {
-        container.classList.add('open-slide-down');
-      }, 400);
-
-      // 3. 메인 본문 표시
-      setTimeout(() => {
-        mainContent.classList.add('slide-up-show');
-        hero.style.display = 'none';
-        window.scrollTo(0, 0);
-
-        if (gallerySwiper) {
-          gallerySwiper.update();
-        }
-      }, 1000);
-    }
-
-    function toggleFaq(element) {
-      const answer = element.nextElementSibling;
-      const isVisible = answer.style.display === 'block';
-      answer.style.display = isVisible ? 'none' : 'block';
-      element.querySelector('span:last-child').textContent = isVisible ? '+' : '-';
-    }
-
-    async function handleRsvpSubmit(e) {
-      e.preventDefault();
-
-      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyRDW_g8QoGInkxrT3Ixk1fcdTyKuHVLtXUVF-W1w8-0c8dfwOhcrJa-3mT6W7aU_bRHw/exec"; 
-
-      const submitBtn = document.querySelector('.btn-submit');
-      submitBtn.disabled = true;
-      submitBtn.innerText = "Sending...";
-
-      const rsvpData = {
-        name: document.getElementById('guestName').value,
-        attendance: document.getElementById('attendance').value,
-        plusOne: document.getElementById('plusOne').value,
-        diet: document.getElementById('diet').value,
-        message: document.getElementById('message').value
-      };
-
-      try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(rsvpData)
-        });
-
-        alert("RSVP가 성공적으로 전달되었습니다. 감사합니다! 💕");
-        e.target.reset();
-      } catch (error) {
-        alert("제출 중 오류가 발생했습니다. 다시 시도해주세요.");
-        console.error(error);
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerText = "RSVP 제출하기";
-      }
-    }
-  </script>
-
-</body>
-</html>
+      initGaller
