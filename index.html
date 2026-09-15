@@ -70,10 +70,11 @@
     }
     .lang-btn.active { color: var(--primary-color); text-decoration: underline; }
 
-    /* 1. INTRO HERO (오프닝 봉투 영역 수정) */
+    /* 1. INTRO HERO (수정: 높이 및 위치 보장) */
     .intro-hero {
       width: 100%;
-      height: 100vh;
+      min-height: 100vh;
+      height: 100%;
       background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
                   url('https://images.pexels.com/photos/30374289/pexels-photo-30374289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center/cover no-repeat;
       display: flex;
@@ -82,8 +83,7 @@
       align-items: center;
       text-align: center;
       padding: 20px;
-      position: relative;
-      z-index: 100;
+      box-sizing: border-box;
     }
 
     /* 3D 입체 편지 봉투 */
@@ -100,10 +100,9 @@
       justify-content: center;
       align-items: center;
       border: 1px solid #e2dad0;
-      transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
-      animation: floatUp 1.2s ease-out forwards;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
       padding: 0 15px;
-      will-change: transform, opacity;
+      margin-top: 20px;
     }
 
     .envelope-container:hover {
@@ -177,10 +176,6 @@
       transition: opacity 0.3s ease;
     }
 
-    @keyframes floatUp {
-      0% { transform: translateY(40px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
     @keyframes pulse {
       0%, 100% { opacity: 0.7; }
       50% { opacity: 1; }
@@ -190,7 +185,7 @@
     #mainContent {
       display: none;
       opacity: 0;
-      transition: opacity 1s ease;
+      transition: opacity 0.8s ease;
       background: var(--bg-cream);
     }
 
