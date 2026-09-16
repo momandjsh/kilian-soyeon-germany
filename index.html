@@ -1156,17 +1156,31 @@ function updateOgTags(lang) {
       alert("RSVP가 성공적으로 제출되었습니다!");
     }
 
-    // 8. 페이지 로드 시 시작
-    window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlLang = urlParams.get('lang');
+    // FAQ 전체 아코디언 기능 (가짓수가 늘어나도 자동 적용)
+document.addEventListener('DOMContentLoaded', () => {
+  const faqItems = document.querySelectorAll('.faq-item'); // 모든 FAQ 항목을 선택
 
-      if (urlLang && translations[urlLang]) {
-        setLanguage(urlLang);
-      } else {
-        setLanguage('de');
-      }
-    });
+  faqItems.forEach(item => {
+    const questionBtn = item.querySelector('.faq-question');
+    
+    if (questionBtn) {
+      questionBtn.addEventListener('click', () => {
+        // 현재 클릭한 항목이 이미 열려 있는지 확인
+        const isOpen = item.classList.contains('active');
+
+        // (선택 사항) 다른 FAQ를 모두 닫고 싶을 때 아래 한 줄 주석 해제
+        // faqItems.forEach(i => i.classList.remove('active'));
+
+        // 클릭한 항목 토글 (열림/닫힘)
+        if (isOpen) {
+          item.classList.remove('active');
+        } else {
+          item.classList.add('active');
+        }
+      });
+    }
+  });
+});
     // 1. WhatsApp 공유 함수
 function shareWhatsApp() {
   const currentUrl = window.location.href;
