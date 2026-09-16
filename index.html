@@ -7,9 +7,15 @@
 
   <!-- 검색엔진 노출 방지 및 SNS 미리보기(OG) 설정 -->
   <meta name="robots" content="noindex, nofollow">
-  <meta property="og:title" content="Kilian & Soyeon의 결혼식에 초대합니다">
-  <meta property="og:description" content="2027년 6월 12일 Schloss Hohenkammer">
-  <meta property="og:image" content="https://images.pexels.com/photos/30374289/pexels-photo-30374289.jpeg">
+  <!-- 기본 OG 메타 태그 (이미지 경로 변경 완료) -->
+  <meta id="og-title" property="og:title" content="Kilian & Soyeon의 결혼식에 초대합니다">
+  <meta id="og-description" property="og:description" content="12.06.2027 Schloss Hohenkammer">
+  <meta id="og-image" property="og:image" content="image/000.jpg">
+  
+  <!-- 트위터 카카오 등 호환용 메타 태그 (선택) -->
+  <meta id="twitter-title" name="twitter:title" content="Kilian & Soyeon의 결혼식에 초대합니다">
+  <meta id="twitter-description" name="twitter:description" content="12.06.2027 Schloss Hohenkammer">
+  <meta id="twitter-image" name="twitter:image" content="image/000.jpg">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -112,7 +118,7 @@
     /* 💡 편지 봉투 텍스트 폰트 스타일 */
     .groom-bride-names {
       font-family: 'Italianno', cursive; /* Our Wedding 필기체 폰트 */
-      font-size: 50px;                   /* 글씨 크기 */
+      font-size: 70px;                   /* 글씨 크기 */
       color: var(--primary-color);
       margin-bottom: 2px;
       font-weight: normal;
@@ -1040,6 +1046,43 @@
         setTimeout(() => { gallerySwiper.update(); }, 100);
       }
     }
+
+    // 언어별 OG 메타 태그 텍스트 정의
+const ogTranslations = {
+  kr: {
+    title: "Kilian & Soyeon의 결혼식에 초대합니다",
+    description: "12.06.2027 Schloss Hohenkammer"
+  },
+  en: {
+    title: "You are invited to Kilian & Soyeon's Wedding",
+    description: "12.06.2027 Schloss Hohenkammer"
+  },
+  de: {
+    title: "Einladung zur Hochzeit von Kilian & Soyeon",
+    description: "12.06.2027 Schloss Hohenkammer"
+  }
+};
+
+// OG 태그 동적 변경 함수
+function updateOgTags(lang) {
+  const data = ogTranslations[lang] || ogTranslations['kr'];
+  
+  // 상대 경로인 image/000.jpg를 완전한 URL(https://...)로 변환
+  const absoluteImageUrl = new URL('image/000.jpg', window.location.href).href;
+
+  // 메타 태그 변경
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', data.title);
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', data.description);
+  document.querySelector('meta[property="og:image"]')?.setAttribute('content', absoluteImageUrl);
+  
+  // 트위터 카드용 태그도 함께 변경
+  document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', data.title);
+  document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', data.description);
+  document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', absoluteImageUrl);
+}
+
+// 💡 언어 변경 토글 버튼 클릭 시 이 함수를 함께 호출해 주세요!
+// 예: setLanguage('de') 호출 시 -> updateOgTags('de'); 도 실행
 
     // 7. 기타 이벤트 설정
     function toggleFaq(element) {
