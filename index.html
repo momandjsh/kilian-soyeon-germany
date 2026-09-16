@@ -15,7 +15,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-
+  <!-- 기존 폰트 링크 아래에 아래 두 줄을 붙여넣으세요 -->
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+  
   <!-- Swiper.js CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -104,7 +106,24 @@
       padding: 0 15px;
       margin-top: 20px;
     }
+    /* 💡 편지 봉투 텍스트 폰트 스타일 */
+    .groom-bride-names {
+      font-family: 'Alex Brush', cursive; /* Our Wedding 필기체 폰트 */
+      font-size: 32px;                   /* 글씨 크기 */
+      color: var(--primary-color);
+      margin-bottom: 2px;
+      font-weight: normal;
+      line-height: 1.1;
+    }
 
+    .date-badge {
+      font-family: 'Cinzel Decorative', serif; /* Kilian & Soyeon 폰트 */
+      font-size: 13px;
+      font-weight: 700;
+      color: #4a5d4e;
+      letter-spacing: 1px;
+      line-height: 1.4;
+    }
     .envelope-container:hover {
       transform: translateY(-5px);
     }
@@ -426,8 +445,8 @@
         
         <div class="envelope-info">
           <div class="invited-tag">You are invited to</div>
-          <div class="groom-bride-names">Kilian Scheffter & Soyeon Jun</div>
-          <div class="date-badge">12.06.2027<br>Schloss Hohenkammer</div>
+          <div class="groom-bride-names">Our Wedding</div>
+          <div class="date-badge">Kilian & Soyeon</div>
         </div>
       </div>
       <div class="open-hint" id="openHint" data-i18n="clickToOpen">✉️ Click envelope to open</div>
