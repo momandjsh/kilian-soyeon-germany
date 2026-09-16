@@ -1079,12 +1079,17 @@ function shareWhatsApp() {
 }
 
 // 2. 링크 복사 함수
+    const copyAlertMessages = {
+  kr: "청첩장 링크가 복사되었습니다!",
+  en: "Invitation link copied to clipboard!",
+  de: "Einladungslink wurde in die Zwischenablage kopiert!"
+};
 function copyLink() {
   const currentUrl = window.location.href;
   
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(currentUrl).then(() => {
-      alert('청첩장 링크가 복사되었습니다!');
+      alert(alertMsg);
     }).catch(err => {
       fallbackCopyLink(currentUrl);
     });
@@ -1092,6 +1097,7 @@ function copyLink() {
     fallbackCopyLink(currentUrl);
   }
 }
+    
 
 function fallbackCopyLink(url) {
   const textArea = document.createElement("textarea");
@@ -1100,31 +1106,17 @@ function fallbackCopyLink(url) {
   textArea.select();
   document.execCommand('copy');
   document.body.removeChild(textArea);
-  alert('청첩장 링크가 복사되었습니다!');
+  alert(alertMsg);
 }
 
 // 3. 카카오톡 공유 함수 (카카오 SDK 활용 방식)
 function shareKakao() {
-  // 카카오 SDK가 로드되어 있는 경우
-  if (typeof Kakao !== 'undefined' && Kakao.isInitialized()) {
-    Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: 'Kilian & Soyeon의 결혼식에 초대합니다',
-        description: '2027년 6월 12일 Schloss Hohenkammer',
-        imageUrl: window.location.origin + '/image/00.jpg', // 대표 이미지 경로
-        link: {
-          mobileWebUrl: window.location.href,
-          webUrl: window.location.href,
-        },
-      },
-    });
-  } else {
-    // 카카오 SDK 미설정 시 대체 링크 전달 방식
-    const currentUrl = window.location.href;
-    const kakaoUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}`;
-    window.open(kakaoUrl, '_blank');
-  }
+  const currentUrl = window.location.href;
+  const shareText = "Kilian & Soyeon's Wedding Invitation";
+  // 카카오톡 웹 공유 인텐트 URL (SDK 없이 동작)
+  const kakaoShareUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
+  
+  window.open(kakaoShareUrl, '_blank', 'width=500,height=600');
 }
   </script>
 
