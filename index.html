@@ -97,106 +97,106 @@
       box-sizing: border-box;
     }
 
-    /* 3D 입체 편지 봉투 컨테이너 */
+    /* 3D 입체 편지 봉투 */
     .envelope-container {
       width: 320px;
-      height: 220px;
-      background-color: #f2ebe1;
+      height: 210px;
+      background-color: #f3efe6;
+      border-radius: 8px;
       position: relative;
       box-shadow: 0 15px 30px rgba(0,0,0,0.3);
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #e2dad0;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
+      padding: 0 15px;
       margin-top: 20px;
-      perspective: 1000px;
-      border-radius: 6px;
-      transition: transform 0.3s ease;
     }
-
-    .envelope-container:hover {
-      transform: translateY(-5px);
-    }
-
-    /* 봉투 윗덮개 (3D 회전 애니메이션) */
-    .envelope-flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 160px solid transparent;
-      border-right: 160px solid transparent;
-      border-top: 110px solid #e7e0d3;
-      transform-origin: top;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 4;
-    }
-    /* 3D 입체 편지 봉투 컨테이너 */
-    .envelope-container {
-      width: 320px;
-      height: 220px;
-      background-color: #f2ebe1;
-      position: relative;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-      cursor: pointer;
-      margin-top: 20px;
-      perspective: 1000px;
-      border-radius: 6px;
-      transition: transform 0.3s ease;
-    }
-
-    .envelope-container:hover {
-      transform: translateY(-5px);
-    }
-
-    /* 봉투 윗덮개 (3D 회전 애니메이션) */
-    .envelope-flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 160px solid transparent;
-      border-right: 160px solid transparent;
-      border-top: 110px solid #e7e0d3;
-      transform-origin: top;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 4;
-    }
+    /* 💡 편지 봉투 텍스트 폰트 스타일 */
     .groom-bride-names {
-      font-family: 'Italianno', cursive;
-      font-size: 65px;
+      font-family: 'Italianno', cursive; /* Our Wedding 필기체 폰트 */
+      font-size: 70px;                   /* 글씨 크기 */
       color: var(--primary-color);
       margin-bottom: 2px;
       font-weight: normal;
-      line-height: 1;
+      line-height: 1.1;
     }
 
     .date-badge {
-      font-family: 'Cinzel Decorative', serif;
+      font-family: 'Cinzel Decorative', serif; /* Kilian & Soyeon 폰트 */
       font-size: 13px;
       font-weight: 700;
       color: #4a5d4e;
       letter-spacing: 1px;
       line-height: 1.4;
     }
+    .envelope-container:hover {
+      transform: translateY(-5px);
+    }
 
-      /* 봉투 앞면 (편지지를 감싸는 주머니 형태) */
-    .envelope-front {
+    .envelope-container.open-slide-down {
+      transform: translateY(100vh) !important;
+      opacity: 0;
+    }
+
+    .envelope-flap {
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
       width: 0;
       height: 0;
-      border-left: 160px solid #ede4d6;
-      border-right: 160px solid #ede4d6;
-      border-top: 100px solid transparent;
-      border-bottom: 110px solid #e2d8c7;
-      z-index: 3;
-      border-radius: 0 0 6px 6px;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 110px solid #e7e0d3;
+      transform-origin: top;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2;
     }
-    
-    /* 클릭 힌트 문구 */
+
+    .wax-seal {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 80px;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('https://png.pngtree.com/png-clipart/20230508/original/pngtree-red-wax-seal-stamp-transparent-background-png-image_9151528.png') center/contain no-repeat;
+      filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
+    }
+
+    .envelope-info {
+      margin-top: 100px;
+      z-index: 1;
+      width: 100%;
+    }
+    .invited-tag {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin-bottom: 6px;
+    }
+    .groom-bride-names {
+      font-size: 20px;
+      color: var(--primary-color);
+      margin-bottom: 6px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+    }
+    .date-badge {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+    }
+
     .open-hint {
-      margin-top: 35px;
+      margin-top: 25px;
       font-size: 14px;
       color: #ffffff;
       text-shadow: 0 1px 4px rgba(0,0,0,0.8);
@@ -209,24 +209,6 @@
       50% { opacity: 1; }
     }
 
-    /* -------------------------------------------------- */
-    /* 💡 클릭 시 열림 효과 (.open 클래스 적용 시) */
-    /* -------------------------------------------------- */
-    .envelope-container.open .envelope-flap {
-      transform: rotateX(180deg);
-      z-index: 1;
-    }
-
-    .envelope-container.open .wax-seal {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .envelope-container.open .letter-paper {
-      transform: translateY(-150px);
-      z-index: 6;
-    }
-    
     /* 2. 메인 컨텐츠 영역 */
     #mainContent {
       display: none;
@@ -576,8 +558,6 @@ html[data-lang="ko"] .invitation-name {
     <span id="bgmIcon">🎵</span>
   </button>
   
-  <div class="app-container">
-    
   <!-- 언어 변환 버튼 -->
   <div class="lang-switcher">
     <button class="lang-btn" id="btn-ko" onclick="setLanguage('ko')">한</button>
@@ -585,30 +565,22 @@ html[data-lang="ko"] .invitation-name {
     <button class="lang-btn" id="btn-de" onclick="setLanguage('de')">DE</button>
   </div>
 
+  <div class="app-container">
 
-    <!-- INTRO HERO -->
+    <!-- 1. 오프닝 히어로 -->
     <section class="intro-hero" id="heroSection">
       <div class="envelope-container" id="envelopeContainer" onclick="openLetter()">
-        <!-- 1. 봉투 윗덮개 -->
         <div class="envelope-flap" id="envelopeFlap"></div>
+        <div class="wax-seal"></div>
         
-        <!-- 2. 실링 왁스 -->
-        <div class="wax-seal" id="waxSeal"></div>
-
-        <!-- 3. 위로 솟아오르는 편지지 -->
-        <div class="letter-paper" id="letterPaper">
+        <div class="envelope-info">
           <div class="invited-tag">You are invited to</div>
           <div class="groom-bride-names">Our Wedding</div>
           <div class="date-badge">Kilian & Soyeon</div>
         </div>
-
-        <!-- 4. 봉투 앞면 (주머니) -->
-        <div class="envelope-front"></div>
       </div>
-
       <div class="open-hint" id="openHint" data-i18n="clickToOpen">✉️ Click envelope to open</div>
     </section>
-  </div>
 
     <!-- 2. 본문 내용 -->
     <main id="mainContent">
@@ -992,45 +964,31 @@ html[data-lang="ko"] .invitation-name {
     }
   }
     // 1. 편지 봉투 열기 함수
-function openLetter() {
-  const container = document.getElementById('envelopeContainer');
-  const hint = document.getElementById('openHint');
-  const mainContent = document.getElementById('mainContent');
+    function openLetter() {
+      const envelope = document.getElementById('envelopeContainer');
+      const hint = document.getElementById('openHint');
+      const mainContent = document.getElementById('mainContent');
+      const heroSection = document.getElementById('heroSection');
 
-  if (!container) return;
+      if (!envelope) return;
 
-  // 1) 봉투 열림 스타일(open) 추가 - 덮개 열리고 편지가 위로 올라옴
-  if (!container.classList.contains('open')) {
-    container.classList.add('open');
-  }
+      envelope.classList.add('open-slide-down');
+      if (hint) hint.style.opacity = '0';
 
-  // 2) 클릭 힌트 문구 서서히 숨기기
-  if (hint) {
-    hint.style.opacity = '0';
-  }
-
-  // 3) 본문 콘텐츠(mainContent) 보이기 및 갤러리 스와이퍼 초기화
-  if (mainContent && !mainContent.classList.contains('slide-up-show')) {
-    setTimeout(() => {
-      mainContent.classList.add('slide-up-show');
-      if (typeof initGallerySwiper === 'function') {
+      setTimeout(() => {
+        heroSection.style.display = 'none';
+        mainContent.classList.add('slide-up-show');
         initGallerySwiper();
-      }
-    }, 400); // 편지가 위로 솟아오른 뒤 본문 표시
-  }
-
-  // 4) BGM 재생
-  if (typeof bgm !== 'undefined' && bgm && !isPlaying) {
-    bgm.play().then(() => {
-      isPlaying = true;
-      if (typeof bgmIcon !== 'undefined' && bgmIcon) {
+      }, 600);
+      if (!isPlaying) {
+      bgm.play().then(() => {
+        isPlaying = true;
         bgmIcon.innerText = '🎵';
-      }
-    }).catch(err => {
-      console.log("BGM 재생 연동:", err);
-    });
-  }
-}
+      }).catch(err => {
+        console.log("터치 후 재생 연동 완료:", err);
+      });
+    }
+    }
 
     // 2. Swiper 슬라이더 초기화
     function initGallerySwiper() {
