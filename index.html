@@ -1078,35 +1078,54 @@ function shareWhatsApp() {
   window.open(whatsappUrl, '_blank');
 }
 
-// 2. 링크 복사 함수
-    const copyAlertMessages = {
+// 1. 언어별 알림 메시지 정의
+const copyAlertMessages = {
   kr: "청첩장 링크가 복사되었습니다!",
   en: "Invitation link copied to clipboard!",
   de: "Einladungslink wurde in die Zwischenablage kopiert!"
 };
+
+// 2. 링크 복사 함수
 function copyLink() {
   const currentUrl = window.location.href;
   
+  // 현재 언어 확인 (html 태그의 data-lang 또는 lang 속성 확인)
+  const currentLang = document.documentElement.getAttribute('data-lang') || 
+                      document.documentElement.lang || 
+                      'kr';
+  
+  // 선택된 언어 메시지가 없으면 한국어('kr')로 안전하게 지정
+  const alertMsg = copyAlertMessages[currentLang] || copyAlertMessages['kr'];
+
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(currentUrl).then(() => {
       alert(alertMsg);
     }).catch(err => {
-      fallbackCopyLink(currentUrl);
+      fallbackCopyLink(currentUrl, alertMsg);
     });
   } else {
-    fallbackCopyLink(currentUrl);
+    fallbackCopyLink(currentUrl, alertMsg);
   }
 }
-    
 
-function fallbackCopyLink(url) {
+// 3. 구형/인앱 브라우저 대체 복사 함수
+function fallbackCopyLink(url, alertMsg) {
+  // alertMsg가 전달되지 않았을 경우 대비한 안전장치
+  const msg = alertMsg || copyAlertMessages['kr'];
+  
   const textArea = document.createElement("textarea");
   textArea.value = url;
   document.body.appendChild(textArea);
   textArea.select();
-  document.execCommand('copy');
+  
+  try {
+    document.execCommand('copy');
+  } catch (err) {
+    console.error('복사 실패:', err);
+  }
+  
   document.body.removeChild(textArea);
-  alert(alertMsg);
+  alert(msg);
 }
 
 // 3. 카카오톡 공유 함수 (카카오 SDK 활용 방식)
