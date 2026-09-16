@@ -994,32 +994,42 @@
       });
     }
   }
-    // 1. 편지 봉투 열기 함수
-    function openLetter() {
-      const envelope = document.getElementById('envelopeContainer');
-      const hint = document.getElementById('openHint');
-      const mainContent = document.getElementById('mainContent');
-      const heroSection = document.getElementById('heroSection');
+   // 1. 편지 봉투 열기 함수 (슬라이드 다운 방식)
+function openLetter() {
+  const envelope = document.getElementById('envelopeContainer');
+  const hint = document.getElementById('openHint');
+  const mainContent = document.getElementById('mainContent');
+  const heroSection = document.getElementById('heroSection');
 
-      if (!envelope) return;
+  if (!envelope) return;
 
-      envelope.classList.add('open-slide-down');
-      if (hint) hint.style.opacity = '0';
+  // 1) 봉투 아래로 슬라이드
+  envelope.classList.add('open-slide-down');
+  if (hint) hint.style.opacity = '0';
 
-      setTimeout(() => {
-        heroSection.style.display = 'none';
-        mainContent.classList.add('slide-up-show');
-        initGallerySwiper();
-      }, 600);
-      if (!isPlaying) {
-      bgm.play().then(() => {
-        isPlaying = true;
+  // 2) 0.6초 후 히어로 숨기고 본문 표시
+  setTimeout(() => {
+    if (heroSection) heroSection.style.display = 'none';
+    if (mainContent) mainContent.classList.add('slide-up-show');
+    
+    // initGallerySwiper 함수가 있을 때만 안전하게 실행
+    if (typeof initGallerySwiper === 'function') {
+      initGallerySwiper();
+    }
+  }, 600);
+
+  // 3) BGM 재생 (변수 안전 체크)
+  if (typeof isPlaying !== 'undefined' && !isPlaying && typeof bgm !== 'undefined' && bgm) {
+    bgm.play().then(() => {
+      isPlaying = true;
+      if (typeof bgmIcon !== 'undefined' && bgmIcon) {
         bgmIcon.innerText = '🎵';
-      }).catch(err => {
-        console.log("터치 후 재생 연동 완료:", err);
-      });
-    }
-    }
+      }
+    }).catch(err => {
+      console.log("터치 후 재생 연동 완료:", err);
+    });
+  }
+}
 
     // 2. Swiper 슬라이더 초기화
     function initGallerySwiper() {
