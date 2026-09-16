@@ -898,7 +898,6 @@
         rsvpDeadline: "원활한 예식 준비를 위해 참석 여부를 알려주시면 감사하겠습니다.",
         lblName: "성함 (Name)",
         lblAttend: "참석 여부 (Attendance)",
-        //lblPlusOne: "동반 인원수",
         lblDiet: "식성 및 알레르기 안내 (Dietary Requirement)",
         lblMessage: "축하 메시지",
         btnSubmit: "RSVP 제출하기"
@@ -924,16 +923,15 @@
         travelTitle: "Travel & Stay",
         travelDesc: "<strong>🚗 Parking:</strong> Enough parking spaces are available at the venue.<br><strong>✈️ Flight & Train:</strong> Approx. 20 minutes by car from Munich Airport (MUC).<br><strong>🚌 Bus (Freising):</strong> Bus line 665 from Freising station (approx. 45 mins).<br><strong>🚕 Taxi (Petershausen):</strong> Approx. 7 mins by taxi from nearby Petershausen station.<br><strong>🏨 Hotel Info:</strong> Accommodations are available directly at the venue hotel. You can make a reservation under our names.",
         btnOpenMap: "📍 Open in Google Maps",
-        faq1: "The dress code is Festive Attire. Please join us in comfortable yet elegant clothing. As we may spend some time on the outdoor lawn, we recommend comfortable shoes rather than stilettos."
-        faq2: "Yes, absolutely! A special meal will be prepared for our little guests. To help us plan accurately, please make sure to include your child's age when you RSVP."
-        faq3: "There are guest rooms available inside the castle. Please mention that you are our wedding guest when booking, and they will assist you. Reservation is recommended!"
-        faq4: "There is plenty of parking space available right next to the castle, so please feel free to drive. Parking is free of charge."
-        faq5: "To help us arrange the seating and catering smoothly, RSVP through this website no later than April 1st. Thank you!"
-        faq6: "The ceremony will take place in the castle's outdoor garden. However, in case of rain, we will move to the indoor hall. :)"
+        faq1: "The dress code is Festive Attire. Please join us in comfortable yet elegant clothing. As we may spend some time on the outdoor lawn, we recommend comfortable shoes rather than stilettos.",
+        faq2: "Yes, absolutely! A special meal will be prepared for our little guests. To help us plan accurately, please make sure to include your child's age when you RSVP.",
+        faq3: "There are guest rooms available inside the castle. Please mention that you are our wedding guest when booking, and they will assist you. Reservation is recommended!",
+        faq4: "There is plenty of parking space available right next to the castle, so please feel free to drive. Parking is free of charge.",
+        faq5: "To help us arrange the seating and catering smoothly, RSVP through this website no later than April 1st. Thank you!",
+        faq6: "The ceremony will take place in the castle's outdoor garden. However, in case of rain, we will move to the indoor hall. :)",
         rsvpDeadline: "Please kindly respond at your earliest convenience.",
         lblName: "Full Name",
         lblAttend: "Attendance",
-        //lblPlusOne: "Additional Guests",
         lblDiet: "Dietary Restrictions / Allergies",
         lblMessage: "Message for Groom & Bride",
         btnSubmit: "Submit RSVP"
@@ -961,75 +959,70 @@
         btnOpenMap: "📍 In Google Maps öffnen",
         faq1: "Dresscode: <strong>Festliche Kleidung</strong>. :)",
         faq2: "Ja, natürlich! Für unsere kleinen Gäste wird es ein spezielles Kindermenü geben. Um uns bei der Planung zu helfen, gebt bitte bei eurer Zu-/Absage (RSVP) das Alter eurer Kinder an!",
-        faq3: "Im Schloss stehen Zimmer für unsere Gäste zur Verfügung. Bitte gebt bei der Buchung an, dass ihr zu unserer Hochzeitsgesellschaft gehört. Dann wird man euch gerne weiterhelfen."
-        faq4: "Es gibt ausreichend Parkplätze direkt neben dem Schloss, ihr könnt also gerne mit dem Auto anreisen. Das Parken ist kostenlos."
-        faq5: "Um uns die Sitzordnung und das Menü zu erleichtern, bitten wir euch, uns spätestens bis zum 1. April über diese Website mitzuteilen, ob ihr teilnehmen könnt."
-        faq6: "Die Trauung wird im Schlossgarten stattfinden. Bei Regen werden wir in den Saal im Inneren ausweichen. :)"
+        faq3: "Im Schloss stehen Zimmer für unsere Gäste zur Verfügung. Bitte gebt bei der Buchung an, dass ihr zu unserer Hochzeitsgesellschaft gehört. Dann wird man euch gerne weiterhelfen.",
+        faq4: "Es gibt ausreichend Parkplätze direkt neben dem Schloss, ihr könnt also gerne mit dem Auto anreisen. Das Parken ist kostenlos.",
+        faq5: "Um uns die Sitzordnung und das Menü zu erleichtern, bitten wir euch, uns spätestens bis zum 1. April über diese Website mitzuteilen, ob ihr teilnehmen könnt.",
+        faq6: "Die Trauung wird im Schlossgarten stattfinden. Bei Regen werden wir in den Saal im Inneren ausweichen. :)",
         rsvpDeadline: "Bitte antwortet uns so bald wie möglich.",
         lblName: "Name",
         lblAttend: "Teilnahme",
-        //lblPlusOne: "Begleitpersonen",
         lblDiet: "Unverträglichkeiten / Allergien",
         lblMessage: "Nachricht an das Brautpaar",
         btnSubmit: "RSVP Absenden"
       }
     };
-    
-    // 3-1. <script> 시작 부분에 BGM 관련 변수와 toggleBGM 함수를 추가하세요!
-  const bgm = document.getElementById('bgm');
-  const bgmIcon = document.getElementById('bgmIcon');
-  let isPlaying = false;
 
-  function toggleBGM() {
-    if (isPlaying) {
-      bgm.pause();
-      bgmIcon.innerText = '🔇';
-      isPlaying = false;
-    } else {
-      bgm.play().then(() => {
-        bgmIcon.innerText = '🎵';
-        isPlaying = true;
-      }).catch(err => {
-        console.log("재생 오류:", err);
-      });
-    }
-  }
-   // 1. 편지 봉투 열기 함수 (슬라이드 다운 방식)
-function openLetter() {
-  const envelope = document.getElementById('envelopeContainer');
-  const hint = document.getElementById('openHint');
-  const mainContent = document.getElementById('mainContent');
-  const heroSection = document.getElementById('heroSection');
+    // BGM 관련 변수
+    const bgm = document.getElementById('bgm');
+    const bgmIcon = document.getElementById('bgmIcon');
+    let isPlaying = false;
 
-  if (!envelope) return;
-
-  // 1) 봉투 아래로 슬라이드
-  envelope.classList.add('open-slide-down');
-  if (hint) hint.style.opacity = '0';
-
-  // 2) 0.6초 후 히어로 숨기고 본문 표시
-  setTimeout(() => {
-    if (heroSection) heroSection.style.display = 'none';
-    if (mainContent) mainContent.classList.add('slide-up-show');
-    
-    // initGallerySwiper 함수가 있을 때만 안전하게 실행
-    if (typeof initGallerySwiper === 'function') {
-      initGallerySwiper();
-    }
-  }, 600);
-
-  // 3) BGM 재생 (변수 안전 체크)
-  if (typeof isPlaying !== 'undefined' && !isPlaying && typeof bgm !== 'undefined' && bgm) {
-    bgm.play().then(() => {
-      isPlaying = true;
-      if (typeof bgmIcon !== 'undefined' && bgmIcon) {
-        bgmIcon.innerText = '🎵';
+    function toggleBGM() {
+      if (!bgm) return;
+      if (isPlaying) {
+        bgm.pause();
+        if (bgmIcon) bgmIcon.innerText = '🔇';
+        isPlaying = false;
+      } else {
+        bgm.play().then(() => {
+          if (bgmIcon) bgmIcon.innerText = '🎵';
+          isPlaying = true;
+        }).catch(err => {
+          console.log("재생 오류:", err);
+        });
       }
-    }).catch(err => {
-      console.log("터치 후 재생 연동 완료:", err);
-    });
-  }
-}
+    }
+
+    // 1. 편지 봉투 열기 함수
+    function openLetter() {
+      const envelope = document.getElementById('envelopeContainer');
+      const hint = document.getElementById('openHint');
+      const mainContent = document.getElementById('mainContent');
+      const heroSection = document.getElementById('heroSection');
+
+      if (!envelope) return;
+
+      envelope.classList.add('open-slide-down');
+      if (hint) hint.style.opacity = '0';
+
+      setTimeout(() => {
+        if (heroSection) heroSection.style.display = 'none';
+        if (mainContent) mainContent.classList.add('slide-up-show');
+        
+        if (typeof initGallerySwiper === 'function') {
+          initGallerySwiper();
+        }
+      }, 600);
+
+      if (!isPlaying && bgm) {
+        bgm.play().then(() => {
+          isPlaying = true;
+          if (bgmIcon) bgmIcon.innerText = '🎵';
+        }).catch(err => {
+          console.log("터치 후 재생 연동 완료:", err);
+        });
+      }
+    }
 
     // 2. Swiper 슬라이더 초기화
     function initGallerySwiper() {
@@ -1049,18 +1042,25 @@ function openLetter() {
       });
     }
 
-    // 5. 카운트다운 로직
+    // 3. 카운트다운 로직
     const weddingDate = new Date("2027-06-12T15:00:00").getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
       const distance = weddingDate - now;
 
+      const dDays = document.getElementById('d-days');
+      const dHours = document.getElementById('d-hours');
+      const dMins = document.getElementById('d-mins');
+      const dSecs = document.getElementById('d-secs');
+
+      if (!dDays || !dHours || !dMins || !dSecs) return;
+
       if (distance < 0) {
-        document.getElementById('d-days').innerText = "0";
-        document.getElementById('d-hours').innerText = "00";
-        document.getElementById('d-mins').innerText = "00";
-        document.getElementById('d-secs').innerText = "00";
+        dDays.innerText = "0";
+        dHours.innerText = "00";
+        dMins.innerText = "00";
+        dSecs.innerText = "00";
         return;
       }
 
@@ -1069,16 +1069,16 @@ function openLetter() {
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById('d-days').innerText = days;
-      document.getElementById('d-hours').innerText = hours < 10 ? '0' + hours : hours;
-      document.getElementById('d-mins').innerText = minutes < 10 ? '0' + minutes : minutes;
-      document.getElementById('d-secs').innerText = seconds < 10 ? '0' + seconds : seconds;
+      dDays.innerText = days;
+      dHours.innerText = hours < 10 ? '0' + hours : hours;
+      dMins.innerText = minutes < 10 ? '0' + minutes : minutes;
+      dSecs.innerText = seconds < 10 ? '0' + seconds : seconds;
     }
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // 6. 언어 설정 함수
+    // 4. 언어 설정 함수
     function setLanguage(lang) {
       if (!translations[lang]) lang = 'de';
 
@@ -1093,6 +1093,8 @@ function openLetter() {
         }
       });
 
+      updateOgTags(lang);
+
       const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + lang;
       window.history.replaceState({ path: newUrl }, '', newUrl);
 
@@ -1101,53 +1103,48 @@ function openLetter() {
       }
     }
 
-    // 언어별 OG 메타 태그 텍스트 정의
-const ogTranslations = {
-  kr: {
-    title: "Kilian & Soyeon의 결혼식에 초대합니다",
-    description: "12.06.2027 Schloss Hohenkammer"
-  },
-  en: {
-    title: "You are invited to Kilian & Soyeon's Wedding",
-    description: "12.06.2027 Schloss Hohenkammer"
-  },
-  de: {
-    title: "Einladung zur Hochzeit von Kilian & Soyeon",
-    description: "12.06.2027 Schloss Hohenkammer"
-  }
-};
+    // OG 메타 태그
+    const ogTranslations = {
+      kr: {
+        title: "Kilian & Soyeon의 결혼식에 초대합니다",
+        description: "12.06.2027 Schloss Hohenkammer"
+      },
+      en: {
+        title: "You are invited to Kilian & Soyeon's Wedding",
+        description: "12.06.2027 Schloss Hohenkammer"
+      },
+      de: {
+        title: "Einladung zur Hochzeit von Kilian & Soyeon",
+        description: "12.06.2027 Schloss Hohenkammer"
+      }
+    };
 
-// OG 태그 동적 변경 함수
-function updateOgTags(lang) {
-  const data = ogTranslations[lang] || ogTranslations['kr'];
-  
-  // 상대 경로인 image/000.jpg를 완전한 URL(https://...)로 변환
-  const absoluteImageUrl = new URL('image/000.jpg', window.location.href).href;
+    function updateOgTags(lang) {
+      const data = ogTranslations[lang] || ogTranslations['kr'];
+      const absoluteImageUrl = new URL('image/000.jpg', window.location.href).href;
 
-  // 메타 태그 변경
-  document.querySelector('meta[property="og:title"]')?.setAttribute('content', data.title);
-  document.querySelector('meta[property="og:description"]')?.setAttribute('content', data.description);
-  document.querySelector('meta[property="og:image"]')?.setAttribute('content', absoluteImageUrl);
-  
-  // 트위터 카드용 태그도 함께 변경
-  document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', data.title);
-  document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', data.description);
-  document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', absoluteImageUrl);
-}
+      document.querySelector('meta[property="og:title"]')?.setAttribute('content', data.title);
+      document.querySelector('meta[property="og:description"]')?.setAttribute('content', data.description);
+      document.querySelector('meta[property="og:image"]')?.setAttribute('content', absoluteImageUrl);
+      
+      document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', data.title);
+      document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', data.description);
+      document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', absoluteImageUrl);
+    }
 
-// 💡 언어 변경 토글 버튼 클릭 시 이 함수를 함께 호출해 주세요!
-// 예: setLanguage('de') 호출 시 -> updateOgTags('de'); 도 실행
-
-    // 7. 기타 이벤트 설정
+    // 5. FAQ 토글 함수 (HTML onclick="toggleFaq(this)" 와 단독 연동)
     function toggleFaq(element) {
       const answer = element.nextElementSibling;
       const span = element.querySelector('span:last-child');
+      
+      if (!answer) return;
+
       if (answer.style.display === "block") {
         answer.style.display = "none";
-        span.innerText = "+";
+        if (span) span.innerText = "+";
       } else {
         answer.style.display = "block";
-        span.innerText = "-";
+        if (span) span.innerText = "-";
       }
     }
 
@@ -1156,106 +1153,67 @@ function updateOgTags(lang) {
       alert("RSVP가 성공적으로 제출되었습니다!");
     }
 
-    // FAQ 전체 아코디언 기능 (가짓수가 늘어나도 자동 적용)
-document.addEventListener('DOMContentLoaded', () => {
-  const faqItems = document.querySelectorAll('.faq-item'); // 모든 FAQ 항목을 선택
-
-  faqItems.forEach(item => {
-    const questionBtn = item.querySelector('.faq-question');
-    
-    if (questionBtn) {
-      questionBtn.addEventListener('click', () => {
-        // 현재 클릭한 항목이 이미 열려 있는지 확인
-        const isOpen = item.classList.contains('active');
-
-        // (선택 사항) 다른 FAQ를 모두 닫고 싶을 때 아래 한 줄 주석 해제
-        // faqItems.forEach(i => i.classList.remove('active'));
-
-        // 클릭한 항목 토글 (열림/닫힘)
-        if (isOpen) {
-          item.classList.remove('active');
-        } else {
-          item.classList.add('active');
-        }
-      });
+    // 6. 소셜 공유 함수
+    function shareWhatsApp() {
+      const currentUrl = window.location.href;
+      const message = `Kilian & Soyeon's Wedding Invitation: ${currentUrl}`;
+      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
     }
-  });
-});
-    // 1. WhatsApp 공유 함수
-function shareWhatsApp() {
-  const currentUrl = window.location.href;
-  const message = `Kilian & Soyeon's Wedding Invitation: ${currentUrl}`;
-  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-  window.open(whatsappUrl, '_blank');
-}
 
-// 1. 언어별 알림 메시지 정의
-const copyAlertMessages = {
-  ko: "청첩장 링크가 복사되었습니다!",
-  en: "Invitation link copied!",
-  de: "Einladungslink wurde kopiert!"
-};
+    const copyAlertMessages = {
+      ko: "청첩장 링크가 복사되었습니다!",
+      en: "Invitation link copied!",
+      de: "Einladungslink wurde kopiert!"
+    };
 
-// 2. 링크 복사 함수
-function getCurrentLanguage() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const langParam = urlParams.get('lang'); // 주소창의 ?lang= 값 가져오기
-  
-  if (langParam) return langParam.toLowerCase();
-  
-  // URL 파라미터가 없으면 html 태그 속성 확인, 둘 다 없으면 기본 'kr'
-  return document.documentElement.getAttribute('data-lang') || 
-         document.documentElement.lang || 
-         'kr';
-}
+    function getCurrentLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam) return langParam.toLowerCase();
+      return document.documentElement.getAttribute('data-lang') || document.documentElement.lang || 'kr';
+    }
 
-// 3. 링크 복사 함수
-function copyLink() {
-  const currentUrl = window.location.href;
-  const currentLang = getCurrentLanguage();
-  
-  // 선택된 언어 메시지가 없으면 기본값('kr')으로 처리
-  const alertMsg = copyAlertMessages[currentLang] || copyAlertMessages['kr'];
+    function copyLink() {
+      const currentUrl = window.location.href;
+      const currentLang = getCurrentLanguage();
+      const alertMsg = copyAlertMessages[currentLang] || copyAlertMessages['kr'];
 
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(currentUrl).then(() => {
-      alert(alertMsg);
-    }).catch(err => {
-      fallbackCopyLink(currentUrl, alertMsg);
-    });
-  } else {
-    fallbackCopyLink(currentUrl, alertMsg);
-  }
-}
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(currentUrl).then(() => {
+          alert(alertMsg);
+        }).catch(err => {
+          fallbackCopyLink(currentUrl, alertMsg);
+        });
+      } else {
+        fallbackCopyLink(currentUrl, alertMsg);
+      }
+    }
 
-// 4. 호환용 복사 함수
-function fallbackCopyLink(url, alertMsg) {
-  const msg = alertMsg || copyAlertMessages['kr'];
-  const textArea = document.createElement("textarea");
-  textArea.value = url;
-  document.body.appendChild(textArea);
-  textArea.select();
-  
-  try {
-    document.execCommand('copy');
-  } catch (err) {
-    console.error('복사 실패:', err);
-  }
-  
-  document.body.removeChild(textArea);
-  alert(msg);
-}
+    function fallbackCopyLink(url, alertMsg) {
+      const msg = alertMsg || copyAlertMessages['kr'];
+      const textArea = document.createElement("textarea");
+      textArea.value = url;
+      document.body.appendChild(textArea);
+      textArea.select();
+      
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        console.error('복사 실패:', err);
+      }
+      
+      document.body.removeChild(textArea);
+      alert(msg);
+    }
 
-// 3. 카카오톡 공유 함수 (카카오 SDK 활용 방식)
-function shareKakao() {
-  const currentUrl = window.location.href;
-  const shareText = "Kilian & Soyeon's Wedding Invitation";
-  // 카카오톡 웹 공유 인텐트 URL (SDK 없이 동작)
-  const kakaoShareUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
-  
-  window.open(kakaoShareUrl, '_blank', 'width=500,height=600');
-}
+    function shareKakao() {
+      const currentUrl = window.location.href;
+      const shareText = "Kilian & Soyeon's Wedding Invitation";
+      const kakaoShareUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
+      window.open(kakaoShareUrl, '_blank', 'width=500,height=600');
+    }
   </script>
-
+  
 </body>
 </html>
