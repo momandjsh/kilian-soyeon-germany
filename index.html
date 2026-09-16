@@ -463,6 +463,70 @@
     .bgm-toggle-btn:active {
       transform: scale(0.92);
     }
+    /* 공유 버튼 & 아이콘 스타일 */
+.share-section {
+  padding: 30px 20px 20px;
+  text-align: center;
+  background-color: var(--bg-color, #fafafa);
+}
+
+.share-title {
+  font-size: 16px;
+  color: var(--text-color, #555);
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  background: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.share-btn .share-icon {
+  font-size: 16px;
+}
+
+.share-btn:active {
+  transform: scale(0.95);
+}
+
+/* 브랜드 고유 컬러 적용 */
+.share-btn.kakao { 
+  background-color: #FEE500; 
+  border-color: #FEE500; 
+  color: #3C1E1E; 
+}
+
+.share-btn.whatsapp { 
+  background-color: #25D366; 
+  border-color: #25D366; 
+  color: #ffffff; 
+}
+
+.share-btn.link { 
+  background-color: #ffffff; 
+  border-color: #dcdcdc; 
+  color: #444444; 
+}
+    
   </style>
 </head>
 <body>
@@ -726,7 +790,35 @@
           <button type="submit" class="btn-submit" data-i18n="btnSubmit">Send RSVP</button>
         </form>
       </section>
+      <!-- RSVP 구역 바로 아래 배치 -->
+      <!-- Font Awesome CDN (카카오톡, 왓츠앱 아이콘용) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      
+<section class="share-section">
+  <h3 class="share-title" data-i18n="shareTitle">Share Invitation</h3>
+  
+  <div class="share-buttons">
+    <!-- 1. 카카오톡 공유 -->
+    <button class="share-btn kakao" onclick="shareKakao()" aria-label="Share on KakaoTalk">
+      <i class="fa-solid fa-comment share-icon"></i> KakaoTalk
+    </button>
+    
+    <!-- 2. WhatsApp 공유 -->
+    <button class="share-btn whatsapp" onclick="shareWhatsApp()" aria-label="Share on WhatsApp">
+      <i class="fa-brands fa-whatsapp share-icon"></i> WhatsApp
+    </button>
+    
+    <!-- 3. 링크 복사 -->
+    <button class="share-btn link" onclick="copyLink()" aria-label="Copy Link">
+      <i class="fa-solid fa-link share-icon"></i> Copy Link
+    </button>
+  </div>
+</section>
 
+<!-- 맨 하단 카피라이트 -->
+<footer class="footer-copyright">
+  <p>© 2027 Kilian & Soyeon. All rights reserved.</p>
+</footer>
     </main>
 
   </div>
@@ -978,6 +1070,62 @@
         setLanguage('de');
       }
     });
+    // 1. WhatsApp 공유 함수
+function shareWhatsApp() {
+  const currentUrl = window.location.href;
+  const message = `Kilian & Soyeon's Wedding Invitation: ${currentUrl}`;
+  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+  window.open(whatsappUrl, '_blank');
+}
+
+// 2. 링크 복사 함수
+function copyLink() {
+  const currentUrl = window.location.href;
+  
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(currentUrl).then(() => {
+      alert('청첩장 링크가 복사되었습니다!');
+    }).catch(err => {
+      fallbackCopyLink(currentUrl);
+    });
+  } else {
+    fallbackCopyLink(currentUrl);
+  }
+}
+
+function fallbackCopyLink(url) {
+  const textArea = document.createElement("textarea");
+  textArea.value = url;
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textArea);
+  alert('청첩장 링크가 복사되었습니다!');
+}
+
+// 3. 카카오톡 공유 함수 (카카오 SDK 활용 방식)
+function shareKakao() {
+  // 카카오 SDK가 로드되어 있는 경우
+  if (typeof Kakao !== 'undefined' && Kakao.isInitialized()) {
+    Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: 'Kilian & Soyeon의 결혼식에 초대합니다',
+        description: '2027년 6월 12일 Schloss Hohenkammer',
+        imageUrl: window.location.origin + '/image/00.jpg', // 대표 이미지 경로
+        link: {
+          mobileWebUrl: window.location.href,
+          webUrl: window.location.href,
+        },
+      },
+    });
+  } else {
+    // 카카오 SDK 미설정 시 대체 링크 전달 방식
+    const currentUrl = window.location.href;
+    const kakaoUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}`;
+    window.open(kakaoUrl, '_blank');
+  }
+}
   </script>
 
 </body>
