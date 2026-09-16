@@ -1123,21 +1123,30 @@ function shareWhatsApp() {
 
 // 1. 언어별 알림 메시지 정의
 const copyAlertMessages = {
-  kr: "청첩장 링크가 복사되었습니다!",
+  ko: "청첩장 링크가 복사되었습니다!",
   en: "Invitation link copied!",
   de: "Einladungslink wurde kopiert!"
 };
 
 // 2. 링크 복사 함수
+function getCurrentLanguage() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const langParam = urlParams.get('lang'); // 주소창의 ?lang= 값 가져오기
+  
+  if (langParam) return langParam.toLowerCase();
+  
+  // URL 파라미터가 없으면 html 태그 속성 확인, 둘 다 없으면 기본 'kr'
+  return document.documentElement.getAttribute('data-lang') || 
+         document.documentElement.lang || 
+         'kr';
+}
+
+// 3. 링크 복사 함수
 function copyLink() {
   const currentUrl = window.location.href;
+  const currentLang = getCurrentLanguage();
   
-  // 현재 언어 확인 (html 태그의 data-lang 또는 lang 속성 확인)
-  const currentLang = document.documentElement.getAttribute('data-lang') || 
-                      document.documentElement.lang || 
-                      'kr';
-  
-  // 선택된 언어 메시지가 없으면 한국어('kr')로 안전하게 지정
+  // 선택된 언어 메시지가 없으면 기본값('kr')으로 처리
   const alertMsg = copyAlertMessages[currentLang] || copyAlertMessages['kr'];
 
   if (navigator.clipboard && window.isSecureContext) {
@@ -1151,11 +1160,9 @@ function copyLink() {
   }
 }
 
-// 3. 구형/인앱 브라우저 대체 복사 함수
+// 4. 호환용 복사 함수
 function fallbackCopyLink(url, alertMsg) {
-  // alertMsg가 전달되지 않았을 경우 대비한 안전장치
   const msg = alertMsg || copyAlertMessages['kr'];
-  
   const textArea = document.createElement("textarea");
   textArea.value = url;
   document.body.appendChild(textArea);
