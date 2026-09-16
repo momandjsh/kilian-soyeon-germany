@@ -438,10 +438,43 @@
       object-fit: cover;
       object-position: center center;
     }
+    /* 2. <style> 맨 아래에 이 BGM 버튼 스타일을 추가하세요! */
+    .bgm-toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .bgm-toggle-btn:active {
+      transform: scale(0.92);
+    }
   </style>
 </head>
 <body>
+  <!-- 1. 여기 아래에 BGM 태그와 버튼을 추가하세요! -->
+  <audio id="bgm" loop preload="auto">
+    <source src="image/jazz.mp3" type="audio/mpeg">
+  </audio>
 
+  <button class="bgm-toggle-btn" id="bgmToggleBtn" onclick="toggleBGM()" aria-label="Toggle Background Music">
+    <span id="bgmIcon">🎵</span>
+  </button>
+  
   <!-- 언어 변환 버튼 -->
   <div class="lang-switcher">
     <button class="lang-btn" id="btn-ko" onclick="setLanguage('ko')">한</button>
@@ -799,7 +832,26 @@
         btnSubmit: "RSVP Absenden"
       }
     };
+    
+    // 3-1. <script> 시작 부분에 BGM 관련 변수와 toggleBGM 함수를 추가하세요!
+  const bgm = document.getElementById('bgm');
+  const bgmIcon = document.getElementById('bgmIcon');
+  let isPlaying = false;
 
+  function toggleBGM() {
+    if (isPlaying) {
+      bgm.pause();
+      bgmIcon.innerText = '🔇';
+      isPlaying = false;
+    } else {
+      bgm.play().then(() => {
+        bgmIcon.innerText = '🎵';
+        isPlaying = true;
+      }).catch(err => {
+        console.log("재생 오류:", err);
+      });
+    }
+  }
     // 1. 편지 봉투 열기 함수
     function openLetter() {
       const envelope = document.getElementById('envelopeContainer');
@@ -817,6 +869,14 @@
         mainContent.classList.add('slide-up-show');
         initGallerySwiper();
       }, 600);
+      if (!isPlaying) {
+      bgm.play().then(() => {
+        isPlaying = true;
+        bgmIcon.innerText = '🎵';
+      }).catch(err => {
+        console.log("터치 후 재생 연동 완료:", err);
+      });
+    }
     }
 
     // 2. Swiper 슬라이더 초기화
