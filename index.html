@@ -992,34 +992,45 @@ html[data-lang="ko"] .invitation-name {
     }
   }
     // 1. 편지 봉투 열기 함수
-    function openLetter() {
-      const envelope = document.getElementById('envelopeContainer');
-      const hint = document.getElementById('openHint');
-      const mainContent = document.getElementById('mainContent');
-      const heroSection = document.getElementById('heroSection');
-      const container = document.getElementById('envelopeContainer');
-      if (!container.classList.contains('open')) {
-        container.classList.add('open');
+function openLetter() {
+  const container = document.getElementById('envelopeContainer');
+  const hint = document.getElementById('openHint');
+  const mainContent = document.getElementById('mainContent');
 
-      if (!envelope) return;
+  if (!container) return;
 
-      envelope.classList.add('open-slide-down');
-      if (hint) hint.style.opacity = '0';
+  // 1) 봉투 열림 스타일(open) 추가 - 덮개 열리고 편지가 위로 올라옴
+  if (!container.classList.contains('open')) {
+    container.classList.add('open');
+  }
 
-      setTimeout(() => {
-        heroSection.style.display = 'none';
-        mainContent.classList.add('slide-up-show');
+  // 2) 클릭 힌트 문구 서서히 숨기기
+  if (hint) {
+    hint.style.opacity = '0';
+  }
+
+  // 3) 본문 콘텐츠(mainContent) 보이기 및 갤러리 스와이퍼 초기화
+  if (mainContent && !mainContent.classList.contains('slide-up-show')) {
+    setTimeout(() => {
+      mainContent.classList.add('slide-up-show');
+      if (typeof initGallerySwiper === 'function') {
         initGallerySwiper();
-      }, 600);
-      if (!isPlaying) {
-      bgm.play().then(() => {
-        isPlaying = true;
+      }
+    }, 400); // 편지가 위로 솟아오른 뒤 본문 표시
+  }
+
+  // 4) BGM 재생
+  if (typeof bgm !== 'undefined' && bgm && !isPlaying) {
+    bgm.play().then(() => {
+      isPlaying = true;
+      if (typeof bgmIcon !== 'undefined' && bgmIcon) {
         bgmIcon.innerText = '🎵';
-      }).catch(err => {
-        console.log("터치 후 재생 연동 완료:", err);
-      });
-    }
-    }
+      }
+    }).catch(err => {
+      console.log("BGM 재생 연동:", err);
+    });
+  }
+}
 
     // 2. Swiper 슬라이더 초기화
     function initGallerySwiper() {
