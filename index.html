@@ -540,10 +540,11 @@
   border-color: #dcdcdc; 
   color: #444444; 
 }
-    p, span, .invitation-body, [data-i18n] {
-    font-size: 1.4rem; /* 기본보다 약 20% 더 크게 설정 */
-    line-height: 1.6;  /* 나눔펜폰트 글자끼리 겹치지 않게 행간 여유 설정 */
-  }
+    /* 다국어/한글 텍스트 전체 크기 상향 */
+[data-i18n], .ko-text {
+  font-size: 1.4rem !important; /* 기본보다 약 25% 확대 (원하시는 만큼 1.15rem ~ 1.4rem 조절) */
+  line-height: 1.6;             /* 나눔펜폰트 글자가 위아래로 겹치지 않게 행간 확보 */
+}
   </style>
 </head>
 <body>
