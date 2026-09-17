@@ -910,9 +910,6 @@
         lblDiet: "식성 및 알레르기 안내 (Dietary Requirement)",
         lblMessage: "축하 메시지",
         btnSubmit: "RSVP 제출하기"
-        // RSVP Alerts (알림 메시지)
-        rsvpSuccess: "RSVP가 성공적으로 제출되었습니다. 감사합니다!",
-        rsvpError: "제출 중 오류가 발생했습니다. 다시 시도해 주세요."
       },
       en: {
         clickToOpen: "✉️ Click envelope to open",
@@ -947,8 +944,6 @@
         lblDiet: "Dietary Restrictions / Allergies",
         lblMessage: "Message for Groom & Bride",
         btnSubmit: "Submit RSVP"
-        rsvpSuccess: "Thank you! Your RSVP has been successfully submitted.",
-        rsvpError: "An error occurred while submitting. Please try again."
       },
       de: {
         clickToOpen: "✉️ Zum Öffnen bitte den Brief antippen",
@@ -983,8 +978,6 @@
         lblDiet: "Unverträglichkeiten / Allergien",
         lblMessage: "Nachricht an das Brautpaar",
         btnSubmit: "RSVP Absenden"
-        rsvpSuccess: "Vielen Dank! Deine Rückmeldung wurde erfolgreich übermittelt.",
-        rsvpError: "Beim Absenden ist ein Fehler aufgetreten. Bitte versuche es erneut."
       }
     };
 
@@ -1280,64 +1273,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const kakaoShareUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
       window.open(kakaoShareUrl, '_blank', 'width=500,height=600');
     }
-
-    // 1. 다국어 번역 데이터 (기존 translations 객체 내에 아래 키값들을 추가/확인해주세요)
-const translations = {
-  ko: {
-    // ... 기존 번역 데이터 ...
-    rsvpSuccess: "RSVP가 성공적으로 제출되었습니다. 감사합니다!",
-    rsvpError: "제출 중 오류가 발생했습니다. 다시 시도해 주세요."
-  },
-  en: {
-    // ... 기존 번역 데이터 ...
-    rsvpSuccess: "Thank you! Your RSVP has been successfully submitted.",
-    rsvpError: "An error occurred while submitting. Please try again."
-  },
-  de: {
-    // ... 기존 번역 데이터 ...
-    rsvpSuccess: "Vielen Dank! Deine Rückmeldung wurde erfolgreich übermittelt.",
-    rsvpError: "Beim Absenden ist ein Fehler aufgetreten. Bitte versuche es erneut."
-  }
-};
-
-// 2. RSVP 폼 제출 이벤트
-const rsvpForm = document.getElementById('rsvp-form');
-
-if (rsvpForm) {
-  rsvpForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    // 구글 앱스 스크립트 웹 앱 URL
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwYWEIArXCzm7wFM6AKBjsFd594AeO5RiIjm5zkhjPlqa0Nh_GvhQv3za-A8whYBXnKAw/exec';
-
-    const formData = {
-      name: document.getElementById('name').value,
-      attendance: document.getElementById('attendance').value,
-      diet: document.getElementById('diet') ? document.getElementById('diet').value : '',
-      message: document.getElementById('message') ? document.getElementById('message').value : ''
-    };
-
-    fetch(scriptURL, {
-      method: 'POST',
-      mode: 'no-cors', // CORS 이슈 방지
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    })
-    .then(() => {
-      // 💡 현재 설정된 언어(currentLang)를 확인하고, 없으면 기본값 'ko' 사용
-      const lang = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'ko';
-      alert(translations[lang].rsvpSuccess);
-      
-      rsvpForm.reset();
-    })
-    .catch(error => {
-      console.error('Error!', error.message);
-      
-      const lang = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'ko';
-      alert(translations[lang].rsvpError);
-    });
-  });
-}
   </script>
   
 </body>
