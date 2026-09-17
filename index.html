@@ -41,8 +41,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Cormorant Garamond', 'Nanum Pen Script', serif;
-      font-size: 1.35rem; /* 기본 폰트 크기를 약 15~20% 늘립니다 (기본값 보통 16px -> 약 18.4px) */
-      line-height: 1.6;   /* 손글씨 폰트는 행간이 좁으면 겹칠 수 있어 여유있게 설정 */
       background-color: #dce4d9;
       color: var(--text-dark);
       display: flex;
@@ -548,7 +546,13 @@
   border-color: #dcdcdc; 
   color: #444444; 
 }
-   
+   /* 👇 여기에 두 번째 방식을 맨 아래에 붙여넣으시면 됩니다! */
+  p, span, .invitation-body, [data-i18n] {
+    font-size: 1.2rem; /* 기본보다 약 20% 더 크게 설정 */
+    line-height: 1.6;  /* 나눔펜폰트 글자끼리 겹치지 않게 행간 여유 설정 */
+  }
+    
+</style>
   </style>
 </head>
 <body>
