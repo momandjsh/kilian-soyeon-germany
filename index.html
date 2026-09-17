@@ -1230,7 +1230,7 @@
     window.open(kakaoShareUrl, '_blank', 'width=500,height=600');
   }
 
-  // 11. RSVP 폼 제출 (구글 시트 연동 + 언어별 알림)
+  // 11. RSVP 폼 제출 (화면 튕김 방지 및 구글 시트 연동)
   document.addEventListener('DOMContentLoaded', () => {
     // 초기 언어 실행
     const initialLang = getInitialLanguage();
@@ -1240,7 +1240,9 @@
     const rsvpForm = document.getElementById('rsvp-form');
     if (rsvpForm) {
       rsvpForm.addEventListener('submit', function(e) {
+        // 1. 기본 폼 제출(페이지 상단 이동/새로고침) 동작을 완벽히 차단
         e.preventDefault();
+        e.stopPropagation();
 
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwYWEIArXCzm7wFM6AKBjsFd594AeO5RiIjm5zkhjPlqa0Nh_GvhQv3za-A8whYBXnKAw/exec';
 
@@ -1259,12 +1261,14 @@
         })
         .then(() => {
           alert(translations[currentLang].rsvpSuccess);
-          rsvpForm.reset();
+          rsvpForm.reset(); // 입력창 내용만 초기화
         })
         .catch(error => {
           console.error('Error!', error.message);
           alert(translations[currentLang].rsvpError);
         });
+
+        return false; // 추가적인 상위 이벤트를 차단
       });
     }
   });
