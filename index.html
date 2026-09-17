@@ -259,7 +259,8 @@
 }
 
 /* 언어가 한국어(kr)일 때: Nanum Pen Script 폰트 자동 적용 */
-[data-lang="kr"] .letter-body {
+[data-lang="k"] .letter-body {
+  font-family: 'Nanum Pen Script';
   font-size: 10px;        /* 나눔손글씨 펜 폰트에 맞춘 크기 */
   line-height: 1.6;
 }
@@ -1269,18 +1270,16 @@ document.addEventListener('DOMContentLoaded', () => {
       window.open(kakaoShareUrl, '_blank', 'width=500,height=600');
     }
 
-// 구글 앱스 스크립트 웹 앱 URL (새로 배포한 URL로 교체)
-const scriptURL = 'https://script.google.com/macros/s/AKfycby9YCrLcZZU2ngaesYEEWC3DLoTAGpMNrRn4lMVBlUA2YATIpLIFC227YT5rGhNWiw7Mg/exec';
+// 구글 앱스 스크립트 웹 앱 URL (새로 배포한 URL로 교체하세요)
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwYWEIArXCzm7wFM6AKBjsFd594AeO5RiIjm5zkhjPlqa0Nh_GvhQv3za-A8whYBXnKAw/exec';
 
-const rsvpForm = document.getElementById('rsvpForm'); // 폼 ID에 맞춰 수정
-
-rsvpForm.addEventListener('submit', e => {
-  e.preventDefault();
+function handleRsvpSubmit(event) {
+  event.preventDefault(); // 폼 제출 시 페이지 뒤로가는 현상 방지
 
   const formData = {
-    name: document.getElementById('name') ? document.getElementById('name').value : '',
-    yn: document.getElementById('yn') ? document.getElementById('yn').value : '',
-    preference: document.getElementById('preference') ? document.getElementById('preference').value : '',
+    name: document.getElementById('guestName') ? document.getElementById('guestName').value : '',
+    attendance: document.getElementById('attendance') ? document.getElementById('attendance').value : '',
+    diet: document.getElementById('diet') ? document.getElementById('diet').value : '',
     message: document.getElementById('message') ? document.getElementById('message').value : ''
   };
 
@@ -1291,14 +1290,14 @@ rsvpForm.addEventListener('submit', e => {
     body: JSON.stringify(formData)
   })
   .then(() => {
-    alert('제출이 완료되었습니다. 감사합니다!');
-    rsvpForm.reset();
+    alert('RSVP가 성공적으로 제출되었습니다. 감사합니다!');
+    event.target.reset(); // 폼 입력값 초기화
   })
   .catch(error => {
     console.error('Error!', error.message);
     alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
   });
-});
+}
 </script>
   
 </body>
