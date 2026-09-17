@@ -972,6 +972,57 @@
       }
     };
 
+    // 1. URL이나 브라우저 언어에서 언어 코드를 감지하는 함수
+function getInitialLanguage() {
+  // URL 파라미터 확인 (예: mobile-invitation.html?lang=de)
+  const urlParams = new URLSearchParams(window.location.search);
+  const langParam = urlParams.get('lang');
+
+  if (langParam && translations[langParam]) {
+    return langParam;
+  }
+
+  // URL 해시 확인 (예: mobile-invitation.html#de)
+  const hashParam = window.location.hash.replace('#', '');
+  if (hashParam && translations[hashParam]) {
+    return hashParam;
+  }
+
+  // 브라우저 기본 언어 감지 (독일어 사용자는 de, 한국어 사용자는 ko 등)
+  const userLang = navigator.language || navigator.userLanguage;
+  if (userLang.startsWith('de')) return 'de';
+  if (userLang.startsWith('en')) return 'en';
+  if (userLang.startsWith('ko')) return 'ko';
+
+  // 위 설정에 모두 해당하지 않는 경우 기본값
+  return 'ko';
+}
+
+// 2. 언어 변경 함수
+function updateLanguage(lang) {
+  const t = translations[lang];
+  if (!t) return;
+
+  // data-i18n 속성을 가진 모든 엘리먼트 텍스트 세팅
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) {
+      el.innerHTML = t[key];
+    }
+  });
+
+  // 선택된 언어 버튼 활성화 표시 (옵션: active 클래스 부여)
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('onclick')?.includes(lang));
+  });
+}
+
+// 3. 페이지가 열리자마자 URL을 감지해서 텍스트 즉시 표시
+document.addEventListener('DOMContentLoaded', () => {
+  const initialLang = getInitialLanguage();
+  updateLanguage(initialLang);
+});
+    
     // BGM 관련 변수
     const bgm = document.getElementById('bgm');
     const bgmIcon = document.getElementById('bgmIcon');
