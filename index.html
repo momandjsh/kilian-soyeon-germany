@@ -870,475 +870,404 @@
 
   </div>
 
-  <!-- Swiper.js 스크립트 -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- Swiper.js 스크립트 -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  <script>
-    let gallerySwiper = null;
+<script>
+  let gallerySwiper = null;
 
-    const translations = {
-      ko: {
-        clickToOpen: "✉️ 편지 봉투를 클릭하여 열기",
-        <!--invitationTitle: "초대의 글",-->
-        invitationBody: "지구 반대편에서 만난 저희 두 사람이<br>서로의 손을 잡고 새로운 시작을 함께하려 합니다. 독일 호헨캄머 성에서 펼쳐질 저희의 시작을 함께 축하해 주세요.<br><br>🌿신랑 킬리안 쉐프터🌿 <br> 🌿신부 전소연🌿",
-        detailsTitle: "예식 안내",
-        lblDays: "일",
-        lblHours: "시간",
-        lblMins: "분",
-        lblSecs: "초",
-        timelineTitle: "타임테이블",
-        t1: "야외 결혼식 (Freie Trauung), 성 건너편",
-        t2: "리셉션 (Empfang), 성 안뜰",
-        t3: "케이크 컷팅 (Kaffee & Kuchen), 성 안뜰",
-        t4: "음료 서비스 (Getränkeservice), 연회장 (Schloßsaal)",
-        t5: "만찬 디너 (Abendessen), 연회장 (Schloßsaal)",
-        t6: "웨딩 첫 댄스 (Hochzeitstanz), 연회장 (Schloßsaal)",
-        t7: "피로연 공식 종료 (Offizielles Ende)",
-        galleryTitle: "갤러리",
-        travelTitle: "오시는 길 & 숙박",
-        travelDesc: "<strong>🚗 Parking:</strong> 성 내에 하객분들을 위한 주차 공간이 충분히 마련되어 있습니다.<br><strong>✈️ Flight & Train:</strong> 뮌헨 공항(MUC) 이용 시 차량으로 약 20분 거리입니다.<br><strong>🚌 Bus (Freising):</strong> Freising역에서 665번 버스 탑승 (약 45분 소요)<br><strong>🚕 Taxi (Petershausen):</strong> 인근 Petershausen역에서 택시로 약 7분 소요<br><strong>🏨 Hotel Info:</strong> 예식장 전용 호텔에 숙박 예약이 가능합니다. 저희 이름을 말씀하시고 예약하시면 됩니다.",
-        btnOpenMap: "📍 Google Maps에서 위치 보기",
-        faq1: "드레스 코드는 <strong>Festive Attire</strong> 입니다. 편안하면서도 격식 있는 복장으로 함께해 주세요. 야외 잔디밭을 걷는 시간이 있을 수 있으니, 굽이 너무 얇은 구두보다는 걷기 편한 신발을 추천합니다.",
-        faq2: "네, 물론입니다! 어린이 게스트를 위한 특별한 식사가 준비될 예정입니다. 정확한 인원 파악을 위해 참석(RSVP) 회신 시 아이의 연령을 꼭 기재해 주세요.",
-        faq3: "성 내부에 게스트를 위한 객실이 마련되어 있습니다. 예약 시 저희 웨딩 게스트라고 말씀해 주시면 안내를 받으실 수 있습니다. 사전에 예약하시는 것을 추천드립니다.",
-        faq4: "성 옆에 주차 공간이 넉넉히 준비되어 있으니 편하게 차를 가져오셔도 됩니다. 주차비는 없습니다.",
-        faq5: "원활한 좌석 배치와 식사 준비를 위해 늦어도 4월 1일까지는 이 웹사이트를 통해 꼭 참석 여부를 회신해 주시면 감사하겠습니다.",
-        faq6: "날씨가 허락한다면 성의 야외 정원에서 식을 올릴 예정입니다. 하지만 비가 올 경우에는 실내 홀로 이동하여 진행됩니다.",
-        rsvpDeadline: "원활한 예식 준비를 위해 참석 여부를 알려주시면 감사하겠습니다.",
-        lblName: "성함 (Name)",
-        lblAttend: "참석 여부 (Attendance)",
-        lblDiet: "식성 및 알레르기 안내 (Dietary Requirement)",
-        lblMessage: "축하 메시지",
-        btnSubmit: "RSVP 제출하기"
-        // RSVP Alerts (알림 메시지)
-        rsvpSuccess: "RSVP가 성공적으로 제출되었습니다. 감사합니다!",
-        rsvpError: "제출 중 오류가 발생했습니다. 다시 시도해 주세요."
-      },
-      en: {
-        clickToOpen: "✉️ Click envelope to open",
-        <!--invitationTitle: "Invitation",-->
-        invitationBody: "Dear friends and family<br><br>We are getting married! 👰‍♀️🤵‍♂️🎉💍<br>We warmly invite you to join us on our special day as we celebrate our wedding in Germany.<br><br>🌿<span class=\"invitation-name\">Groom Kilian Scheffter</span>🌿 <br> 🌿<span class=\"invitation-name\">Bride Soyeon Jun</span>🌿",
-        detailsTitle: "Details",
-        lblDays: "Days",
-        lblHours: "Hours",
-        lblMins: "Mins",
-        lblSecs: "Secs",
-        timelineTitle: "Schedule",
-        t1: "Wedding Ceremony, in front of castle",
-        t2: "Welcome Reception, courtyard",
-        t3: "Cake cutting, courtyard",
-        t4: "Drink Service starts, Schloßsaal",
-        t5: "Dinner, Schloßsaal",
-        t6: "First Dance, Schloßsaal",
-        t7: "Official End of Celebration",
-        galleryTitle: "Gallery",
-        travelTitle: "Travel & Stay",
-        travelDesc: "<strong>🚗 Parking:</strong> Enough parking spaces are available at the venue.<br><strong>✈️ Flight & Train:</strong> Approx. 20 minutes by car from Munich Airport (MUC).<br><strong>🚌 Bus (Freising):</strong> Bus line 665 from Freising station (approx. 45 mins).<br><strong>🚕 Taxi (Petershausen):</strong> Approx. 7 mins by taxi from nearby Petershausen station.<br><strong>🏨 Hotel Info:</strong> Accommodations are available directly at the venue hotel. You can make a reservation under our names.",
-        btnOpenMap: "📍 Open in Google Maps",
-        faq1: "The dress code is Festive Attire. Please join us in comfortable yet elegant clothing. As we may spend some time on the outdoor lawn, we recommend comfortable shoes rather than stilettos.",
-        faq2: "Yes, absolutely! A special meal will be prepared for our little guests. To help us plan accurately, please make sure to include your child's age when you RSVP.",
-        faq3: "There are guest rooms available inside the castle. Please mention that you are our wedding guest when booking, and they will assist you. Reservation is recommended!",
-        faq4: "There is plenty of parking space available right next to the castle, so please feel free to drive. Parking is free of charge.",
-        faq5: "To help us arrange the seating and catering smoothly, RSVP through this website no later than April 1st. Thank you!",
-        faq6: "The ceremony will take place in the castle's outdoor garden. However, in case of rain, we will move to the indoor hall. :)",
-        rsvpDeadline: "Please kindly respond at your earliest convenience.",
-        lblName: "Full Name",
-        lblAttend: "Attendance",
-        lblDiet: "Dietary Restrictions / Allergies",
-        lblMessage: "Message for Groom & Bride",
-        btnSubmit: "Submit RSVP"
-        rsvpSuccess: "Thank you! Your RSVP has been successfully submitted.",
-        rsvpError: "An error occurred while submitting. Please try again."
-      },
-      de: {
-        clickToOpen: "✉️ Zum Öffnen bitte den Brief antippen",
-        <!--invitationTitle: "Einladung",-->
-        invitationBody: "Liebe Freunde und Familie<br><br>Wir heiraten! 👰‍♀️🤵‍♂️🎉💍<br>Wir laden euch herzlich ein, diesen besonderen Tag gemeinsam mit uns in Deutschland zu feiern.<br><br>🌿<span class=\"invitation-name\">Bräutigam Kilian Scheffter</span>🌿 <br> 🌿<span class=\"invitation-name\">Braut Soyeon Jun</span>🌿",
-        detailsTitle: "Details",
-        lblDays: "Tage",
-        lblHours: "Std",
-        lblMins: "Min",
-        lblSecs: "Sek",
-        timelineTitle: "Ablauf",
-        t1: "Freie Trauung, Birkenwiese",
-        t2: "Empfang, Schlossinnenhof",
-        t3: "Kaffee & Kuchen, Schlossinnenhof",
-        t4: "Getränkeservice, Schloßsaal",
-        t5: "Abendessen, Schloßsaal",
-        t6: "Hochzeitstanz, Schloßsaal",
-        t7: "Offizielles Ende",
-        galleryTitle: "Galerie",
-        travelTitle: "Anreise & Unterkunft",
-        travelDesc: "<strong>🚗 Parken:</strong> Ausreichend Parkplätze stehen an der Location zur Verfügung.<br><strong>✈️ Anreise:</strong> Vom Flughafen München (MUC) seid ihr in ca. 20 Minuten mit dem Auto da.<br><strong>🚌 Bus (Freising):</strong> Buslinie 665 ab Bahnhof Freising (ca. 45 Min.).<br><strong>🚕 Taxi (Petershausen):</strong> Ca. 7 Minuten mit dem Taxi vom nahegelegenen Bahnhof Petershausen.<br><strong>🏨 Unterkunft:</strong> Übernachtungen sind direkt im Hotel der Hochzeitslocation möglich. Ihr könnt einfach unter unserem Namen reservieren.",
-        btnOpenMap: "📍 In Google Maps öffnen",
-        faq1: "Dresscode: <strong>Festliche Kleidung</strong>. :)",
-        faq2: "Ja, natürlich! Für unsere kleinen Gäste wird es ein spezielles Kindermenü geben. Um uns bei der Planung zu helfen, gebt bitte bei eurer Zu-/Absage (RSVP) das Alter eurer Kinder an!",
-        faq3: "Im Schloss stehen Zimmer für unsere Gäste zur Verfügung. Bitte gebt bei der Buchung an, dass ihr zu unserer Hochzeitsgesellschaft gehört. Dann wird man euch gerne weiterhelfen.",
-        faq4: "Es gibt ausreichend Parkplätze direkt neben dem Schloss, ihr könnt also gerne mit dem Auto anreisen. Das Parken ist kostenlos.",
-        faq5: "Um uns die Sitzordnung und das Menü zu erleichtern, bitten wir euch, uns spätestens bis zum 1. April über diese Website mitzuteilen, ob ihr teilnehmen könnt.",
-        faq6: "Die Trauung wird im Schlossgarten stattfinden. Bei Regen werden wir in den Saal im Inneren ausweichen. :)",
-        rsvpDeadline: "Bitte antwortet uns so bald wie möglich.",
-        lblName: "Name",
-        lblAttend: "Teilnahme",
-        lblDiet: "Unverträglichkeiten / Allergien",
-        lblMessage: "Nachricht an das Brautpaar",
-        btnSubmit: "RSVP Absenden"
-        rsvpSuccess: "Vielen Dank! Deine Rückmeldung wurde erfolgreich übermittelt.",
-        rsvpError: "Beim Absenden ist ein Fehler aufgetreten. Bitte versuche es erneut."
-      }
-    };
+  // 1. 전체 다국어 번역 데이터 (통합 및 문법 오류 수정)
+  const translations = {
+    ko: {
+      clickToOpen: "✉️ 편지 봉투를 클릭하여 열기",
+      invitationBody: "지구 반대편에서 만난 저희 두 사람이<br>서로의 손을 잡고 새로운 시작을 함께하려 합니다. 독일 호헨캄머 성에서 펼쳐질 저희의 시작을 함께 축하해 주세요.<br><br>🌿신랑 킬리안 쉐프터🌿 <br> 🌿신부 전소연🌿",
+      detailsTitle: "예식 안내",
+      lblDays: "일",
+      lblHours: "시간",
+      lblMins: "분",
+      lblSecs: "초",
+      timelineTitle: "타임테이블",
+      t1: "야외 결혼식 (Freie Trauung), 성 건너편",
+      t2: "리셉션 (Empfang), 성 안뜰",
+      t3: "케이크 컷팅 (Kaffee & Kuchen), 성 안뜰",
+      t4: "음료 서비스 (Getränkeservice), 연회장 (Schloßsaal)",
+      t5: "만찬 디너 (Abendessen), 연회장 (Schloßsaal)",
+      t6: "웨딩 첫 댄스 (Hochzeitstanz), 연회장 (Schloßsaal)",
+      t7: "피로연 공식 종료 (Offizielles Ende)",
+      galleryTitle: "갤러리",
+      travelTitle: "오시는 길 & 숙박",
+      travelDesc: "<strong>🚗 Parking:</strong> 성 내에 하객분들을 위한 주차 공간이 충분히 마련되어 있습니다.<br><strong>✈️ Flight & Train:</strong> 뮌헨 공항(MUC) 이용 시 차량으로 약 20분 거리입니다.<br><strong>🚌 Bus (Freising):</strong> Freising역에서 665번 버스 탑승 (약 45분 소요)<br><strong>🚕 Taxi (Petershausen):</strong> 인근 Petershausen역에서 택시로 약 7분 소요<br><strong>🏨 Hotel Info:</strong> 예식장 전용 호텔에 숙박 예약이 가능합니다. 저희 이름을 말씀하시고 예약하시면 됩니다.",
+      btnOpenMap: "📍 Google Maps에서 위치 보기",
+      faq1: "드레스 코드는 <strong>Festive Attire</strong> 입니다. 편안하면서도 격식 있는 복장으로 함께해 주세요. 야외 잔디밭을 걷는 시간이 있을 수 있으니, 굽이 너무 얇은 구두보다는 걷기 편한 신발을 추천합니다.",
+      faq2: "네, 물론입니다! 어린이 게스트를 위한 특별한 식사가 준비될 예정입니다. 정확한 인원 파악을 위해 참석(RSVP) 회신 시 아이의 연령을 꼭 기재해 주세요.",
+      faq3: "성 내부에 게스트를 위한 객실이 마련되어 있습니다. 예약 시 저희 웨딩 게스트라고 말씀해 주시면 안내를 받으실 수 있습니다. 사전에 예약하시는 것을 추천드립니다.",
+      faq4: "성 옆에 주차 공간이 넉넉히 준비되어 있으니 편하게 차를 가져오셔도 됩니다. 주차비는 없습니다.",
+      faq5: "원활한 좌석 배치와 식사 준비를 위해 늦어도 4월 1일까지는 이 웹사이트를 통해 꼭 참석 여부를 회신해 주시면 감사하겠습니다.",
+      faq6: "날씨가 허락한다면 성의 야외 정원에서 식을 올릴 예정입니다. 하지만 비가 올 경우에는 실내 홀로 이동하여 진행됩니다.",
+      rsvpDeadline: "원활한 예식 준비를 위해 참석 여부를 알려주시면 감사하겠습니다.",
+      lblName: "성함 (Name)",
+      lblAttend: "참석 여부 (Attendance)",
+      lblDiet: "식성 및 알레르기 안내 (Dietary Requirement)",
+      lblMessage: "축하 메시지",
+      btnSubmit: "RSVP 제출하기",
+      rsvpSuccess: "RSVP가 성공적으로 제출되었습니다. 감사합니다!",
+      rsvpError: "제출 중 오류가 발생했습니다. 다시 시도해 주세요."
+    },
+    en: {
+      clickToOpen: "✉️ Click envelope to open",
+      invitationBody: "Dear friends and family<br><br>We are getting married! 👰‍♀️🤵‍♂️🎉💍<br>We warmly invite you to join us on our special day as we celebrate our wedding in Germany.<br><br>🌿<span class=\"invitation-name\">Groom Kilian Scheffter</span>🌿 <br> 🌿<span class=\"invitation-name\">Bride Soyeon Jun</span>🌿",
+      detailsTitle: "Details",
+      lblDays: "Days",
+      lblHours: "Hours",
+      lblMins: "Mins",
+      lblSecs: "Secs",
+      timelineTitle: "Schedule",
+      t1: "Wedding Ceremony, in front of castle",
+      t2: "Welcome Reception, courtyard",
+      t3: "Cake cutting, courtyard",
+      t4: "Drink Service starts, Schloßsaal",
+      t5: "Dinner, Schloßsaal",
+      t6: "First Dance, Schloßsaal",
+      t7: "Official End of Celebration",
+      galleryTitle: "Gallery",
+      travelTitle: "Travel & Stay",
+      travelDesc: "<strong>🚗 Parking:</strong> Enough parking spaces are available at the venue.<br><strong>✈️ Flight & Train:</strong> Approx. 20 minutes by car from Munich Airport (MUC).<br><strong>🚌 Bus (Freising):</strong> Bus line 665 from Freising station (approx. 45 mins).<br><strong>🚕 Taxi (Petershausen):</strong> Approx. 7 mins by taxi from nearby Petershausen station.<br><strong>🏨 Hotel Info:</strong> Accommodations are available directly at the venue hotel. You can make a reservation under our names.",
+      btnOpenMap: "📍 Open in Google Maps",
+      faq1: "The dress code is Festive Attire. Please join us in comfortable yet elegant clothing. As we may spend some time on the outdoor lawn, we recommend comfortable shoes rather than stilettos.",
+      faq2: "Yes, absolutely! A special meal will be prepared for our little guests. To help us plan accurately, please make sure to include your child's age when you RSVP.",
+      faq3: "There are guest rooms available inside the castle. Please mention that you are our wedding guest when booking, and they will assist you. Reservation is recommended!",
+      faq4: "There is plenty of parking space available right next to the castle, so please feel free to drive. Parking is free of charge.",
+      faq5: "To help us arrange the seating and catering smoothly, RSVP through this website no later than April 1st. Thank you!",
+      faq6: "The ceremony will take place in the castle's outdoor garden. However, in case of rain, we will move to the indoor hall. :)",
+      rsvpDeadline: "Please kindly respond at your earliest convenience.",
+      lblName: "Full Name",
+      lblAttend: "Attendance",
+      lblDiet: "Dietary Restrictions / Allergies",
+      lblMessage: "Message for Groom & Bride",
+      btnSubmit: "Submit RSVP",
+      rsvpSuccess: "Thank you! Your RSVP has been successfully submitted.",
+      rsvpError: "An error occurred while submitting. Please try again."
+    },
+    de: {
+      clickToOpen: "✉️ Zum Öffnen bitte den Brief antippen",
+      invitationBody: "Liebe Freunde und Familie<br><br>Wir heiraten! 👰‍♀️🤵‍♂️🎉💍<br>Wir laden euch herzlich ein, diesen besonderen Tag gemeinsam mit uns in Deutschland zu feiern.<br><br>🌿<span class=\"invitation-name\">Bräutigam Kilian Scheffter</span>🌿 <br> 🌿<span class=\"invitation-name\">Braut Soyeon Jun</span>🌿",
+      detailsTitle: "Details",
+      lblDays: "Tage",
+      lblHours: "Std",
+      lblMins: "Min",
+      lblSecs: "Sek",
+      timelineTitle: "Ablauf",
+      t1: "Freie Trauung, Birkenwiese",
+      t2: "Empfang, Schlossinnenhof",
+      t3: "Kaffee & Kuchen, Schlossinnenhof",
+      t4: "Getränkeservice, Schloßsaal",
+      t5: "Abendessen, Schloßsaal",
+      t6: "Hochzeitstanz, Schloßsaal",
+      t7: "Offizielles Ende",
+      galleryTitle: "Galerie",
+      travelTitle: "Anreise & Unterkunft",
+      travelDesc: "<strong>🚗 Parken:</strong> Ausreichend Parkplätze stehen an der Location zur Verfügung.<br><strong>✈️ Anreise:</strong> Vom Flughafen München (MUC) seid ihr in ca. 20 Minuten mit dem Auto da.<br><strong>🚌 Bus (Freising):</strong> Buslinie 665 ab Bahnhof Freising (ca. 45 Min.).<br><strong>🚕 Taxi (Petershausen):</strong> Ca. 7 Minuten mit dem Taxi vom nahegelegenen Bahnhof Petershausen.<br><strong>🏨 Unterkunft:</strong> Übernachtungen sind direkt im Hotel der Hochzeitslocation möglich. Ihr könnt einfach unter unserem Namen reservieren.",
+      btnOpenMap: "📍 In Google Maps öffnen",
+      faq1: "Dresscode: <strong>Festliche Kleidung</strong>. :)",
+      faq2: "Ja, natürlich! Für unsere kleinen Gäste wird es ein spezielles Kindermenü geben. Um uns bei der Planung zu helfen, gebt bitte bei eurer Zu-/Absage (RSVP) das Alter eurer Kinder an!",
+      faq3: "Im Schloss stehen Zimmer für unsere Gäste zur Verfügung. Bitte gebt bei der Buchung an, dass ihr zu unserer Hochzeitsgesellschaft gehört. Dann wird man euch gerne weiterhelfen.",
+      faq4: "Es gibt ausreichend Parkplätze direkt neben dem Schloss, ihr könnt also gerne mit dem Auto anreisen. Das Parken ist kostenlos.",
+      faq5: "Um uns die Sitzordnung und das Menü zu erleichtern, bitten wir euch, uns spätestens bis zum 1. April über diese Website mitzuteilen, ob ihr teilnehmen könnt.",
+      faq6: "Die Trauung wird im Schlossgarten stattfinden. Bei Regen werden wir in den Saal im Inneren ausweichen. :)",
+      rsvpDeadline: "Bitte antwortet uns so bald wie möglich.",
+      lblName: "Name",
+      lblAttend: "Teilnahme",
+      lblDiet: "Unverträglichkeiten / Allergien",
+      lblMessage: "Nachricht an das Brautpaar",
+      btnSubmit: "RSVP Absenden",
+      rsvpSuccess: "Vielen Dank! Deine Rückmeldung wurde erfolgreich übermittelt.",
+      rsvpError: "Beim Absenden ist ein Fehler aufgetreten. Bitte versuche es erneut."
+    }
+  };
 
-    // 1. URL이나 브라우저 언어에서 언어 코드를 감지하는 함수
-function getInitialLanguage() {
-  // URL 파라미터 확인 (예: mobile-invitation.html?lang=de)
-  const urlParams = new URLSearchParams(window.location.search);
-  const langParam = urlParams.get('lang');
+  let currentLang = 'ko';
 
-  if (langParam && translations[langParam]) {
-    return langParam;
+  // 2. URL 및 브라우저 언어 감지 함수
+  function getInitialLanguage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (langParam && translations[langParam]) return langParam;
+
+    const hashParam = window.location.hash.replace('#', '');
+    if (hashParam && translations[hashParam]) return hashParam;
+
+    const userLang = navigator.language || navigator.userLanguage;
+    if (userLang.startsWith('de')) return 'de';
+    if (userLang.startsWith('en')) return 'en';
+    if (userLang.startsWith('ko')) return 'ko';
+
+    return 'ko';
   }
 
-  // URL 해시 확인 (예: mobile-invitation.html#de)
-  const hashParam = window.location.hash.replace('#', '');
-  if (hashParam && translations[hashParam]) {
-    return hashParam;
+  // 3. 언어 변경 및 화면 반영 함수
+  function setLanguage(lang) {
+    if (!translations[lang]) lang = 'ko';
+    currentLang = lang;
+
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.getElementById(`btn-${lang}`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+
+    updateOgTags(lang);
+
+    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + lang;
+    window.history.replaceState({ path: newUrl }, '', newUrl);
+
+    if (gallerySwiper) {
+      setTimeout(() => { gallerySwiper.update(); }, 100);
+    }
   }
 
-  // 브라우저 기본 언어 감지 (독일어 사용자는 de, 한국어 사용자는 ko 등)
-  const userLang = navigator.language || navigator.userLanguage;
-  if (userLang.startsWith('de')) return 'de';
-  if (userLang.startsWith('en')) return 'en';
-  if (userLang.startsWith('ko')) return 'ko';
+  // 4. BGM 관련 로직
+  const bgm = document.getElementById('bgm');
+  const bgmIcon = document.getElementById('bgmIcon');
+  let isPlaying = false;
 
-  // 위 설정에 모두 해당하지 않는 경우 기본값
-  return 'ko';
-}
-
-// 2. 언어 변경 함수
-function updateLanguage(lang) {
-  const t = translations[lang];
-  if (!t) return;
-
-  // data-i18n 속성을 가진 모든 엘리먼트 텍스트 세팅
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (t[key]) {
-      el.innerHTML = t[key];
-    }
-  });
-
-  // 선택된 언어 버튼 활성화 표시 (옵션: active 클래스 부여)
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('onclick')?.includes(lang));
-  });
-}
-
-// 3. 페이지가 열리자마자 URL을 감지해서 텍스트 즉시 표시
-document.addEventListener('DOMContentLoaded', () => {
-  const initialLang = getInitialLanguage();
-  updateLanguage(initialLang);
-});
-    
-    // BGM 관련 변수
-    const bgm = document.getElementById('bgm');
-    const bgmIcon = document.getElementById('bgmIcon');
-    let isPlaying = false;
-
-    function toggleBGM() {
-      if (!bgm) return;
-      if (isPlaying) {
-        bgm.pause();
-        if (bgmIcon) bgmIcon.innerText = '🔇';
-        isPlaying = false;
-      } else {
-        bgm.play().then(() => {
-          if (bgmIcon) bgmIcon.innerText = '🎵';
-          isPlaying = true;
-        }).catch(err => {
-          console.log("재생 오류:", err);
-        });
-      }
-    }
-
-    // 1. 편지 봉투 열기 함수
-    function openLetter() {
-      const envelope = document.getElementById('envelopeContainer');
-      const hint = document.getElementById('openHint');
-      const mainContent = document.getElementById('mainContent');
-      const heroSection = document.getElementById('heroSection');
-
-      if (!envelope) return;
-
-      envelope.classList.add('open-slide-down');
-      if (hint) hint.style.opacity = '0';
-
-      setTimeout(() => {
-        if (heroSection) heroSection.style.display = 'none';
-        if (mainContent) mainContent.classList.add('slide-up-show');
-        
-        if (typeof initGallerySwiper === 'function') {
-          initGallerySwiper();
-        }
-      }, 600);
-
-      if (!isPlaying && bgm) {
-        bgm.play().then(() => {
-          isPlaying = true;
-          if (bgmIcon) bgmIcon.innerText = '🎵';
-        }).catch(err => {
-          console.log("터치 후 재생 연동 완료:", err);
-        });
-      }
-    }
-
-    // 2. Swiper 슬라이더 초기화
-    function initGallerySwiper() {
-      if (gallerySwiper) gallerySwiper.destroy();
-      gallerySwiper = new Swiper('.gallery-swiper', {
-        loop: true,
-        spaceBetween: 15,
-        centeredSlides: true,
-        autoplay: {
-          delay: 3500,
-          disableOnInteraction: false,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
+  function toggleBGM() {
+    if (!bgm) return;
+    if (isPlaying) {
+      bgm.pause();
+      if (bgmIcon) bgmIcon.innerText = '🔇';
+      isPlaying = false;
+    } else {
+      bgm.play().then(() => {
+        if (bgmIcon) bgmIcon.innerText = '🎵';
+        isPlaying = true;
+      }).catch(err => {
+        console.log("재생 오류:", err);
       });
     }
+  }
 
-    // 3. 카운트다운 로직
-    const weddingDate = new Date("2027-06-12T15:00:00").getTime();
+  // 5. 편지 봉투 열기 함수
+  function openLetter() {
+    const envelope = document.getElementById('envelopeContainer') || document.querySelector('.envelope-wrapper');
+    const hint = document.getElementById('openHint');
+    const mainContent = document.getElementById('mainContent');
+    const heroSection = document.getElementById('heroSection');
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
+    if (envelope) envelope.classList.add('open-slide-down');
+    if (hint) hint.style.opacity = '0';
 
-      const dDays = document.getElementById('d-days');
-      const dHours = document.getElementById('d-hours');
-      const dMins = document.getElementById('d-mins');
-      const dSecs = document.getElementById('d-secs');
-
-      if (!dDays || !dHours || !dMins || !dSecs) return;
-
-      if (distance < 0) {
-        dDays.innerText = "0";
-        dHours.innerText = "00";
-        dMins.innerText = "00";
-        dSecs.innerText = "00";
-        return;
+    setTimeout(() => {
+      if (heroSection) heroSection.style.display = 'none';
+      if (mainContent) mainContent.classList.add('slide-up-show');
+      
+      if (typeof initGallerySwiper === 'function') {
+        initGallerySwiper();
       }
+    }, 600);
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    if (!isPlaying && bgm) {
+      bgm.play().then(() => {
+        isPlaying = true;
+        if (bgmIcon) bgmIcon.innerText = '🎵';
+      }).catch(err => {
+        console.log("터치 후 재생 연동 완료:", err);
+      });
+    }
+  }
 
-      dDays.innerText = days;
-      dHours.innerText = hours < 10 ? '0' + hours : hours;
-      dMins.innerText = minutes < 10 ? '0' + minutes : minutes;
-      dSecs.innerText = seconds < 10 ? '0' + seconds : seconds;
+  // 6. Swiper 슬라이더 초기화
+  function initGallerySwiper() {
+    if (gallerySwiper) gallerySwiper.destroy();
+    gallerySwiper = new Swiper('.gallery-swiper', {
+      loop: true,
+      spaceBetween: 15,
+      centeredSlides: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  }
+
+  // 7. 카운트다운 로직
+  const weddingDate = new Date("2027-06-12T15:00:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const dDays = document.getElementById('d-days');
+    const dHours = document.getElementById('d-hours');
+    const dMins = document.getElementById('d-mins');
+    const dSecs = document.getElementById('d-secs');
+
+    if (!dDays || !dHours || !dMins || !dSecs) return;
+
+    if (distance < 0) {
+      dDays.innerText = "0";
+      dHours.innerText = "00";
+      dMins.innerText = "00";
+      dSecs.innerText = "00";
+      return;
     }
 
-    setInterval(updateCountdown, 1000);
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    dDays.innerText = days;
+    dHours.innerText = hours < 10 ? '0' + hours : hours;
+    dMins.innerText = minutes < 10 ? '0' + minutes : minutes;
+    dSecs.innerText = seconds < 10 ? '0' + seconds : seconds;
+  }
+
+  setInterval(updateCountdown, 1000);
+
+  // 8. OG 메타 태그 업데이트
+  const ogTranslations = {
+    ko: {
+      title: "Kilian & Soyeon의 결혼식에 초대합니다",
+      description: "12.06.2027 Schloss Hohenkammer"
+    },
+    en: {
+      title: "You are invited to Kilian & Soyeon's Wedding",
+      description: "12.06.2027 Schloss Hohenkammer"
+    },
+    de: {
+      title: "Einladung zur Hochzeit von Kilian & Soyeon",
+      description: "12.06.2027 Schloss Hohenkammer"
+    }
+  };
+
+  function updateOgTags(lang) {
+    const data = ogTranslations[lang] || ogTranslations['ko'];
+    const absoluteImageUrl = new URL('image/000.jpg', window.location.href).href;
+
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', data.title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', data.description);
+    document.querySelector('meta[property="og:image"]')?.setAttribute('content', absoluteImageUrl);
+    
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', data.title);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', data.description);
+    document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', absoluteImageUrl);
+  }
+
+  // 9. FAQ 토글
+  function toggleFaq(element) {
+    const answer = element.nextElementSibling;
+    const span = element.querySelector('span:last-child');
+    
+    if (!answer) return;
+
+    if (answer.style.display === "block") {
+      answer.style.display = "none";
+      if (span) span.innerText = "+";
+    } else {
+      answer.style.display = "block";
+      if (span) span.innerText = "-";
+    }
+  }
+
+  // 10. 소셜 공유 및 복사
+  function shareWhatsApp() {
+    const currentUrl = window.location.href;
+    const message = `Kilian & Soyeon's Wedding Invitation: ${currentUrl}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  }
+
+  const copyAlertMessages = {
+    ko: "청첩장 링크가 복사되었습니다!",
+    en: "Invitation link copied!",
+    de: "Einladungslink wurde kopiert!"
+  };
+
+  function copyLink() {
+    const currentUrl = window.location.href;
+    const alertMsg = copyAlertMessages[currentLang] || copyAlertMessages['ko'];
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(currentUrl).then(() => {
+        alert(alertMsg);
+      }).catch(() => {
+        fallbackCopyLink(currentUrl, alertMsg);
+      });
+    } else {
+      fallbackCopyLink(currentUrl, alertMsg);
+    }
+  }
+
+  function fallbackCopyLink(url, alertMsg) {
+    const textArea = document.createElement("textarea");
+    textArea.value = url;
+    document.body.appendChild(textArea);
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+    } catch (err) {
+      console.error('복사 실패:', err);
+    }
+    
+    document.body.removeChild(textArea);
+    alert(alertMsg);
+  }
+
+  function shareKakao() {
+    const currentUrl = window.location.href;
+    const shareText = "Kilian & Soyeon's Wedding Invitation";
+    const kakaoShareUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
+    window.open(kakaoShareUrl, '_blank', 'width=500,height=600');
+  }
+
+  // 11. RSVP 폼 제출 (구글 시트 연동 + 언어별 알림)
+  document.addEventListener('DOMContentLoaded', () => {
+    // 초기 언어 실행
+    const initialLang = getInitialLanguage();
+    setLanguage(initialLang);
     updateCountdown();
 
-    // 4. 언어 설정 함수
-    function setLanguage(lang) {
-      if (!translations[lang]) lang = 'de';
+    const rsvpForm = document.getElementById('rsvp-form');
+    if (rsvpForm) {
+      rsvpForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.getElementById(`btn-${lang}`);
-      if (activeBtn) activeBtn.classList.add('active');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwYWEIArXCzm7wFM6AKBjsFd594AeO5RiIjm5zkhjPlqa0Nh_GvhQv3za-A8whYBXnKAw/exec';
 
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-          el.innerHTML = translations[lang][key];
-        }
-      });
+        const formData = {
+          name: document.getElementById('name').value,
+          attendance: document.getElementById('attendance').value,
+          diet: document.getElementById('diet') ? document.getElementById('diet').value : '',
+          message: document.getElementById('message') ? document.getElementById('message').value : ''
+        };
 
-      updateOgTags(lang);
-
-      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + lang;
-      window.history.replaceState({ path: newUrl }, '', newUrl);
-
-      if (gallerySwiper) {
-        setTimeout(() => { gallerySwiper.update(); }, 100);
-      }
-    }
-
-    // OG 메타 태그
-    const ogTranslations = {
-      kr: {
-        title: "Kilian & Soyeon의 결혼식에 초대합니다",
-        description: "12.06.2027 Schloss Hohenkammer"
-      },
-      en: {
-        title: "You are invited to Kilian & Soyeon's Wedding",
-        description: "12.06.2027 Schloss Hohenkammer"
-      },
-      de: {
-        title: "Einladung zur Hochzeit von Kilian & Soyeon",
-        description: "12.06.2027 Schloss Hohenkammer"
-      }
-    };
-
-    function updateOgTags(lang) {
-      const data = ogTranslations[lang] || ogTranslations['kr'];
-      const absoluteImageUrl = new URL('image/000.jpg', window.location.href).href;
-
-      document.querySelector('meta[property="og:title"]')?.setAttribute('content', data.title);
-      document.querySelector('meta[property="og:description"]')?.setAttribute('content', data.description);
-      document.querySelector('meta[property="og:image"]')?.setAttribute('content', absoluteImageUrl);
-      
-      document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', data.title);
-      document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', data.description);
-      document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', absoluteImageUrl);
-    }
-
-    // 5. FAQ 토글 함수 (HTML onclick="toggleFaq(this)" 와 단독 연동)
-    function toggleFaq(element) {
-      const answer = element.nextElementSibling;
-      const span = element.querySelector('span:last-child');
-      
-      if (!answer) return;
-
-      if (answer.style.display === "block") {
-        answer.style.display = "none";
-        if (span) span.innerText = "+";
-      } else {
-        answer.style.display = "block";
-        if (span) span.innerText = "-";
-      }
-    }
-
-    function handleRsvpSubmit(e) {
-      e.preventDefault();
-      alert("RSVP가 성공적으로 제출되었습니다!");
-    }
-
-    // 6. 소셜 공유 함수
-    function shareWhatsApp() {
-      const currentUrl = window.location.href;
-      const message = `Kilian & Soyeon's Wedding Invitation: ${currentUrl}`;
-      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
-    }
-
-    const copyAlertMessages = {
-      ko: "청첩장 링크가 복사되었습니다!",
-      en: "Invitation link copied!",
-      de: "Einladungslink wurde kopiert!"
-    };
-
-    function getCurrentLanguage() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const langParam = urlParams.get('lang');
-      if (langParam) return langParam.toLowerCase();
-      return document.documentElement.getAttribute('data-lang') || document.documentElement.lang || 'kr';
-    }
-
-    function copyLink() {
-      const currentUrl = window.location.href;
-      const currentLang = getCurrentLanguage();
-      const alertMsg = copyAlertMessages[currentLang] || copyAlertMessages['kr'];
-
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(currentUrl).then(() => {
-          alert(alertMsg);
-        }).catch(err => {
-          fallbackCopyLink(currentUrl, alertMsg);
+        fetch(scriptURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        })
+        .then(() => {
+          alert(translations[currentLang].rsvpSuccess);
+          rsvpForm.reset();
+        })
+        .catch(error => {
+          console.error('Error!', error.message);
+          alert(translations[currentLang].rsvpError);
         });
-      } else {
-        fallbackCopyLink(currentUrl, alertMsg);
-      }
+      });
     }
-
-    function fallbackCopyLink(url, alertMsg) {
-      const msg = alertMsg || copyAlertMessages['kr'];
-      const textArea = document.createElement("textarea");
-      textArea.value = url;
-      document.body.appendChild(textArea);
-      textArea.select();
-      
-      try {
-        document.execCommand('copy');
-      } catch (err) {
-        console.error('복사 실패:', err);
-      }
-      
-      document.body.removeChild(textArea);
-      alert(msg);
-    }
-
-    function shareKakao() {
-      const currentUrl = window.location.href;
-      const shareText = "Kilian & Soyeon's Wedding Invitation";
-      const kakaoShareUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
-      window.open(kakaoShareUrl, '_blank', 'width=500,height=600');
-    }
-
-    // 1. 다국어 번역 데이터 (기존 translations 객체 내에 아래 키값들을 추가/확인해주세요)
-const translations = {
-  ko: {
-    // ... 기존 번역 데이터 ...
-    rsvpSuccess: "RSVP가 성공적으로 제출되었습니다. 감사합니다!",
-    rsvpError: "제출 중 오류가 발생했습니다. 다시 시도해 주세요."
-  },
-  en: {
-    // ... 기존 번역 데이터 ...
-    rsvpSuccess: "Thank you! Your RSVP has been successfully submitted.",
-    rsvpError: "An error occurred while submitting. Please try again."
-  },
-  de: {
-    // ... 기존 번역 데이터 ...
-    rsvpSuccess: "Vielen Dank! Deine Rückmeldung wurde erfolgreich übermittelt.",
-    rsvpError: "Beim Absenden ist ein Fehler aufgetreten. Bitte versuche es erneut."
-  }
-};
-
-// 2. RSVP 폼 제출 이벤트
-const rsvpForm = document.getElementById('rsvp-form');
-
-if (rsvpForm) {
-  rsvpForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    // 구글 앱스 스크립트 웹 앱 URL
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwYWEIArXCzm7wFM6AKBjsFd594AeO5RiIjm5zkhjPlqa0Nh_GvhQv3za-A8whYBXnKAw/exec';
-
-    const formData = {
-      name: document.getElementById('name').value,
-      attendance: document.getElementById('attendance').value,
-      diet: document.getElementById('diet') ? document.getElementById('diet').value : '',
-      message: document.getElementById('message') ? document.getElementById('message').value : ''
-    };
-
-    fetch(scriptURL, {
-      method: 'POST',
-      mode: 'no-cors', // CORS 이슈 방지
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    })
-    .then(() => {
-      // 💡 현재 설정된 언어(currentLang)를 확인하고, 없으면 기본값 'ko' 사용
-      const lang = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'ko';
-      alert(translations[lang].rsvpSuccess);
-      
-      rsvpForm.reset();
-    })
-    .catch(error => {
-      console.error('Error!', error.message);
-      
-      const lang = (typeof currentLang !== 'undefined' && currentLang) ? currentLang : 'ko';
-      alert(translations[lang].rsvpError);
-    });
   });
-}
-  </script>
-  
+</script>
 </body>
 </html>
