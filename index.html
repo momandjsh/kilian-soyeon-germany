@@ -41,6 +41,8 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Cormorant Garamond', 'Nanum Pen Script', serif;
+      font-size: 1.2rem; /* 기본 폰트 크기를 약 15~20% 늘립니다 (기본값 보통 16px -> 약 18.4px) */
+      line-height: 1.6;   /* 손글씨 폰트는 행간이 좁으면 겹칠 수 있어 여유있게 설정 */
       background-color: #dce4d9;
       color: var(--text-dark);
       display: flex;
@@ -540,11 +542,7 @@
   border-color: #dcdcdc; 
   color: #444444; 
 }
-    /* 다국어/한글 텍스트 전체 크기 상향 */
-[data-i18n], .ko-text {
-  font-size: 1.4rem !important; /* 기본보다 약 25% 확대 (원하시는 만큼 1.15rem ~ 1.4rem 조절) */
-  line-height: 1.6;             /* 나눔펜폰트 글자가 위아래로 겹치지 않게 행간 확보 */
-}
+   
   </style>
 </head>
 <body>
