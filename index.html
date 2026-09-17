@@ -1269,6 +1269,38 @@ document.addEventListener('DOMContentLoaded', () => {
       const kakaoShareUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
       window.open(kakaoShareUrl, '_blank', 'width=500,height=600');
     }
+
+    // RSVP 폼 제출 이벤트
+const rsvpForm = document.getElementById('rsvp-form');
+
+rsvpForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  // 구글 앱스 스크립트 웹 앱 URL
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwYWEIArXCzm7wFM6AKBjsFd594AeO5RiIjm5zkhjPlqa0Nh_GvhQv3za-A8whYBXnKAw/exec'; // 👈 2단계에서 복사한 웹 앱 URL을 여기에 붙여넣으세요!
+
+  const formData = {
+    name: document.getElementById('name').value,
+    attendance: document.getElementById('attendance').value,
+    diet: document.getElementById('diet') ? document.getElementById('diet').value : '',
+    message: document.getElementById('message') ? document.getElementById('message').value : ''
+  };
+
+  fetch(scriptURL, {
+    method: 'POST',
+    mode: 'no-cors', // CORS 이슈 방지
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData)
+  })
+  .then(() => {
+    alert('RSVP가 성공적으로 제출되었습니다. 감사합니다!');
+    rsvpForm.reset();
+  })
+  .catch(error => {
+    console.error('Error!', error.message);
+    alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
+  });
+});
   </script>
   
 </body>
