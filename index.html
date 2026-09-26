@@ -279,29 +279,42 @@
       text-transform: uppercase;
     }
     
-    /* 기본 (영어/독일어): Italianno 폰트 적용 */
+/* 메인 초대의 글 (German, English, Korean 공통) */
 .letter-body {
-  font-family: 'Playwrite AU SA';
-  font-size: 13px;        /* Italianno 필기체에 맞춘 크기 */
-  line-height: 1.4;
+  font-family: 'Playfair Display', 'Nanum Myeongjo', 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  line-height: 1.95;
   text-align: center;
-  color: var(--text-color, #333);
+  color: var(--primary-color);
+  letter-spacing: 0.3px;
   word-break: keep-all;
-}
-    /* 이름 전용 Italianno 폰트 스타일 */
-.invitation-name {
-  font-family: 'Playwrite AU SA';
-  font-size: 1.4rem; /* 폰트 크기 (필요에 따라 1.8rem, 2.5rem 등으로 조절) */
-  font-style: normal;
-  display: inline-block;
-  margin-top: 5px;
+  padding: 10px 5px;
 }
 
-/* 언어가 한국어(kr)일 때: Nanum Pen Script 폰트 자동 적용 */
+/* 신랑 & 신부 이름 전용 세리프 스타일 */
+.invitation-name {
+  font-family: 'Playfair Display', 'Nanum Myeongjo', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: normal;
+  display: inline-block;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+  color: var(--primary-color);
+}
+
+/* 한국어 선택 시 나눔명조 폰트 크기 및 행간 최적화 */
 [data-lang="ko"] .letter-body {
-  font-family: 'Nanum Pen Script';
-  font-size: 10px;        /* 나눔손글씨 펜 폰트에 맞춘 크기 */
-  line-height: 1.6;
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 1.05rem;
+  line-height: 2.0;
+  letter-spacing: -0.2px;
+}
+
+[data-lang="ko"] .invitation-name {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
     /* D-Day 카운트다운 */
