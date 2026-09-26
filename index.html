@@ -32,6 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Ruwudu&family=Nanum+Pen+Script&family=Pinyon+Script&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
   
   <!-- Swiper.js CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -45,15 +46,14 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Cormorant Garamond', 'Noto Sans KR', serif;
-      background-color: #dce4d9;
-      color: var(--text-dark);
-      display: flex;
-      justify-content: center;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+body {
+  font-family: 'Cormorant Garamond', 'Gowun Batang', serif;
+  background-color: var(--bg-cream);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 
     .app-container {
       width: 100%;
@@ -562,6 +562,23 @@
     font-size: 1.3rem; /* 기본보다 약 20% 더 크게 설정 */
     line-height: 1.6;  /* 나눔펜폰트 글자끼리 겹치지 않게 행간 여유 설정 */
   }
+
+    /* 🇰🇷 한국어 선택 시 폰트 크기 및 두께 미세 조정 */
+[data-lang="ko"] p, 
+[data-lang="ko"] span, 
+[data-lang="ko"] div, 
+[data-lang="ko"] .section-title {
+  font-size: 0.95em;           /* Scales the Korean text down by 5% */
+  font-weight: 400;            /* Ensures the text stays thin */
+  letter-spacing: -0.3px;      /* Pulls the characters slightly closer together */
+}
+
+/* 예외: 상단 초대의 글(Caveat 폰트 부분)은 이 크기 조정을 무시하도록 보호 */
+[data-lang="ko"] .letter-body,
+[data-lang="ko"] .invitation-name {
+  font-size: 1.6rem !important;
+  font-weight: normal !important;
+}
     
   </style>
 </head>
