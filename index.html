@@ -31,6 +31,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Ruwudu&family=Nanum+Pen+Script&family=Pinyon+Script&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
   
   <!-- Swiper.js CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -241,22 +242,26 @@
     }
     
     /* 기본 (영어/독일어): Italianno 폰트 적용 */
-.letter-body {
-  font-family: 'Playwrite AU SA';
-  font-size: 13px;        /* Italianno 필기체에 맞춘 크기 */
-  line-height: 1.4;
-  text-align: center;
-  color: var(--text-color, #333);
-  word-break: keep-all;
-}
-    /* 이름 전용 Italianno 폰트 스타일 */
-.invitation-name {
-  font-family: 'Playwrite AU SA';
-  font-size: 1.4rem; /* 폰트 크기 (필요에 따라 1.8rem, 2.5rem 등으로 조절) */
-  font-style: normal;
-  display: inline-block;
-  margin-top: 5px;
-}
+/* 상단 초대의 글 전용 (Caveat + Nanum Pen Script 조합) */
+    .letter-body {
+      font-family: 'Caveat', 'Nanum Pen Script', cursive !important;
+      font-size: 1.6rem !important; /* Caveat tends to look small, so we bump the size */
+      line-height: 1.6 !important;
+      text-align: center;
+      color: var(--text-dark);
+      word-break: keep-all;
+      padding: 10px 5px;
+    }
+    
+    .invitation-name {
+      font-family: 'Caveat', 'Nanum Pen Script', cursive !important;
+      font-size: 1.9rem !important; /* Slightly larger for the names */
+      font-weight: 600;
+      font-style: normal;
+      display: inline-block;
+      margin-top: 5px;
+      color: var(--primary-color);
+    }
 
 /* 언어가 한국어(kr)일 때: Nanum Pen Script 폰트 자동 적용 */
 [data-lang="ko"] .letter-body {
