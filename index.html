@@ -46,7 +46,7 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Cormorant Garamond', 'Nanum Pen Script', serif;
+      font-family: 'Cormorant Garamond', 'Noto Sans KR', serif;
       background-color: #dce4d9;
       color: var(--text-dark);
       display: flex;
@@ -621,11 +621,7 @@
       <!-- 일시 및 테마 + D-Day 카운트다운 -->
       <section class="content-section" style="background: #f4efe6;">
         <h2 class="section-title" data-i18n="detailsTitle">Details</h2>
-        <p style="text-align: center; line-height: 1.9;">
-          <strong>📅 Date:</strong> 12. June 2027<br>
-          <strong>📍 Venue:</strong> Schloss Hohenkammer, Germany<br>
-          <strong>🌿 Concept:</strong> Festive Attire
-        </p>
+<p style="text-align: center; line-height: 1.9;" data-i18n="detailsDesc"></p>
 
         <div class="countdown-container">
           <div class="time-box">
@@ -726,41 +722,41 @@
       </section>
 
       <!-- FAQ -->
-      <section class="content-section">
+<section class="content-section">
         <h2 class="section-title">FAQ</h2>
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">
-            <span>Dress Code?</span> <span>+</span>
+            <span data-i18n="faqQ1">Dress Code?</span> <span>+</span>
           </div>
           <div class="faq-answer" data-i18n="faq1"></div>
         </div>
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">
-            <span>Children allowed?</span> <span>+</span>
+            <span data-i18n="faqQ2">Children allowed?</span> <span>+</span>
           </div>
           <div class="faq-answer" data-i18n="faq2"></div>
         </div>
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">
-            <span>Where can I stay?</span> <span>+</span>
+            <span data-i18n="faqQ3">Where can I stay?</span> <span>+</span>
           </div>
           <div class="faq-answer" data-i18n="faq3"></div>
         </div>
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">
-            <span>Parking?</span> <span>+</span>
+            <span data-i18n="faqQ4">Parking?</span> <span>+</span>
           </div>
           <div class="faq-answer" data-i18n="faq4"></div>
         </div>
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">
-            <span>Until when should I answer RSVP?</span> <span>+</span>
+            <span data-i18n="faqQ5">Until when should I answer RSVP?</span> <span>+</span>
           </div>
           <div class="faq-answer" data-i18n="faq5"></div>
         </div>
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">
-            <span>What if it rains?</span> <span>+</span>
+            <span data-i18n="faqQ6">What if it rains?</span> <span>+</span>
           </div>
           <div class="faq-answer" data-i18n="faq6"></div>
         </div>
@@ -883,6 +879,7 @@
         <!--invitationTitle: "초대의 글",-->
         invitationBody: "지구 반대편에서 만난 저희 두 사람이<br>서로의 손을 잡고 새로운 시작을 함께하려 합니다. 앞으로 펼쳐질 저희의 시작을 함께 축하해 주세요.<br><br>🤵 킬리안 쉐프터 <br> 👰 전소연",
         detailsTitle: "예식 안내",
+        detailsDesc: "<strong>📅 일시:</strong> 2027년 6월 12일<br><strong>📍 장소:</strong> 독일 뮌헨 호헨캄머 성<br><strong>🌿 컨셉:</strong> 정장 (Festive Attire)",
         lblDays: "일",
         lblHours: "시간",
         lblMins: "분",
@@ -897,8 +894,14 @@
         t7: "피로연 공식 종료 (Offizielles Ende)",
         galleryTitle: "갤러리",
         travelTitle: "오시는 길 & 숙박",
-        travelDesc: "<strong>🚗 Parking:</strong> 성 내에 하객분들을 위한 주차 공간이 충분히 마련되어 있습니다.<br><strong>✈️ Flight & Train:</strong> 뮌헨 공항(MUC) 이용 시 차량으로 약 20분 거리입니다.<br><strong>🚌 Bus (Freising):</strong> Freising역에서 665번 버스 탑승 (약 45분 소요)<br><strong>🚕 Taxi (Petershausen):</strong> 인근 Petershausen역에서 택시로 약 7분 소요<br><strong>🏨 Hotel Info:</strong> 예식장 전용 호텔에 숙박 예약이 가능합니다. 저희 이름을 말씀하시고 예약하시면 됩니다.",
+        travelDesc: "<strong>🚗 주차 (Parking):</strong> 성 내에 하객분들을 위한 주차 공간이 충분히 마련되어 있습니다.<br><strong>✈️ 항공 & 기차:</strong> 뮌헨 공항(MUC) 이용 시 차량으로 약 20분 거리입니다.<br><strong>🚌 버스 (Freising):</strong> Freising역에서 665번 버스 탑승 (약 45분 소요)<br><strong>🚕 택시 (Petershausen):</strong> 인근 Petershausen역에서 택시로 약 7분 소요<br><strong>🏨 숙소 안내 (Hotel Info):</strong> 예식장 전용 호텔에 숙박 예약이 가능합니다. 저희 이름을 말씀하시고 예약하시면 됩니다.",
         btnOpenMap: "📍 Google Maps에서 위치 보기",
+        faqQ1: "드레스 코드가 있나요?",
+        faqQ2: "아이를 동반해도 되나요?",
+        faqQ3: "숙박은 어떻게 하나요?",
+        faqQ4: "주차장이 있나요?",
+        faqQ5: "언제까지 참석 여부를 알려줘야 하나요?",
+        faqQ6: "비가 오면 어떻게 되나요?",
         faq1: "드레스 코드는 <strong>Festive Attire</strong> 입니다. 편안하면서도 격식 있는 복장으로 함께해 주세요. 야외 잔디밭을 걷는 시간이 있을 수 있으니, 굽이 너무 얇은 구두보다는 걷기 편한 신발을 추천합니다.",
         faq2: "네, 물론입니다! 어린이 게스트를 위한 특별한 식사가 준비될 예정입니다. 정확한 인원 파악을 위해 참석(RSVP) 회신 시 아이의 연령을 꼭 기재해 주세요.",
         faq3: "성 내부에 게스트를 위한 객실이 마련되어 있습니다. 예약 시 저희 웨딩 게스트라고 말씀해 주시면 안내를 받으실 수 있습니다. 사전에 예약하시는 것을 추천드립니다.",
@@ -910,13 +913,15 @@
         lblAttend: "참석 여부 (Attendance)",
         lblDiet: "식성 및 알레르기 안내 (Dietary Requirement)",
         lblMessage: "축하 메시지",
-        btnSubmit: "RSVP 제출하기"
+        btnSubmit: "RSVP 제출하기",
+        shareTitle: "청첩장 공유하기"
       },
       en: {
         clickToOpen: "✉️ Click envelope to open",
         <!--invitationTitle: "Invitation",-->
         invitationBody: "Dear friends and family<br><br>We are getting married! <br>We warmly invite you to join us on our special day as we celebrate our wedding.<br><br><span class=\"invitation-name\">🤵 Kilian Scheffter</span> <br> <span class=\"invitation-name\">👰 Soyeon Jun</span>",
-        detailsTitle: "Details",
+detailsTitle: "Details",
+        detailsDesc: "<strong>📅 Date:</strong> 12. June 2027<br><strong>📍 Venue:</strong> Schloss Hohenkammer, Germany<br><strong>🌿 Concept:</strong> Festive Attire",
         lblDays: "Days",
         lblHours: "Hours",
         lblMins: "Mins",
@@ -933,6 +938,12 @@
         travelTitle: "Travel & Stay",
         travelDesc: "<strong>🚗 Parking:</strong> Enough parking spaces are available at the venue.<br><strong>✈️ Flight & Train:</strong> Approx. 20 minutes by car from Munich Airport (MUC).<br><strong>🚌 Bus (Freising):</strong> Bus line 665 from Freising station (approx. 45 mins).<br><strong>🚕 Taxi (Petershausen):</strong> Approx. 7 mins by taxi from nearby Petershausen station.<br><strong>🏨 Hotel Info:</strong> Accommodations are available directly at the venue hotel. You can make a reservation under our names.",
         btnOpenMap: "📍 Open in Google Maps",
+        faqQ1: "Dress Code?",
+        faqQ2: "Children allowed?",
+        faqQ3: "Where can I stay?",
+        faqQ4: "Parking?",
+        faqQ5: "Until when should I answer RSVP?",
+        faqQ6: "What if it rains?",
         faq1: "The dress code is Festive Attire. Please join us in comfortable yet elegant clothing. As we may spend some time on the outdoor lawn, we recommend comfortable shoes rather than stilettos.",
         faq2: "Yes, absolutely! A special meal will be prepared for our little guests. To help us plan accurately, please make sure to include your child's age when you RSVP.",
         faq3: "There are guest rooms available inside the castle. Please mention that you are our wedding guest when booking, and they will assist you. Reservation is recommended!",
@@ -944,13 +955,15 @@
         lblAttend: "Attendance",
         lblDiet: "Dietary Restrictions / Allergies",
         lblMessage: "Message for Groom & Bride",
-        btnSubmit: "Submit RSVP"
+        btnSubmit: "Submit RSVP",
+        shareTitle: "Share Invitation"
       },
       de: {
         clickToOpen: "✉️ Zum Öffnen bitte den Brief antippen",
         <!--invitationTitle: "Einladung",-->
         invitationBody: "Liebe Freunde und Familie<br><br>Wir heiraten! <br>Wir laden euch herzlich ein, diesen besonderen Tag gemeinsam mit uns zu feiern.<br><br><span class=\"invitation-name\">🤵 Kilian Scheffter</span> <br> <span class=\"invitation-name\">👰 Soyeon Jun</span>",
-        detailsTitle: "Details",
+detailsTitle: "Details",
+        detailsDesc: "<strong>📅 Datum:</strong> 12. Juni 2027<br><strong>📍 Ort:</strong> Schloss Hohenkammer, Deutschland<br><strong>🌿 Konzept:</strong> Festliche Kleidung",
         lblDays: "Tage",
         lblHours: "Std",
         lblMins: "Min",
@@ -967,6 +980,12 @@
         travelTitle: "Anreise & Unterkunft",
         travelDesc: "<strong>🚗 Parken:</strong> Ausreichend Parkplätze stehen an der Location zur Verfügung.<br><strong>✈️ Anreise:</strong> Vom Flughafen München (MUC) seid ihr in ca. 20 Minuten mit dem Auto da.<br><strong>🚌 Bus (Freising):</strong> Buslinie 665 ab Bahnhof Freising (ca. 45 Min.).<br><strong>🚕 Taxi (Petershausen):</strong> Ca. 7 Minuten mit dem Taxi vom nahegelegenen Bahnhof Petershausen.<br><strong>🏨 Unterkunft:</strong> Übernachtungen sind direkt im Hotel der Hochzeitslocation möglich. Ihr könnt einfach unter unserem Namen reservieren.",
         btnOpenMap: "📍 In Google Maps öffnen",
+        faqQ1: "Dresscode?",
+        faqQ2: "Sind Kinder willkommen?",
+        faqQ3: "Wo kann ich übernachten?",
+        faqQ4: "Gibt es Parkplätze?",
+        faqQ5: "Bis wann soll ich zu-/absagen (RSVP)?",
+        faqQ6: "Was passiert, wenn es regnet?",
         faq1: "Dresscode: <strong>Festliche Kleidung</strong>. :)",
         faq2: "Ja, natürlich! Für unsere kleinen Gäste wird es ein spezielles Kindermenü geben. Um uns bei der Planung zu helfen, gebt bitte bei eurer Zu-/Absage (RSVP) das Alter eurer Kinder an!",
         faq3: "Im Schloss stehen Zimmer für unsere Gäste zur Verfügung. Bitte gebt bei der Buchung an, dass ihr zu unserer Hochzeitsgesellschaft gehört. Dann wird man euch gerne weiterhelfen.",
@@ -978,7 +997,8 @@
         lblAttend: "Teilnahme",
         lblDiet: "Unverträglichkeiten / Allergien",
         lblMessage: "Nachricht an das Brautpaar",
-        btnSubmit: "RSVP Absenden"
+        btnSubmit: "RSVP Absenden",
+        shareTitle: "Einladung teilen"
       }
     };
 
