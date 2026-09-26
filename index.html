@@ -1209,6 +1209,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. 언어 설정 함수
     function setLanguage(lang) {
+      document.body.setAttribute('data-lang', lang);
       if (!translations[lang]) lang = 'de';
 
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
