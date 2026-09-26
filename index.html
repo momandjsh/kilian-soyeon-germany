@@ -561,19 +561,21 @@ body {
   color: #444444; 
 }
    /* 👇 여기에 두 번째 방식을 맨 아래에 붙여넣으시면 됩니다! */
-  p, span, .invitation-body, [data-i18n] {
-    font-size: 1.3rem; /* 기본보다 약 20% 더 크게 설정 */
-    line-height: 1.6;  /* 나눔펜폰트 글자끼리 겹치지 않게 행간 여유 설정 */
+#mainContent p, 
+  #mainContent span, 
+  #mainContent .invitation-body, 
+  #mainContent [data-i18n] {
+    font-size: 1.3rem; 
+    line-height: 1.6;  
   }
 
-    /* 🇰🇷 한국어 선택 시 폰트 크기 및 두께 미세 조정 */
-  [data-lang="ko"] p, 
-  [data-lang="ko"] span, 
-  [data-lang="ko"] div, 
+  /* 2. 🇰🇷 Adjust Korean text size, strictly inside the opened letter */
+  [data-lang="ko"] #mainContent p, 
+  [data-lang="ko"] #mainContent span, 
   [data-lang="ko"] .section-title {
-    font-size: 1.15em;           /* Scales the Korean text down by 5% */
-    font-weight: 400;            /* Ensures the text stays thin */
-    letter-spacing: -0.3px;      /* Pulls the characters slightly closer together */
+    font-size: 1.15rem;           
+    font-weight: 400;            
+    letter-spacing: -0.3px;      
   }
 
 /* 예외: 상단 초대의 글(Caveat 폰트 부분)은 이 크기 조정을 무시하도록 보호 */
@@ -608,7 +610,7 @@ body {
 [data-lang="ko"] [data-i18n="faq5"],
 [data-lang="ko"] [data-i18n="faq6"] {
   font-size: 0.85em !important; 
-  line-height: 1.6 !important;
+  line-height: 1.4 !important;
 }
     
   </style>
