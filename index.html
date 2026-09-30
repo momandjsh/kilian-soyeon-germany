@@ -3,39 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation</title>
+  <title>Wedding Invitation - Kilian & Soyeon</title>
 
-  <!-- 검색엔진 노출 방지 및 SNS 미리보기(OG) 설정 -->
+  <!-- Robots & OG Meta Tags -->
   <meta name="robots" content="noindex, nofollow">
-  <!-- 기본 OG 메타 태그 (이미지 경로 변경 완료) -->
-  <meta id="og-title" property="og:title" content="Kilian & Soyeon의 결혼식에 초대합니다">
-  <meta id="og-description" property="og:description" content="12.06.2027 Schloss Hohenkammer">
-  <meta id="og-image" property="og:image" content="image/000.jpg">
-  
-  <!-- 트위터 카카오 등 호환용 메타 태그 (선택) -->
-  <meta id="twitter-title" name="twitter:title" content="Kilian & Soyeon의 결혼식에 초대합니다">
-  <meta id="twitter-description" name="twitter:description" content="12.06.2027 Schloss Hohenkammer">
-  <meta id="twitter-image" name="twitter:image" content="image/000.jpg">
-
   <meta id="og-title" property="og:title" content="Einladung zur Hochzeit von Kilian & Soyeon">
   <meta id="og-description" property="og:description" content="12.06.2027 Schloss Hohenkammer">
   <meta id="og-image" property="og:image" content="image/000.jpg">
   
+  <meta id="twitter-title" name="twitter:title" content="Einladung zur Hochzeit von Kilian & Soyeon">
+  <meta id="twitter-description" name="twitter:description" content="12.06.2027 Schloss Hohenkammer">
+  <meta id="twitter-image" name="twitter:image" content="image/000.jpg">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-  <!-- 기존 폰트 링크 아래에 아래 두 줄을 붙여넣으세요 -->
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script:opsz@16..72&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Ruwudu&family=Nanum+Pen+Script&family=Pinyon+Script&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Gowun+Batang&family=Italianno&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   
   <!-- Swiper.js CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
@@ -43,20 +31,22 @@
       --accent-color: #889e81;
       --bg-cream: #faf8f5;
       --text-dark: #2c3531;
+      --border-color: #e5e5e5;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Cormorant Garamond', 'Gowun Batang', serif;
-  background-color: #f4f1eb;
-  color: var(--text-color);
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
+
+    body {
+      font-family: 'Cormorant Garamond', 'Gowun Batang', serif;
+      background-color: #f4f1eb;
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
 
     .app-container {
       width: 100%;
@@ -90,13 +80,36 @@ body {
     }
     .lang-btn.active { color: var(--primary-color); text-decoration: underline; }
 
-    /* 1. INTRO HERO (수정: 높이 및 위치 보장) */
+    /* BGM 버튼 */
+    .bgm-toggle-btn {
+      position: fixed;
+      top: 50px;
+      right: 20px;
+      z-index: 9999;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .bgm-toggle-btn:active { transform: scale(0.92); }
+
+    /* 1. INTRO HERO */
     .intro-hero {
       width: 100%;
       min-height: 100vh;
       height: 100%;
       background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-              url('image/000.jpg') center/cover no-repeat;
+                  url('image/000.jpg') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -106,7 +119,7 @@ body {
       box-sizing: border-box;
     }
 
-    /* 3D 입체 편지 봉투 */
+    /* 3D 편지 봉투 */
     .envelope-container {
       width: 320px;
       height: 210px;
@@ -124,28 +137,7 @@ body {
       padding: 0 15px;
       margin-top: 20px;
     }
-    /* 💡 편지 봉투 텍스트 폰트 스타일 */
-    .groom-bride-names {
-      font-family: 'Italianno', cursive; /* Our Wedding 필기체 폰트 */
-      font-size: 70px;                   /* 글씨 크기 */
-      color: var(--primary-color);
-      margin-bottom: 2px;
-      font-weight: normal;
-      line-height: 1.1;
-    }
-
-    .date-badge {
-      font-family: 'Cinzel Decorative', serif; /* Kilian & Soyeon 폰트 */
-      font-size: 13px;
-      font-weight: 700;
-      color: #4a5d4e;
-      letter-spacing: 1px;
-      line-height: 1.4;
-    }
-    .envelope-container:hover {
-      transform: translateY(-5px);
-    }
-
+    .envelope-container:hover { transform: translateY(-5px); }
     .envelope-container.open-slide-down {
       transform: translateY(100vh) !important;
       opacity: 0;
@@ -191,16 +183,19 @@ body {
       margin-bottom: 6px;
     }
     .groom-bride-names {
-      font-size: 20px;
+      font-family: 'Italianno', cursive;
+      font-size: 48px;
       color: var(--primary-color);
-      margin-bottom: 6px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      line-height: 1.3;
+      margin-bottom: 2px;
+      font-weight: normal;
+      line-height: 1.1;
     }
     .date-badge {
+      font-family: 'Cinzel Decorative', serif;
       font-size: 12px;
-      color: #666;
+      font-weight: 700;
+      color: #4a5d4e;
+      letter-spacing: 1px;
       line-height: 1.4;
     }
 
@@ -218,47 +213,44 @@ body {
       50% { opacity: 1; }
     }
 
-    /* 2. 메인 컨텐츠 영역 */
+    /* 2. 메인 컨텐츠 */
     #mainContent {
       display: none;
       opacity: 0;
       transition: opacity 0.8s ease;
       background: var(--bg-cream);
     }
-
     #mainContent.slide-up-show {
       display: block;
       opacity: 1;
     }
 
     .content-section {
-      padding: 40px 25px;
+      padding: 35px 22px;
       border-bottom: 1px solid #eae5dc;
     }
     .section-title {
       text-align: center;
-      font-size: 30px;
+      font-size: 26px;
       color: var(--primary-color);
-      margin-bottom: 25px;
-      letter-spacing: 2px;
+      margin-bottom: 22px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
     }
-    
-    /* 기본 (영어/독일어): Italianno 폰트 적용 */
-/* 상단 초대의 글 전용 (Caveat + Nanum Pen Script 조합) */
+
+    /* 상단 초대의 글 (DO NOT TOUCH TOP LETTER STYLING) */
     .letter-body {
       font-family: 'Caveat', 'Nanum Pen Script', cursive !important;
-      font-size: 1.6rem !important; /* Caveat tends to look small, so we bump the size */
+      font-size: 1.6rem !important;
       line-height: 1.6 !important;
       text-align: center;
       color: var(--text-dark);
       word-break: keep-all;
       padding: 10px 5px;
     }
-    
     .invitation-name {
       font-family: 'Caveat', 'Nanum Pen Script', cursive !important;
-      font-size: 1.9rem !important; /* Slightly larger for the names */
+      font-size: 1.9rem !important;
       font-weight: 600;
       font-style: normal;
       display: inline-block;
@@ -266,146 +258,36 @@ body {
       color: var(--primary-color);
     }
 
-/* 언어가 한국어(kr)일 때: Nanum Pen Script 폰트 자동 적용 */
-[data-lang="ko"] .letter-body {
-  font-family: 'Nanum Pen Script';
-  font-size: 10px;        /* 나눔손글씨 펜 폰트에 맞춘 크기 */
-  line-height: 1.6;
-}
-
-    /* D-Day 카운트다운 */
+    /* D-Day 카운트다운 (Reduced Font Sizes) */
     .countdown-container {
-      margin-top: 25px;
-      padding-top: 20px;
+      margin-top: 20px;
+      padding-top: 18px;
       border-top: 1px dashed #d5cdbf;
       display: flex;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
     }
     .time-box {
       background: #ffffff;
       border: 1px solid #e5dfd3;
       border-radius: 8px;
-      padding: 10px 8px;
-      min-width: 65px;
+      padding: 8px 6px;
+      min-width: 60px;
       text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.04);
     }
     .time-box .num {
-      font-size: 20px;
+      font-size: 18px; /* Reduced from 20px */
       font-weight: 600;
       color: var(--primary-color);
       font-family: 'Cormorant Garamond', serif;
-      line-height: 1;
+      line-height: 1.1;
     }
     .time-box .label {
-      font-size: 11px;
+      font-size: 10px; /* Reduced size for days, hours, mins, secs */
       color: #888;
-      margin-top: 4px;
+      margin-top: 3px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* 구글 지도 스티커 카드 */
-    .google-map-box {
-      display: block;
-      text-decoration: none;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #cce0d2;/* --- GOOGLE MAPS BUTTON --- */
-.map-btn-bar {
-  background-color: var(--primary-color, #2d5a27); /* Matches heading green color */
-  color: #ffffff;
-  text-align: center;
-  padding: 12px;
-  font-weight: 600;
-  transition: opacity 0.2s ease;
-}
-
-.map-btn-bar:hover {
-  opacity: 0.9;
-}
-
-/* --- SINGLE WHITE BOX CONTAINER --- */
-.travel-card {
-  background: #ffffff;
-  border: 1px solid var(--border-color, #e5e5e5);
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* Subheadings: Bold and Green */
-.travel-subtitle {
-  font-size: 1.1em;
-  font-weight: 700;
-  color: var(--primary-color, #2d5a27); /* Matches heading green color */
-  margin-top: 0;
-  margin-bottom: 8px;
-}
-
-/* Subtle Line Dividers between topics inside the white box */
-.travel-divider {
-  height: 1px;
-  background-color: var(--border-color, #eef0f2);
-  margin: 18px 0;
-}
-
-/* Bulleted List Styling (Normal Weight) */
-.travel-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.travel-list li {
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 8px;
-  line-height: 1.5;
-  font-weight: 400; /* Regular weight for route titles */
-}
-
-.travel-list li:last-child {
-  margin-bottom: 0;
-}
-
-.travel-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  top: -1px;
-  color: var(--primary-color, #2d5a27);
-  font-size: 1.3em;
-}
-
-.travel-block p {
-  margin: 0;
-  line-height: 1.5;
-  font-weight: 400;
-}tr
-      margin-bottom: 25px;
-      background: #e8f5e9;
-      transition: transform 0.2s ease;
-    }
-    .google-map-box:hover {
-      transform: translateY(-2px);
-    }
-    
-    .map-svg-container {
-      width: 100%;
-      height: 230px;
-      position: relative;
-      background: #e4f3e6;
-    }
-
-    .map-btn-bar {
-      padding: 13px;
-      text-align: center;
-      background: var(--primary-color);
-      font-size: 14px;
-      font-weight: 500;
-      color: #ffffff;
       letter-spacing: 0.5px;
     }
 
@@ -414,15 +296,13 @@ body {
       list-style: none;
       padding-left: 20px;
       border-left: 2px solid var(--accent-color);
-      margin: 20px 0 20px 10px;
+      margin: 15px 0 15px 10px;
     }
     .timeline-item {
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       position: relative;
     }
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
+    .timeline-item:last-child { margin-bottom: 0; }
     .timeline-item::before {
       content: '';
       position: absolute;
@@ -434,9 +314,75 @@ body {
       background: var(--primary-color);
     }
     .timeline-time { font-weight: bold; color: var(--primary-color); font-size: 14px; }
-    .timeline-desc { font-size: 15px; color: #555; margin-top: 2px; }
+    .timeline-desc { font-size: 15px; color: #555; margin-top: 2px; line-height: 1.5; }
 
-    
+    /* 구글 지도 & Travel Card */
+    .google-map-box {
+      display: block;
+      text-decoration: none;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #cce0d2;
+      margin-bottom: 20px;
+      background: #e8f5e9;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .map-btn-bar {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+    .map-btn-bar:hover { opacity: 0.9; }
+
+    .travel-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+    .travel-subtitle {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 6px;
+    }
+    .travel-divider {
+      height: 1px;
+      background-color: #eef0f2;
+      margin: 15px 0;
+    }
+    .travel-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .travel-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+    .travel-list li:last-child { margin-bottom: 0; }
+    .travel-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: -1px;
+      color: var(--primary-color);
+      font-size: 1.2em;
+    }
+    .travel-block p {
+      margin: 0;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
     /* FAQ */
     .faq-item {
       margin-bottom: 12px;
@@ -448,20 +394,23 @@ body {
       background: #fff;
       padding: 14px;
       font-weight: bold;
+      font-size: 15px;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
+      color: var(--text-dark);
     }
     .faq-answer {
       padding: 14px;
       background: #fdfdfd;
       display: none;
-      font-size: 14px;
-      color: #666;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.5;
       border-top: 1px solid #eee;
     }
 
-    /* 갤러리 (Swiper 스타일) */
+    /* 갤러리 */
     .gallery-swiper {
       width: 100%;
       padding-bottom: 35px;
@@ -469,10 +418,12 @@ body {
     }
     .gallery-swiper .swiper-slide {
       width: 100%;
-      height: 600px;
+      height: 520px;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .gallery-swiper .swiper-slide img {
       width: 100%;
@@ -480,21 +431,12 @@ body {
       object-fit: contain;
       display: block;
     }
-    .swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent; /* 또는 배경에 어울리는 색상 지정 */
-}
-    .swiper-pagination-bullet-active {
-      background-color: var(--primary-color) !important;
-    }
+    .swiper-pagination-bullet-active { background-color: var(--primary-color) !important; }
     .swiper-button-next, .swiper-button-prev {
       color: var(--primary-color) !important;
-      transform: scale(0.8);
+      transform: scale(0.7);
     }
 
-    
     /* RSVP 폼 */
     .rsvp-form label {
       display: block;
@@ -518,12 +460,13 @@ body {
       border: none;
       border-radius: 6px;
       margin-top: 20px;
-      font-size: 16px;
+      font-size: 15px;
       cursor: pointer;
     }
-    /* 초대 글귀 아래 비디오 스타일 */
+
+    /* 비디오 영역 */
     .video-section {
-      padding: 20px 25px; /* 위아래 여백 조절 */
+      padding: 20px 22px;
       text-align: center;
     }
     .video-container {
@@ -533,7 +476,7 @@ body {
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       background: #000;
-      line-height: 0; /* 하단 미세한 공백 제거 */
+      line-height: 0;
     }
     .video-container video {
       width: 100%;
@@ -542,295 +485,90 @@ body {
       object-fit: cover;
       object-position: center bottom;
     }
-    /* 2. <style> 맨 아래에 이 BGM 버튼 스타일을 추가하세요! */
-    .bgm-toggle-btn {
-      position: fixed;
-      top: 50px;
-      right: 20px;
-      z-index: 9999;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      background: rgba(255, 255, 255, 0.85);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-      cursor: pointer;
+
+    /* 공유 버튼 */
+    .share-section {
+      padding: 25px 20px;
+      text-align: center;
+      background-color: var(--bg-cream);
+    }
+    .share-title {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .share-buttons {
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 18px;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: transform 0.2s ease, background 0.2s ease;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-
-    .bgm-toggle-btn:active {
-      transform: scale(0.92);
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 20px;
+      border: 1px solid #e0e0e0;
+      background: #ffffff;
+      font-size: 13px;
+      font-weight: 500;
+      color: #333;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
     }
-    /* 공유 버튼 & 아이콘 스타일 */
-.share-section {
-  padding: 30px 20px 20px;
-  text-align: center;
-  background-color: var(--bg-color, #fafafa);
-}
+    .share-btn.kakao { background-color: #FEE500; border-color: #FEE500; color: #3C1E1E; }
+    .share-btn.whatsapp { background-color: #25D366; border-color: #25D366; color: #ffffff; }
 
-.share-title {
-  font-size: 16px;
-  color: var(--text-color, #555);
-  margin-bottom: 15px;
-  font-weight: 500;
-}
-
-.share-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.share-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border-radius: 20px;
-  border: 1px solid #e0e0e0;
-  background: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  transition: all 0.2s ease;
-}
-
-.share-btn .share-icon {
-  font-size: 16px;
-}
-
-.share-btn:active {
-  transform: scale(0.95);
-}
-
-/* 브랜드 고유 컬러 적용 */
-.share-btn.kakao { 
-  background-color: #FEE500; 
-  border-color: #FEE500; 
-  color: #3C1E1E; 
-}
-
-.share-btn.whatsapp { 
-  background-color: #25D366; 
-  border-color: #25D366; 
-  color: #ffffff; 
-}
-
-.share-btn.link { 
-  background-color: #ffffff; 
-  border-color: #dcdcdc; 
-  color: #444444; 
-}
-   /* 👇 여기에 두 번째 방식을 맨 아래에 붙여넣으시면 됩니다! */
-#mainContent p, 
-  #mainContent span, 
-  #mainContent .invitation-body, 
-  #mainContent [data-i18n] {
-    font-size: 1.3rem; 
-    line-height: 1.6;  
-  }
-
-  /* 2. 🇰🇷 Adjust Korean text size, strictly inside the opened letter */
-  [data-lang="ko"] #mainContent p, 
-  [data-lang="ko"] #mainContent span, 
-  [data-lang="ko"] .section-title {
-    font-size: 1.2rem;           
-    font-weight: 400;            
-    letter-spacing: -0.3px;      
-  }
-
-/* 예외: 상단 초대의 글(Caveat 폰트 부분)은 이 크기 조정을 무시하도록 보호 */
-  [data-lang="ko"] .letter-body,
-  [data-lang="ko"] .invitation-name {
-    font-size: 1.6rem !important;
-    font-weight: normal !important;
-  }
-
-    [data-lang="ko"] [data-i18n="t1"],
-[data-lang="ko"] [data-i18n="t2"],
-[data-lang="ko"] [data-i18n="t3"],
-[data-lang="ko"] [data-i18n="t4"],
-[data-lang="ko"] [data-i18n="t5"],
-[data-lang="ko"] [data-i18n="t6"],
-[data-lang="ko"] [data-i18n="t7"] {
-  font-size: 1em !important; /* Reduce size to 85% of original */
-}
-
-/* 🇰🇷 한국어 FAQ 질문(faqQ) 및 답변(faq) 폰트 크기 조절 */
-[data-lang="ko"] [data-i18n="faqQ1"],
-[data-lang="ko"] [data-i18n="faqQ2"],
-[data-lang="ko"] [data-i18n="faqQ3"],
-[data-lang="ko"] [data-i18n="faqQ4"],
-[data-lang="ko"] [data-i18n="faqQ5"],
-[data-lang="ko"] [data-i18n="faqQ6"],
-[data-lang="ko"] [data-i18n="faq1"],
-[data-lang="ko"] [data-i18n="faq2"],
-[data-lang="ko"] [data-i18n="faq3"],
-[data-lang="ko"] [data-i18n="faq4"],
-[data-lang="ko"] [data-i18n="faq5"],
-[data-lang="ko"] [data-i18n="faq6"] {
-  font-size: 1em !important; 
-}
-
-    /* --- NEW TRAVEL SECTION STYLES --- */
-.travel-container {
-  display: flex;
-  flex-direction: column;
-  gap: 28px; 
-  margin-top: 20px;
-}
-
-.travel-block {
-  background: rgba(255, 255, 255, 0.6); 
-  padding: 16px 20px;
-  border-radius: 8px;
-}
-
-.travel-subtitle {
-  font-size: 1.1em;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #2c3e50;
-}
-
-.travel-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.travel-list li {
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 8px;
-  line-height: 1.5;
-}
-
-.travel-list li:last-child {
-  margin-bottom: 0;
-}
-
-.travel-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  top: -1px;
-  color: #a8947b; /* Change this hex code if you want a different bullet point color */
-  font-size: 1.3em;
-}
-
-.travel-block p {
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* --- GOOGLE MAPS BUTTON --- */
-.map-btn-bar {
-  background-color: var(--primary-color, #2d5a27); /* Matches heading green color */
-  color: #ffffff;
-  text-align: center;
-  padding: 12px;
-  font-weight: 600;
-  transition: opacity 0.2s ease;
-}
-
-.map-btn-bar:hover {
-  opacity: 0.9;
-}
-
-/* --- SINGLE WHITE BOX CONTAINER --- */
-.travel-card {
-  background: #ffffff;
-  border: 1px solid var(--border-color, #e5e5e5);
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* Subheadings: Bold and Green */
-.travel-subtitle {
-  font-size: 1.1em;
-  font-weight: 700;
-  color: var(--primary-color, #2d5a27); /* Matches heading green color */
-  margin-top: 0;
-  margin-bottom: 8px;
-}
-
-/* Subtle Line Dividers between topics inside the white box */
-.travel-divider {
-  height: 1px;
-  background-color: var(--border-color, #eef0f2);
-  margin: 18px 0;
-}
-
-/* Bulleted List Styling (Normal Weight) */
-.travel-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.travel-list li {
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 8px;
-  line-height: 1.5;
-  font-weight: 400; /* Regular weight for route titles */
-}
-
-.travel-list li:last-child {
-  margin-bottom: 0;
-}
-
-.travel-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  top: -1px;
-  color: var(--primary-color, #2d5a27);
-  font-size: 1.3em;
-}
-
-.travel-block p {
-  margin: 0;
-  line-height: 1.5;
-  font-weight: 400;
-}
-
-        .footer-copyright {
+    .footer-copyright {
       text-align: center;
       padding: 20px;
       font-size: 12px;
       color: #888;
     }
 
-    /* Slightly scale down Korean font inside travel body text */
-:lang(ko) .travel-card,
-.lang-ko .travel-card,
-body.lang-ko .travel-card {
-  font-size: 0.92em;
-}
+    /* ========================================== */
+    /* 🇰🇷 CLEAN & UNIFIED KOREAN TYPOGRAPHY     */
+    /* ========================================== */
+    [data-lang="ko"] {
+      font-family: 'Gowun Batang', 'Noto Sans KR', serif;
+    }
 
-    .countdown-label,
-.counter-label {
-  font-size: 0.75rem; /* Reduced size for days, hours, mins, secs */
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-    
+    /* Standardize Korean Body & Element Sizes to match Schedule Entries (15px) */
+    [data-lang="ko"] #mainContent p,
+    [data-lang="ko"] #mainContent span,
+    [data-lang="ko"] #mainContent li,
+    [data-lang="ko"] #mainContent label,
+    [data-lang="ko"] .timeline-desc,
+    [data-lang="ko"] .travel-card,
+    [data-lang="ko"] .travel-list li,
+    [data-lang="ko"] .travel-block p,
+    [data-lang="ko"] .faq-question,
+    [data-lang="ko"] .faq-answer {
+      font-size: 15px !important;
+      line-height: 1.6;
+      letter-spacing: -0.2px;
+      font-weight: 400;
+    }
+
+    /* PROTECT & PRESERVE TOP LETTER (DO NOT TOUCH) */
+    [data-lang="ko"] .letter-body {
+      font-family: 'Caveat', 'Nanum Pen Script', cursive !important;
+      font-size: 1.6rem !important;
+      line-height: 1.6 !important;
+    }
+    [data-lang="ko"] .invitation-name {
+      font-family: 'Caveat', 'Nanum Pen Script', cursive !important;
+      font-size: 1.9rem !important;
+      font-weight: 600 !important;
+    }
   </style>
 </head>
 <body data-lang="ko">
-  <!-- 1. 여기 아래에 BGM 태그와 버튼을 추가하세요! -->
+
+  <!-- BGM 태그 및 버튼 -->
   <audio id="bgm" loop preload="auto">
     <source src="image/jazz.mp3" type="audio/mpeg">
   </audio>
@@ -866,13 +604,12 @@ body.lang-ko .travel-card {
     <!-- 2. 본문 내용 -->
     <main id="mainContent">
 
-      <!-- 초대의 글 -->
+      <!-- 초대의 글 (Top Letter) -->
       <section class="content-section">
-        <!--<h2 class="section-title" data-i18n="invitationTitle">Invitation</h2>-->
         <div class="letter-body" data-i18n="invitationBody"></div>
       </section>
 
-      <!-- 💡 [여기 추가] 초대 글귀 바로 아래 비디오 영역 -->
+      <!-- 비디오 영역 -->
       <section class="content-section video-section">
         <div class="video-container">
           <video autoplay loop muted playsinline preload="auto">
@@ -885,7 +622,7 @@ body.lang-ko .travel-card {
       <!-- 일시 및 테마 + D-Day 카운트다운 -->
       <section class="content-section" style="background: #f4efe6;">
         <h2 class="section-title" data-i18n="detailsTitle">Details</h2>
-<p style="text-align: center; line-height: 1.9;" data-i18n="detailsDesc"></p>
+        <p style="text-align: center; line-height: 1.8;" data-i18n="detailsDesc"></p>
 
         <div class="countdown-container">
           <div class="time-box">
@@ -943,68 +680,61 @@ body.lang-ko .travel-card {
       </section>
 
       <!-- 오시는 길 & 숙박 -->
-<!-- Travel & Stay Section -->
-<section class="content-section" id="travel">
-  <h2 class="section-title" data-i18n="travelTitle">Anreise & Unterkunft</h2>
+      <section class="content-section" id="travel">
+        <h2 class="section-title" data-i18n="travelTitle">Anreise & Unterkunft</h2>
 
-  <!-- Google Maps Embed -->
-  <div class="google-map-box" style="border: 1px solid var(--border-color, #ddd); border-radius: 12px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-    <iframe src="https://maps.google.com/maps?q=Schloss+Hohenkammer&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0; display:block;" allowfullscreen="" loading="lazy"></iframe>
-    <a href="https://www.google.com/maps?q=Schloss+Hohenkammer" target="_blank" style="text-decoration: none;">
-      <div class="map-btn-bar" data-i18n="btnOpenMap">📍 Google Maps 앱에서 열기</div>
-    </a>
-  </div>
+        <div class="google-map-box">
+          <iframe src="https://maps.google.com/maps?q=Schloss+Hohenkammer&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="280" style="border:0; display:block;" allowfullscreen="" loading="lazy"></iframe>
+          <a href="https://www.google.com/maps?q=Schloss+Hohenkammer" target="_blank" style="text-decoration: none;">
+            <div class="map-btn-bar" data-i18n="btnOpenMap">📍 Google Maps 앱에서 열기</div>
+          </a>
+        </div>
 
-  <!-- SINGLE COMBINED WHITE BOX -->
-  <div class="travel-card">
-    <!-- 1. Address -->
-    <div class="travel-block">
-      <h3 class="travel-subtitle">📍 <span data-i18n="addressHeading">Adresse</span></h3>
-      <p data-i18n="addressText">Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer, Germany</p>
-    </div>
+        <div class="travel-card">
+          <div class="travel-block">
+            <h3 class="travel-subtitle">📍 <span data-i18n="addressHeading">Adresse</span></h3>
+            <p data-i18n="addressText">Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer, Germany</p>
+          </div>
 
-    <div class="travel-divider"></div>
+          <div class="travel-divider"></div>
 
-    <!-- 2. Parking -->
-    <div class="travel-block">
-      <h3 class="travel-subtitle">🚗 <span data-i18n="parkingHeading">Parken & Auto</span></h3>
-      <p data-i18n="parkingText">Kostenlose Parkplätze stehen direkt am Schloss Hohenkammer zur Verfügung.</p>
-    </div>
+          <div class="travel-block">
+            <h3 class="travel-subtitle">🚗 <span data-i18n="parkingHeading">Parken & Auto</span></h3>
+            <p data-i18n="parkingText">Kostenlose Parkplätze stehen direkt am Schloss Hohenkammer zur Verfügung.</p>
+          </div>
 
-    <div class="travel-divider"></div>
+          <div class="travel-divider"></div>
 
-    <!-- 3. Train & Bus -->
-    <div class="travel-block">
-      <h3 class="travel-subtitle">🚆 <span data-i18n="transitHeading">Zug & Bus</span></h3>
-      <ul class="travel-list">
-        <li>
-          <span data-i18n="transitPetershausenTitle">Über Petershausen (S2 / Regionalzug):</span> 
-          <span data-i18n="transitPetershausenText">Bus 785 oder ca. 10 Min. Taxi</span>
-        </li>
-        <li>
-          <span data-i18n="transitLohhofTitle">Über Lohhof (S1):</span> 
-          <span data-i18n="transitLohhofText">Bus 693</span>
-        </li>
-        <li>
-          <span data-i18n="transitFreisingTitle">Über Freising (S1 / Regionalzug):</span> 
-          <span data-i18n="transitFreisingText">Bus 666</span>
-        </li>
-      </ul>
-    </div>
+          <div class="travel-block">
+            <h3 class="travel-subtitle">🚆 <span data-i18n="transitHeading">Zug & Bus</span></h3>
+            <ul class="travel-list">
+              <li>
+                <span data-i18n="transitPetershausenTitle">Über Petershausen (S2 / Regionalzug):</span> 
+                <span data-i18n="transitPetershausenText">Bus 785 oder ca. 10 Min. Taxi</span>
+              </li>
+              <li>
+                <span data-i18n="transitLohhofTitle">Über Lohhof (S1):</span> 
+                <span data-i18n="transitLohhofText">Bus 693</span>
+              </li>
+              <li>
+                <span data-i18n="transitFreisingTitle">Über Freising (S1 / Regionalzug):</span> 
+                <span data-i18n="transitFreisingText">Bus 666</span>
+              </li>
+            </ul>
+          </div>
 
-    <div class="travel-divider"></div>
+          <div class="travel-divider"></div>
 
-    <!-- 4. Hotel / Accommodation -->
-    <div class="travel-block">
-      <h3 class="travel-subtitle">🏨 <span data-i18n="hotelHeading">Unterkunft</span></h3>
-      <p data-i18n="hotelText">Zimmer können direkt im Schloss Hohenkammer gebucht werden.</p>
-    </div>
-  </div>
-</section>
+          <div class="travel-block">
+            <h3 class="travel-subtitle">🏨 <span data-i18n="hotelHeading">Unterkunft</span></h3>
+            <p data-i18n="hotelText">Zimmer können direkt im Schloss Hohenkammer gebucht werden.</p>
+          </div>
+        </div>
+      </section>
 
       <!-- FAQ -->
-<section class="content-section">
-  <h2 class="section-title" data-i18n="faqTitle">FAQ</h2>
+      <section class="content-section">
+        <h2 class="section-title" data-i18n="faqTitle">FAQ</h2>
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">
             <span data-i18n="faqQ1">Dress Code?</span> <span>+</span>
@@ -1043,43 +773,42 @@ body.lang-ko .travel-card {
         </div>
       </section>
 
-      
-      <!-- 스냅 사진 갤러리 (Swiper 적용) -->
+      <!-- 갤러리 -->
       <section class="content-section">
         <h2 class="section-title" data-i18n="galleryTitle">Gallery</h2>
         <div class="swiper gallery-swiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="image/20260726_162618.jpg" alt="Wedding Snap 0"></div>
             <div class="swiper-slide"><img src="new_image/DSC03744.jpg" alt="Wedding Snap 1"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03853.jpg" alt="Wedding Snap 2"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03998.jpg" alt="Wedding Snap 3"></div>
-          <div class="swiper-slide"><img src="new_image/DSC04020.jpg" alt="Wedding Snap 4"></div>
-          <div class="swiper-slide"><img src="new_image/DSC04112.jpg" alt="Wedding Snap 5"></div>
-          <div class="swiper-slide"><img src="new_image/DSC04178.jpg" alt="Wedding Snap 6"></div>
-          <div class="swiper-slide"><img src="new_image/DSC04248.jpg" alt="Wedding Snap 7"></div>
-          <div class="swiper-slide"><img src="new_image/DSC04275.jpg" alt="Wedding Snap 8"></div>
-          <div class="swiper-slide"><img src="new_image/DSC04322.jpg" alt="Wedding Snap 9"></div>
-          <div class="swiper-slide"><img src="new_image/DSC04342.jpg" alt="Wedding Snap 10"></div>
-          <div class="swiper-slide"><img src="new_image/DSC04343.jpg" alt="Wedding Snap 11"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03491.jpg" alt="Wedding Snap 12"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03622.jpg" alt="Wedding Snap 13"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03928.jpg" alt="Wedding Snap 14"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03810.jpg" alt="Wedding Snap 15"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03190.jpg" alt="Wedding Snap 16"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03282.jpg" alt="Wedding Snap 17"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03332.jpg" alt="Wedding Snap 18"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03400.jpg" alt="Wedding Snap 19"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03413.jpg" alt="Wedding Snap 20"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03467.jpg" alt="Wedding Snap 21"></div>
-          <div class="swiper-slide"><img src="new_image/DSC02752.jpg" alt="Wedding Snap 22"></div>
-          <div class="swiper-slide"><img src="new_image/DSC02803.jpg" alt="Wedding Snap 23"></div>
-          <div class="swiper-slide"><img src="new_image/DSC02869.jpg" alt="Wedding Snap 24"></div>
-          <div class="swiper-slide"><img src="new_image/DSC02907.jpg" alt="Wedding Snap 25"></div>
-          <div class="swiper-slide"><img src="new_image/DSC02930.jpg" alt="Wedding Snap 26"></div>
-          <div class="swiper-slide"><img src="new_image/DSC02963.jpg" alt="Wedding Snap 27"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03047.jpg" alt="Wedding Snap 28"></div>
-          <div class="swiper-slide"><img src="new_image/DSC03173.jpg" alt="Wedding Snap 29"></div>
-          <div class="swiper-slide"><img src="new_image/DSC02741.jpg" alt="Wedding Snap 30"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03853.jpg" alt="Wedding Snap 2"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03998.jpg" alt="Wedding Snap 3"></div>
+            <div class="swiper-slide"><img src="new_image/DSC04020.jpg" alt="Wedding Snap 4"></div>
+            <div class="swiper-slide"><img src="new_image/DSC04112.jpg" alt="Wedding Snap 5"></div>
+            <div class="swiper-slide"><img src="new_image/DSC04178.jpg" alt="Wedding Snap 6"></div>
+            <div class="swiper-slide"><img src="new_image/DSC04248.jpg" alt="Wedding Snap 7"></div>
+            <div class="swiper-slide"><img src="new_image/DSC04275.jpg" alt="Wedding Snap 8"></div>
+            <div class="swiper-slide"><img src="new_image/DSC04322.jpg" alt="Wedding Snap 9"></div>
+            <div class="swiper-slide"><img src="new_image/DSC04342.jpg" alt="Wedding Snap 10"></div>
+            <div class="swiper-slide"><img src="new_image/DSC04343.jpg" alt="Wedding Snap 11"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03491.jpg" alt="Wedding Snap 12"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03622.jpg" alt="Wedding Snap 13"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03928.jpg" alt="Wedding Snap 14"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03810.jpg" alt="Wedding Snap 15"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03190.jpg" alt="Wedding Snap 16"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03282.jpg" alt="Wedding Snap 17"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03332.jpg" alt="Wedding Snap 18"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03400.jpg" alt="Wedding Snap 19"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03413.jpg" alt="Wedding Snap 20"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03467.jpg" alt="Wedding Snap 21"></div>
+            <div class="swiper-slide"><img src="new_image/DSC02752.jpg" alt="Wedding Snap 22"></div>
+            <div class="swiper-slide"><img src="new_image/DSC02803.jpg" alt="Wedding Snap 23"></div>
+            <div class="swiper-slide"><img src="new_image/DSC02869.jpg" alt="Wedding Snap 24"></div>
+            <div class="swiper-slide"><img src="new_image/DSC02907.jpg" alt="Wedding Snap 25"></div>
+            <div class="swiper-slide"><img src="new_image/DSC02930.jpg" alt="Wedding Snap 26"></div>
+            <div class="swiper-slide"><img src="new_image/DSC02963.jpg" alt="Wedding Snap 27"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03047.jpg" alt="Wedding Snap 28"></div>
+            <div class="swiper-slide"><img src="new_image/DSC03173.jpg" alt="Wedding Snap 29"></div>
+            <div class="swiper-slide"><img src="new_image/DSC02741.jpg" alt="Wedding Snap 30"></div>
           </div>
           <div class="swiper-pagination"></div>
           <div class="swiper-button-next"></div>
@@ -1087,10 +816,9 @@ body.lang-ko .travel-card {
         </div>
       </section>
 
-
       <!-- RSVP 폼 -->
-<section class="content-section" id="rsvp">
-  <h2 class="section-title" data-i18n="rsvpTitle">RSVP</h2>
+      <section class="content-section" id="rsvp">
+        <h2 class="section-title" data-i18n="rsvpTitle">RSVP</h2>
         <p style="text-align: center; font-size: 14px; margin-bottom: 20px;" data-i18n="rsvpDeadline"></p>
         
         <form class="rsvp-form" onsubmit="handleRsvpSubmit(event)">
@@ -1103,9 +831,6 @@ body.lang-ko .travel-card {
             <option value="No">Nein / No / 마음으로 축하합니다</option>
           </select>
 
-          <!--<label data-i18n="lblPlusOne">Guests / 동반 인원수</label> -->
-          <!--<input type="number" id="plusOne" value="0" min="0"> -->
-
           <label data-i18n="lblDiet">Dietary Restrictions / 식사 및 알레르기</label>
           <input type="text" id="diet" placeholder="e.g. Vegetarian, Nut allergy">
 
@@ -1115,35 +840,29 @@ body.lang-ko .travel-card {
           <button type="submit" class="btn-submit" data-i18n="btnSubmit">Send RSVP</button>
         </form>
       </section>
-      <!-- RSVP 구역 바로 아래 배치 -->
-      <!-- Font Awesome CDN (카카오톡, 왓츠앱 아이콘용) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-      
-<section class="share-section">
-  <h3 class="share-title" data-i18n="shareTitle">Share Invitation</h3>
-  
-  <div class="share-buttons">
-    <!-- 1. 카카오톡 공유 -->
-    <button class="share-btn kakao" onclick="shareKakao()" aria-label="Share on KakaoTalk">
-      <i class="fa-solid fa-comment share-icon"></i> KakaoTalk
-    </button>
-    
-    <!-- 2. WhatsApp 공유 -->
-    <button class="share-btn whatsapp" onclick="shareWhatsApp()" aria-label="Share on WhatsApp">
-      <i class="fa-brands fa-whatsapp share-icon"></i> WhatsApp
-    </button>
-    
-    <!-- 3. 링크 복사 -->
-    <button class="share-btn link" onclick="copyLink()" aria-label="Copy Link">
-      <i class="fa-solid fa-link share-icon"></i> Copy Link
-    </button>
-  </div>
-</section>
 
-<!-- 맨 하단 카피라이트 -->
-<footer class="footer-copyright">
-  <p>© 2027 Kilian & Soyeon. All rights reserved.</p>
-</footer>
+      <!-- 공유 구역 -->
+      <section class="share-section">
+        <h3 class="share-title" data-i18n="shareTitle">Share Invitation</h3>
+        
+        <div class="share-buttons">
+          <button class="share-btn kakao" onclick="shareKakao()" aria-label="Share on KakaoTalk">
+            <i class="fa-solid fa-comment share-icon"></i> KakaoTalk
+          </button>
+          
+          <button class="share-btn whatsapp" onclick="shareWhatsApp()" aria-label="Share on WhatsApp">
+            <i class="fa-brands fa-whatsapp share-icon"></i> WhatsApp
+          </button>
+          
+          <button class="share-btn link" onclick="copyLink()" aria-label="Copy Link">
+            <i class="fa-solid fa-link share-icon"></i> Copy Link
+          </button>
+        </div>
+      </section>
+
+      <footer class="footer-copyright">
+        <p>© 2027 Kilian & Soyeon. All rights reserved.</p>
+      </footer>
     </main>
 
   </div>
@@ -1157,15 +876,14 @@ body.lang-ko .travel-card {
     const translations = {
       ko: {
         clickToOpen: "✉️ 편지 봉투를 클릭하여 열기",
-        <!--invitationTitle: "초대의 글",-->
-        invitationBody: "지구 반대편에서 만난 저희 두 사람이<br>서로의 손을 잡고 새로운 시작을 함께하려 합니다. 앞으로 펼쳐질 저희의 시작을 함께 축하해 주세요.<br><br>🤵 킬리안 쉐프터 <br> 👰 전소연",
-        detailsTitle: "<strong>예식 안내</strong>",
+        invitationBody: "지구 반대편에서 만난 저희 두 사람이<br>서로의 손을 잡고 새로운 시작을 함께하려 합니다. 앞으로 펼쳐질 저희의 시작을 함께 축하해 주세요.<br><br><span class=\"invitation-name\">🤵 킬리안 쉐프터</span> <br> <span class=\"invitation-name\">👰 전소연</span>",
+        detailsTitle: "예식 안내",
         detailsDesc: "<strong>📅 일시:</strong> 2027년 6월 12일<br><strong>📍 장소:</strong> 독일 뮌헨 호헨캄머 성<br><strong>🌿 드레스 코드:</strong> 파티용 정장 (Festive Attire)",
         lblDays: "일",
         lblHours: "시간",
         lblMins: "분",
         lblSecs: "초",
-        timelineTitle: "<strong>타임테이블</strong>",
+        timelineTitle: "타임테이블",
         t1: "야외 결혼식 (Freie Trauung), 성 건너편",
         t2: "리셉션 (Empfang), 성 안뜰",
         t3: "케이크 컷팅 (Kaffee & Kuchen), 성 안뜰",
@@ -1173,52 +891,48 @@ body.lang-ko .travel-card {
         t5: "만찬 디너 (Abendessen), 연회장 (Schloßsaal)",
         t6: "웨딩 첫 댄스 (Hochzeitstanz), 연회장 (Schloßsaal)",
         t7: "피로연 공식 종료 (Offizielles Ende)",
-        galleryTitle: "<strong>갤러리</strong>",
-        travelTitle: "<strong>오시는 길 & 숙박</strong>",
-        travelDesc: "<strong>🚗 주차 (Parking):</strong> 성 내에 하객분들을 위한 주차 공간이 충분히 마련되어 있습니다.<br><strong>✈️ 항공:</strong> 뮌헨 공항(MUC) 이용 시 차량으로 약 20분 거리입니다.<br><strong>🚌 버스 (Freising):</strong> Freising역에서 665번 버스 탑승 (약 45분 소요)<br><strong>🚕 택시 (Petershausen):</strong> 인근 Petershausen역에서 택시로 약 7분 소요<br><strong>🏨 숙소 안내 (Hotel Info):</strong> 예식장 전용 호텔에 숙박 예약이 가능합니다. 저희 이름을 말씀하시고 예약하시면 됩니다.",
-        btnOpenMap: "📍 Google Maps에서 위치 보기",
-        faqTitle: "<strong>FAQ</strong>",
-        faqQ1: "<strong>드레스 코드가 있나요?</strong>",
-        faqQ2: "<strong>아이를 동반해도 되나요?</strong>",
-        faqQ3: "<strong>숙박은 어떻게 하나요?</strong>",
-        faqQ4: "<strong>주차장이 있나요?</strong>",
-        faqQ5: "<strong>언제까지 참석 여부를 알려줘야 하나요?</strong>",
-        faqQ6: "<strong>비가 오면 어떻게 되나요?</strong>",
+        galleryTitle: "갤러리",
+        travelTitle: "오시는 길 & 숙소",
+        addressHeading: "주소",
+        addressText: "Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer, Germany",
+        parkingHeading: "주차",
+        parkingText: "슐로스 호엔카머 내 무료 주차장을 이용하실 수 있습니다.",
+        transitHeading: "기차 & 버스",
+        transitPetershausenTitle: "페터스하우젠(Petershausen)역 (S2 / 지역열차):",
+        transitPetershausenText: "785번 버스 또는 택시(약 10분)",
+        transitLohhofTitle: "로호프(Lohhof)역 (S1):",
+        transitLohhofText: "693번 버스",
+        transitFreisingTitle: "프라이징(Freising)역 (S1 / 지역열차):",
+        transitFreisingText: "666번 버스",
+        hotelHeading: "숙소 안내",
+        hotelText: "슐로스 호엔카머 객실을 직접 예약하실 수 있습니다.",
+        btnOpenMap: "📍 Google Maps에서 열기",
+        faqTitle: "FAQ",
+        faqQ1: "드레스 코드가 있나요?",
+        faqQ2: "아이를 동반해도 되나요?",
+        faqQ3: "숙박은 어떻게 하나요?",
+        faqQ4: "주차장이 있나요?",
+        faqQ5: "언제까지 참석 여부를 알려줘야 하나요?",
+        faqQ6: "비가 오면 어떻게 되나요?",
         faq1: "드레스 코드는 <strong>Festive Attire</strong> 입니다. 편안하면서도 격식 있는 복장으로 함께해 주세요. 야외 잔디밭을 걷는 시간이 있을 수 있으니, 굽이 너무 얇은 구두보다는 걷기 편한 신발을 추천합니다.",
         faq2: "네, 물론입니다! 어린이 게스트를 위한 특별한 식사가 준비될 예정입니다. 정확한 인원 파악을 위해 참석(RSVP) 회신 시 아이의 연령을 꼭 기재해 주세요.",
         faq3: "성 내부에 게스트를 위한 객실이 마련되어 있습니다. 예약 시 저희 웨딩 게스트라고 말씀해 주시면 안내를 받으실 수 있습니다. 사전에 예약하시는 것을 추천드립니다.",
         faq4: "성 옆에 주차 공간이 넉넉히 준비되어 있으니 편하게 차를 가져오셔도 됩니다. 주차비는 없습니다.",
         faq5: "원활한 좌석 배치와 식사 준비를 위해 늦어도 4월 1일까지는 이 웹사이트를 통해 꼭 참석 여부를 회신해 주시면 감사하겠습니다.",
         faq6: "날씨가 허락한다면 성의 야외 정원에서 식을 올릴 예정입니다. 하지만 비가 올 경우에는 실내 홀로 이동하여 진행됩니다.",
-        rsvpTitle: "<strong>RSVP</strong>",  
+        rsvpTitle: "RSVP",  
         rsvpDeadline: "원활한 예식 준비를 위해 참석 여부를 알려주시면 감사하겠습니다.",
         lblName: "성함 (Name)",
         lblAttend: "참석 여부 (Attendance)",
         lblDiet: "식성 및 알레르기 안내 (Dietary Requirement)",
         lblMessage: "축하 메시지",
         btnSubmit: "RSVP 제출하기",
-        shareTitle: "청첩장 공유하기",
-    travelTitle: "<strong>오시는 길 & 숙소</strong>",
-    parkingHeading: "주차",
-    parkingText: "슐로스 호엔카머 내 무료 주차장을 이용하실 수 있습니다.",
-    transitHeading: "기차 & 버스",
-    transitPetershausenTitle: "페터스하우젠(Petershausen)역 (S2 / 지역열차):",
-    transitPetershausenText: "785번 버스 또는 택시(약 10분)",
-    transitLohhofTitle: "로호프(Lohhof)역 (S1):",
-    transitLohhofText: "693번 버스",
-    transitFreisingTitle: "프라이징(Freising)역 (S1 / 지역열차):",
-    transitFreisingText: "666번 버스",
-    hotelHeading: "숙소 안내",
-    hotelText: "슐로스 호엔카머 객실을 직접 예약하실 수 있습니다.",
-      btnOpenMap: "📍 Google Maps에서 열기",
-      addressHeading: "주소",
-addressText: "Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer, Germany"
+        shareTitle: "청첩장 공유하기"
       },
       en: {
         clickToOpen: "✉️ Click envelope to open",
-        <!--invitationTitle: "Invitation",-->
         invitationBody: "Dear friends and family<br><br>We are getting married! <br>We warmly invite you to join us on our special day as we celebrate our wedding.<br><br><span class=\"invitation-name\">🤵 Kilian Scheffter</span> <br> <span class=\"invitation-name\">👰 Soyeon Jun</span>",
-detailsTitle: "Details",
+        detailsTitle: "Details",
         detailsDesc: "<strong>📅 Date:</strong> 12. June 2027<br><strong>📍 Venue:</strong> Schloss Hohenkammer<br><strong>🌿 Dress Code:</strong> Festive Attire",
         lblDays: "Days",
         lblHours: "Hours",
@@ -1234,9 +948,21 @@ detailsTitle: "Details",
         t7: "Official End of Celebration",
         galleryTitle: "Gallery",
         travelTitle: "Travel & Stay",
-        travelDesc: "<strong>🚗 Parking:</strong> Enough parking spaces are available at the venue.<br><strong>✈️ Train:</strong> Approx. 20 minutes by car from Munich Airport (MUC).<br><strong>🚌 Bus (Freising):</strong> Bus line 665 from Freising station (approx. 45 mins).<br><strong>🚕 Taxi (Petershausen):</strong> Approx. 7 mins by taxi from nearby Petershausen station.<br><strong>🏨 Hotel Info:</strong> Accommodations are available directly at the venue hotel. You can make a reservation under our names.",
+        addressHeading: "Address",
+        addressText: "Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer, Germany",
+        parkingHeading: "Parking",
+        parkingText: "Free parking is available directly at Schloss Hohenkammer.",
+        transitHeading: "Train & Bus",
+        transitPetershausenTitle: "Via Petershausen (S2 / Regional):",
+        transitPetershausenText: "Bus 785 or ~10 min taxi",
+        transitLohhofTitle: "Via Lohhof (S1):",
+        transitLohhofText: "Bus 693",
+        transitFreisingTitle: "Via Freising (S1 / Regional):",
+        transitFreisingText: "Bus 666",
+        hotelHeading: "Accommodation",
+        hotelText: "Rooms can be booked directly at Schloss Hohenkammer.",
         btnOpenMap: "📍 Open in Google Maps",
-        faqTitle: "<strong>FAQ</strong>",
+        faqTitle: "FAQ",
         faqQ1: "Dress Code?",
         faqQ2: "Children allowed?",
         faqQ3: "Where can I stay?",
@@ -1249,35 +975,19 @@ detailsTitle: "Details",
         faq4: "There is plenty of parking space available right next to the castle, so please feel free to drive. Parking is free of charge.",
         faq5: "To help us arrange the seating and catering smoothly, RSVP through this website no later than April 1st. Thank you!",
         faq6: "The ceremony will take place in the castle's outdoor garden. However, in case of rain, we will move to the indoor hall. :)",
-        rsvpTitle: "<strong>RSVP</strong>",  
+        rsvpTitle: "RSVP",  
         rsvpDeadline: "Please kindly respond at your earliest convenience.",
         lblName: "Full Name",
         lblAttend: "Attendance",
         lblDiet: "Dietary Restrictions / Allergies",
         lblMessage: "Message for Groom & Bride",
         btnSubmit: "Submit RSVP",
-        shareTitle: "Share Invitation",
-          travelTitle: "Travel & Stay",
-    parkingHeading: "Parking",
-    parkingText: "Free parking is available directly at Schloss Hohenkammer.",
-    transitHeading: "Train & Bus",
-    transitPetershausenTitle: "Via Petershausen (S2 / Regional):",
-    transitPetershausenText: "Bus 785 or ~10 min taxi",
-    transitLohhofTitle: "Via Lohhof (S1):",
-    transitLohhofText: "Bus 693",
-    transitFreisingTitle: "Via Freising (S1 / Regional):",
-    transitFreisingText: "Bus 666",
-    hotelHeading: "Accommodation",
-    hotelText: "Rooms can be booked directly at Schloss Hohenkammer.",
-        btnOpenMap: "📍 Open in Google Maps",
-          addressHeading: "Address",
-addressText: "Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer, Germany"
+        shareTitle: "Share Invitation"
       },
       de: {
-        clickToOpen: "✉️ Zum Öffnen bitte den Brief antippen",
-        <!--invitationTitle: "Einladung",-->
+        clickToOpen: "✉️️ Zum Öffnen bitte den Brief antippen",
         invitationBody: "Liebe Freunde und Familie<br><br>Wir heiraten! <br>Wir laden euch herzlich ein, diesen besonderen Tag gemeinsam mit uns zu feiern.<br><br><span class=\"invitation-name\">🤵 Kilian Scheffter</span> <br> <span class=\"invitation-name\">👰 Soyeon Jun</span>",
-detailsTitle: "Details",
+        detailsTitle: "Details",
         detailsDesc: "<strong>📅 Datum:</strong> 12. Juni 2027<br><strong>📍 Ort:</strong> Schloss Hohenkammer<br><strong>🌿 Dress Code:</strong> Festliche Kleidung",
         lblDays: "Tage",
         lblHours: "Std",
@@ -1293,9 +1003,21 @@ detailsTitle: "Details",
         t7: "Offizielles Ende",
         galleryTitle: "Galerie",
         travelTitle: "Anreise & Unterkunft",
-        travelDesc: "<strong>🚗 Parken:</strong> Ausreichend Parkplätze stehen an der Location zur Verfügung.<br><strong>✈️ Anreise:</strong> Vom Flughafen München (MUC) seid ihr in ca. 20 Minuten mit dem Auto da.<br><strong>🚌 Bus (Freising):</strong> Buslinie 665 ab Bahnhof Freising (ca. 45 Min.).<br><strong>🚕 Taxi (Petershausen):</strong> Ca. 7 Minuten mit dem Taxi vom nahegelegenen Bahnhof Petershausen.<br><strong>🏨 Unterkunft:</strong> Übernachtungen sind direkt im Hotel der Hochzeitslocation möglich. Ihr könnt einfach unter unserem Namen reservieren.",
+        addressHeading: "Adresse",
+        addressText: "Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer",
+        parkingHeading: "Parken",
+        parkingText: "Kostenlose Parkplätze stehen direkt am Schloss Hohenkammer zur Verfügung.",
+        transitHeading: "Zug & Bus",
+        transitPetershausenTitle: "Über Petershausen (S2 / Regionalzug):",
+        transitPetershausenText: "Bus 785 oder ca. 10 Min. Taxi",
+        transitLohhofTitle: "Über Lohhof (S1):",
+        transitLohhofText: "Bus 693",
+        transitFreisingTitle: "Über Freising (S1 / Regionalzug):",
+        transitFreisingText: "Bus 666",
+        hotelHeading: "Unterkunft",
+        hotelText: "Zimmer können direkt im Schloss Hohenkammer gebucht werden.",
         btnOpenMap: "📍 In Google Maps öffnen",
-        faqTitle: "<strong>FAQ</strong>",
+        faqTitle: "FAQ",
         faqQ1: "Dresscode?",
         faqQ2: "Sind Kinder willkommen?",
         faqQ3: "Wo kann ich übernachten?",
@@ -1308,84 +1030,34 @@ detailsTitle: "Details",
         faq4: "Es gibt ausreichend Parkplätze direkt neben dem Schloss, ihr könnt also gerne mit dem Auto anreisen. Das Parken ist kostenlos.",
         faq5: "Um uns die Sitzordnung und das Menü zu erleichtern, bitten wir euch, uns spätestens bis zum 1. April über diese Website mitzuteilen, ob ihr teilnehmen könnt.",
         faq6: "Die Trauung wird im Schlossgarten stattfinden. Bei Regen werden wir in den Saal im Inneren ausweichen. :)",
-        rsvpTitle: "<strong>RSVP</strong>",  
+        rsvpTitle: "RSVP",  
         rsvpDeadline: "Bitte antwortet uns so bald wie möglich.",
         lblName: "Name",
         lblAttend: "Teilnahme",
         lblDiet: "Unverträglichkeiten / Allergien",
         lblMessage: "Nachricht an das Brautpaar",
         btnSubmit: "RSVP Absenden",
-        shareTitle: "Einladung teilen",
-          travelTitle: "Anreise & Unterkunft",
-    parkingHeading: "Parken",
-    parkingText: "Kostenlose Parkplätze stehen direkt am Schloss Hohenkammer zur Verfügung.",
-    transitHeading: "Zug & Bus",
-    transitPetershausenTitle: "Über Petershausen (S2 / Regionalzug):",
-    transitPetershausenText: "Bus 785 oder ca. 10 Min. Taxi",
-    transitLohhofTitle: "Über Lohhof (S1):",
-    transitLohhofText: "Bus 693",
-    transitFreisingTitle: "Über Freising (S1 / Regionalzug):",
-    transitFreisingText: "Bus 666",
-    hotelHeading: "Unterkunft",
-    hotelText: "Zimmer können direkt im Schloss Hohenkammer gebucht werden.",
-        btnOpenMap: "📍 In Google Maps öffnen",
-          addressHeading: "Adresse",
-addressText: "Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer"
+        shareTitle: "Einladung teilen"
       }
     };
 
-    // 1. URL이나 브라우저 언어에서 언어 코드를 감지하는 함수
-function getInitialLanguage() {
-  // URL 파라미터 확인 (예: mobile-invitation.html?lang=de)
-  const urlParams = new URLSearchParams(window.location.search);
-  const langParam = urlParams.get('lang');
+    function getInitialLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam && translations[langParam]) return langParam;
 
-  if (langParam && translations[langParam]) {
-    return langParam;
-  }
+      const hashParam = window.location.hash.replace('#', '');
+      if (hashParam && translations[hashParam]) return hashParam;
 
-  // URL 해시 확인 (예: mobile-invitation.html#de)
-  const hashParam = window.location.hash.replace('#', '');
-  if (hashParam && translations[hashParam]) {
-    return hashParam;
-  }
+      const userLang = navigator.language || navigator.userLanguage;
+      if (userLang.startsWith('de')) return 'de';
+      if (userLang.startsWith('en')) return 'en';
+      if (userLang.startsWith('ko')) return 'ko';
 
-  // 브라우저 기본 언어 감지 (독일어 사용자는 de, 한국어 사용자는 ko 등)
-  const userLang = navigator.language || navigator.userLanguage;
-  if (userLang.startsWith('de')) return 'de';
-  if (userLang.startsWith('en')) return 'en';
-  if (userLang.startsWith('ko')) return 'ko';
-
-  // 위 설정에 모두 해당하지 않는 경우 기본값
-  return 'ko';
-}
-
-// 2. 언어 변경 함수
-function updateLanguage(lang) {
-  const t = translations[lang];
-  if (!t) return;
-
-  // data-i18n 속성을 가진 모든 엘리먼트 텍스트 세팅
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (t[key]) {
-      el.innerHTML = t[key];
+      return 'ko';
     }
-  });
 
-  // 선택된 언어 버튼 활성화 표시 (옵션: active 클래스 부여)
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('onclick')?.includes(lang));
-  });
-}
-
-// 3. 페이지가 열리자마자 URL을 감지해서 텍스트 즉시 표시
-document.addEventListener('DOMContentLoaded', () => {
-  const initialLang = getInitialLanguage();
-  updateLanguage(initialLang);
-});
-    
-    // BGM 관련 변수
+    // BGM Control
     const bgm = document.getElementById('bgm');
     const bgmIcon = document.getElementById('bgmIcon');
     let isPlaying = false;
@@ -1400,13 +1072,11 @@ document.addEventListener('DOMContentLoaded', () => {
         bgm.play().then(() => {
           if (bgmIcon) bgmIcon.innerText = '🎵';
           isPlaying = true;
-        }).catch(err => {
-          console.log("재생 오류:", err);
-        });
+        }).catch(err => { console.log("BGM Error:", err); });
       }
     }
 
-    // 1. 편지 봉투 열기 함수
+    // Open Letter
     function openLetter() {
       const envelope = document.getElementById('envelopeContainer');
       const hint = document.getElementById('openHint');
@@ -1421,41 +1091,30 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         if (heroSection) heroSection.style.display = 'none';
         if (mainContent) mainContent.classList.add('slide-up-show');
-        
-        if (typeof initGallerySwiper === 'function') {
-          initGallerySwiper();
-        }
+        if (typeof initGallerySwiper === 'function') initGallerySwiper();
       }, 600);
 
       if (!isPlaying && bgm) {
         bgm.play().then(() => {
           isPlaying = true;
           if (bgmIcon) bgmIcon.innerText = '🎵';
-        }).catch(err => {
-          console.log("터치 후 재생 연동 완료:", err);
-        });
+        }).catch(err => { console.log("Audio play error:", err); });
       }
     }
 
-    // 2. Swiper 슬라이더 초기화
+    // Swiper Gallery
     function initGallerySwiper() {
       if (gallerySwiper) gallerySwiper.destroy();
       gallerySwiper = new Swiper('.gallery-swiper', {
         loop: true,
         spaceBetween: 15,
         centeredSlides: true,
-        autoplay: {
-          delay: 3500,
-          disableOnInteraction: false,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
+        autoplay: { delay: 3500, disableOnInteraction: false },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
       });
     }
 
-    // 3. 카운트다운 로직
+    // Countdown Timer
     const weddingDate = new Date("2027-06-12T15:00:00").getTime();
 
     function updateCountdown() {
@@ -1487,11 +1146,10 @@ document.addEventListener('DOMContentLoaded', () => {
       dMins.innerText = minutes < 10 ? '0' + minutes : minutes;
       dSecs.innerText = seconds < 10 ? '0' + seconds : seconds;
     }
-
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // 4. 언어 설정 함수
+    // Language Switcher
     function setLanguage(lang) {
       document.body.setAttribute('data-lang', lang);
       if (!translations[lang]) lang = 'de';
@@ -1517,24 +1175,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // OG 메타 태그
     const ogTranslations = {
-      kr: {
-        title: "Kilian & Soyeon의 결혼식에 초대합니다",
-        description: "12.06.2027 Schloss Hohenkammer"
-      },
-      en: {
-        title: "You are invited to Kilian & Soyeon's Wedding",
-        description: "12.06.2027 Schloss Hohenkammer"
-      },
-      de: {
-        title: "Einladung zur Hochzeit von Kilian & Soyeon",
-        description: "12.06.2027 Schloss Hohenkammer"
-      }
+      ko: { title: "Kilian & Soyeon의 결혼식에 초대합니다", description: "12.06.2027 Schloss Hohenkammer" },
+      en: { title: "You are invited to Kilian & Soyeon's Wedding", description: "12.06.2027 Schloss Hohenkammer" },
+      de: { title: "Einladung zur Hochzeit von Kilian & Soyeon", description: "12.06.2027 Schloss Hohenkammer" }
     };
 
     function updateOgTags(lang) {
-      const data = ogTranslations[lang] || ogTranslations['kr'];
+      const data = ogTranslations[lang] || ogTranslations['ko'];
       const absoluteImageUrl = new URL('image/000.jpg', window.location.href).href;
 
       document.querySelector('meta[property="og:title"]')?.setAttribute('content', data.title);
@@ -1546,11 +1194,10 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', absoluteImageUrl);
     }
 
-    // 5. FAQ 토글 함수 (HTML onclick="toggleFaq(this)" 와 단독 연동)
+    // FAQ Accordion
     function toggleFaq(element) {
       const answer = element.nextElementSibling;
       const span = element.querySelector('span:last-child');
-      
       if (!answer) return;
 
       if (answer.style.display === "block") {
@@ -1562,17 +1209,46 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    function handleRsvpSubmit(e) {
-      e.preventDefault();
-      alert("RSVP가 성공적으로 제출되었습니다!");
+    // RSVP Google Apps Script Web App
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwYWEIArXCzm7wFM6AKBjsFd594AeO5RiIjm5zkhjPlqa0Nh_GvhQv3za-A8whYBXnKAw/exec';
+
+    function handleRsvpSubmit(event) {
+      event.preventDefault();
+
+      const formData = {
+        name: document.getElementById('guestName') ? document.getElementById('guestName').value : '',
+        attendance: document.getElementById('attendance') ? document.getElementById('attendance').value : '',
+        diet: document.getElementById('diet') ? document.getElementById('diet').value : '',
+        message: document.getElementById('message') ? document.getElementById('message').value : ''
+      };
+
+      fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+        alert('RSVP가 성공적으로 제출되었습니다. 감사합니다!');
+        event.target.reset();
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
+      });
     }
 
-    // 6. 소셜 공유 함수
+    // Social Sharing
     function shareWhatsApp() {
       const currentUrl = window.location.href;
       const message = `Kilian & Soyeon's Wedding Invitation: ${currentUrl}`;
-      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    function shareKakao() {
+      const currentUrl = window.location.href;
+      const shareText = "Kilian & Soyeon's Wedding Invitation";
+      window.open(`https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`, '_blank', 'width=500,height=600');
     }
 
     const copyAlertMessages = {
@@ -1581,82 +1257,32 @@ document.addEventListener('DOMContentLoaded', () => {
       de: "Einladungslink wurde kopiert!"
     };
 
-    function getCurrentLanguage() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const langParam = urlParams.get('lang');
-      if (langParam) return langParam.toLowerCase();
-      return document.documentElement.getAttribute('data-lang') || document.documentElement.lang || 'kr';
-    }
-
     function copyLink() {
       const currentUrl = window.location.href;
-      const currentLang = getCurrentLanguage();
-      const alertMsg = copyAlertMessages[currentLang] || copyAlertMessages['kr'];
+      const currentLang = document.body.getAttribute('data-lang') || 'ko';
+      const alertMsg = copyAlertMessages[currentLang] || copyAlertMessages['ko'];
 
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(currentUrl).then(() => {
-          alert(alertMsg);
-        }).catch(err => {
-          fallbackCopyLink(currentUrl, alertMsg);
-        });
+        navigator.clipboard.writeText(currentUrl).then(() => { alert(alertMsg); }).catch(() => { fallbackCopyLink(currentUrl, alertMsg); });
       } else {
         fallbackCopyLink(currentUrl, alertMsg);
       }
     }
 
     function fallbackCopyLink(url, alertMsg) {
-      const msg = alertMsg || copyAlertMessages['kr'];
       const textArea = document.createElement("textarea");
       textArea.value = url;
       document.body.appendChild(textArea);
       textArea.select();
-      
-      try {
-        document.execCommand('copy');
-      } catch (err) {
-        console.error('복사 실패:', err);
-      }
-      
+      try { document.execCommand('copy'); } catch (err) { console.error('Copy failed:', err); }
       document.body.removeChild(textArea);
-      alert(msg);
+      alert(alertMsg);
     }
 
-    function shareKakao() {
-      const currentUrl = window.location.href;
-      const shareText = "Kilian & Soyeon's Wedding Invitation";
-      const kakaoShareUrl = `https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
-      window.open(kakaoShareUrl, '_blank', 'width=500,height=600');
-    }
-
-// 구글 앱스 스크립트 웹 앱 URL (새로 배포한 URL로 교체하세요)
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwYWEIArXCzm7wFM6AKBjsFd594AeO5RiIjm5zkhjPlqa0Nh_GvhQv3za-A8whYBXnKAw/exec';
-
-function handleRsvpSubmit(event) {
-  event.preventDefault(); // 폼 제출 시 페이지 뒤로가는 현상 방지
-
-  const formData = {
-    name: document.getElementById('guestName') ? document.getElementById('guestName').value : '',
-    attendance: document.getElementById('attendance') ? document.getElementById('attendance').value : '',
-    diet: document.getElementById('diet') ? document.getElementById('diet').value : '',
-    message: document.getElementById('message') ? document.getElementById('message').value : ''
-  };
-
-  fetch(scriptURL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData)
-  })
-  .then(() => {
-    alert('RSVP가 성공적으로 제출되었습니다. 감사합니다!');
-    event.target.reset(); // 폼 입력값 초기화
-  })
-  .catch(error => {
-    console.error('Error!', error.message);
-    alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
-  });
-}
-</script>
-  
+    document.addEventListener('DOMContentLoaded', () => {
+      const initialLang = getInitialLanguage();
+      setLanguage(initialLang);
+    });
+  </script>
 </body>
 </html>
