@@ -840,7 +840,10 @@
 
           <button type="submit" class="btn-submit" data-i18n="btnSubmit">Send RSVP</button>
         </form>
-      </section>
+      </section
+
+        <!-- 카카오톡 공유 SDK -->
+     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
       <!-- 공유 구역 -->
       <section class="share-section">
@@ -1246,10 +1249,70 @@
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
     }
 
+    // 카카오 SDK 안전 초기화
+    if (typeof Kakao !== 'undefined') {
+      if (!Kakao.isInitialized()) {
+        Kakao.init('fcba721351b7e4a0a2b49a7ae6e8ee82');
+      }
+    }
+
     function shareKakao() {
-      const currentUrl = window.location.href;
-      const shareText = "Kilian & Soyeon's Wedding Invitation";
-      window.open(`https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`, '_blank', 'width=500,height=600');
+      // 현재 접속 URL (파라미터 포함)
+      let currentUrl = window.location.href;
+
+      // local 파일 경로 대응 안전장치
+      if (!currentUrl.startsWith('https://momandjsh.github.io')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentLang = urlParams.get('lang') || 'ko';
+        currentUrl = `https://momandjsh.github.io/kilian-soyeon-germany/?lang=${currentLang}`;
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const currentLang = urlParams.get('lang') || 'ko';
+      
+      let title = "킬리안 & 소연의 결혼식에 초대합니다";
+      let desc = "2027년 6월 12일 호헨캄머 ";
+      let btnText = "청첩장 보기";
+      
+      if (currentLang === 'en') {
+        title = "Kilian & Soyeon's Wedding Invitation";
+        desc = "June 12, 2027 | Schloss Hohenkammer, Hohenkammer";
+        btnText = "View Invitation";
+      } else if (currentLang === 'de') {
+        title = "Einladung zur Hochzeit von Kilian & Soyeon";
+        desc = "June 12, 2027 | Schloss Hohenkammer, Hohenkammer";
+        btnText = "Einladung öffnen";
+      }
+
+      if (typeof Kakao !== 'undefined') {
+        if (!Kakao.isInitialized()) {
+          Kakao.init('fcba721351b7e4a0a2b49a7ae6e8ee82');
+        }
+
+        Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: title,
+            description: desc,
+            imageUrl: 'https://momandjsh.github.io/kiliansoyeon_korea/image/000.jpg',
+            link: {
+              mobileWebUrl: currentUrl,
+              webUrl: currentUrl
+            }
+          },
+          buttons: [
+            {
+              title: btnText,
+              link: {
+                mobileWebUrl: currentUrl,
+                webUrl: currentUrl
+              }
+            }
+          ]
+        });
+      } else {
+        window.open(`https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(currentUrl)}`, '_blank');
+      }
     }
 
     const copyAlertMessages = {
