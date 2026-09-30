@@ -312,8 +312,78 @@ body {
       text-decoration: none;
       border-radius: 12px;
       overflow: hidden;
-      border: 1px solid #cce0d2;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #cce0d2;/* --- GOOGLE MAPS BUTTON --- */
+.map-btn-bar {
+  background-color: var(--primary-color, #2d5a27); /* Matches heading green color */
+  color: #ffffff;
+  text-align: center;
+  padding: 12px;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.map-btn-bar:hover {
+  opacity: 0.9;
+}
+
+/* --- SINGLE WHITE BOX CONTAINER --- */
+.travel-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color, #e5e5e5);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Subheadings: Bold and Green */
+.travel-subtitle {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--primary-color, #2d5a27); /* Matches heading green color */
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+/* Subtle Line Dividers between topics inside the white box */
+.travel-divider {
+  height: 1px;
+  background-color: var(--border-color, #eef0f2);
+  margin: 18px 0;
+}
+
+/* Bulleted List Styling (Normal Weight) */
+.travel-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.travel-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  font-weight: 400; /* Regular weight for route titles */
+}
+
+.travel-list li:last-child {
+  margin-bottom: 0;
+}
+
+.travel-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  color: var(--primary-color, #2d5a27);
+  font-size: 1.3em;
+}
+
+.travel-block p {
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 400;
+}tr
       margin-bottom: 25px;
       background: #e8f5e9;
       transition: transform 0.2s ease;
@@ -735,6 +805,13 @@ body {
   line-height: 1.5;
   font-weight: 400;
 }
+
+        .footer-copyright {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #888;
+    }
     
   </style>
 </head>
@@ -1099,7 +1176,7 @@ body {
         lblMessage: "축하 메시지",
         btnSubmit: "RSVP 제출하기",
         shareTitle: "청첩장 공유하기",
-    travelTitle: "오시는 길 & 숙소",
+    travelTitle: "<strong>오시는 길 & 숙소</strong>",
     parkingHeading: "자차 & 주차",
     parkingText: "슐로스 호엔카머 내 무료 주차장을 이용하실 수 있습니다.",
     transitHeading: "기차 & 버스",
@@ -1118,7 +1195,7 @@ body {
         <!--invitationTitle: "Invitation",-->
         invitationBody: "Dear friends and family<br><br>We are getting married! <br>We warmly invite you to join us on our special day as we celebrate our wedding.<br><br><span class=\"invitation-name\">🤵 Kilian Scheffter</span> <br> <span class=\"invitation-name\">👰 Soyeon Jun</span>",
 detailsTitle: "Details",
-        detailsDesc: "<strong>📅 Date:</strong> 12. June 2027<br><strong>📍 Venue:</strong> Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer, Germany<br><strong>🌿 Dress Code:</strong> Festive Attire",
+        detailsDesc: "<strong>📅 Date:</strong> 12. June 2027<br><strong>📍 Venue:</strong> Schloss Hohenkammer<br><strong>🌿 Dress Code:</strong> Festive Attire",
         lblDays: "Days",
         lblHours: "Hours",
         lblMins: "Mins",
@@ -1175,7 +1252,7 @@ detailsTitle: "Details",
         <!--invitationTitle: "Einladung",-->
         invitationBody: "Liebe Freunde und Familie<br><br>Wir heiraten! <br>Wir laden euch herzlich ein, diesen besonderen Tag gemeinsam mit uns zu feiern.<br><br><span class=\"invitation-name\">🤵 Kilian Scheffter</span> <br> <span class=\"invitation-name\">👰 Soyeon Jun</span>",
 detailsTitle: "Details",
-        detailsDesc: "<strong>📅 Datum:</strong> 12. Juni 2027<br><strong>📍 Ort:</strong> Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer, Deutschland<br><strong>🌿 Dress Code:</strong> Festliche Kleidung",
+        detailsDesc: "<strong>📅 Datum:</strong> 12. Juni 2027<br><strong>📍 Ort:</strong> Schloss Hohenkammer<br><strong>🌿 Dress Code:</strong> Festliche Kleidung",
         lblDays: "Tage",
         lblHours: "Std",
         lblMins: "Min",
@@ -1214,7 +1291,7 @@ detailsTitle: "Details",
         btnSubmit: "RSVP Absenden",
         shareTitle: "Einladung teilen",
           travelTitle: "Anreise & Unterkunft",
-    parkingHeading: "Parken & Auto",
+    parkingHeading: "Parken",
     parkingText: "Kostenlose Parkplätze stehen direkt am Schloss Hohenkammer zur Verfügung.",
     transitHeading: "Zug & Bus",
     transitPetershausenTitle: "Über Petershausen (S2 / Regionalzug):",
