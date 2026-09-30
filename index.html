@@ -812,6 +812,13 @@ body {
       font-size: 12px;
       color: #888;
     }
+
+    /* Slightly scale down Korean font inside travel body text */
+:lang(ko) .travel-card,
+.lang-ko .travel-card,
+body.lang-ko .travel-card {
+  font-size: 0.92em;
+}
     
   </style>
 </head>
@@ -943,7 +950,15 @@ body {
 
   <!-- SINGLE COMBINED WHITE BOX -->
   <div class="travel-card">
-    <!-- 1. Parking -->
+    <!-- 1. Address -->
+    <div class="travel-block">
+      <h3 class="travel-subtitle">📍 <span data-i18n="addressHeading">Adresse</span></h3>
+      <p data-i18n="addressText">Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer, Germany</p>
+    </div>
+
+    <div class="travel-divider"></div>
+
+    <!-- 2. Parking -->
     <div class="travel-block">
       <h3 class="travel-subtitle">🚗 <span data-i18n="parkingHeading">Parken & Auto</span></h3>
       <p data-i18n="parkingText">Kostenlose Parkplätze stehen direkt am Schloss Hohenkammer zur Verfügung.</p>
@@ -951,7 +966,7 @@ body {
 
     <div class="travel-divider"></div>
 
-    <!-- 2. Train & Bus -->
+    <!-- 3. Train & Bus -->
     <div class="travel-block">
       <h3 class="travel-subtitle">🚆 <span data-i18n="transitHeading">Zug & Bus</span></h3>
       <ul class="travel-list">
@@ -972,7 +987,7 @@ body {
 
     <div class="travel-divider"></div>
 
-    <!-- 3. Hotel / Accommodation -->
+    <!-- 4. Hotel / Accommodation -->
     <div class="travel-block">
       <h3 class="travel-subtitle">🏨 <span data-i18n="hotelHeading">Unterkunft</span></h3>
       <p data-i18n="hotelText">Zimmer können direkt im Schloss Hohenkammer gebucht werden.</p>
@@ -1188,7 +1203,9 @@ body {
     transitFreisingText: "666번 버스",
     hotelHeading: "숙소 안내",
     hotelText: "슐로스 호엔카머 객실을 직접 예약하실 수 있습니다.",
-      btnOpenMap: "📍 Google Maps에서 열기"
+      btnOpenMap: "📍 Google Maps에서 열기",
+      addressHeading: "주소",
+addressText: "Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer, Germany"
       },
       en: {
         clickToOpen: "✉️ Click envelope to open",
@@ -1245,7 +1262,9 @@ detailsTitle: "Details",
     transitFreisingText: "Bus 666",
     hotelHeading: "Accommodation",
     hotelText: "Rooms can be booked directly at Schloss Hohenkammer.",
-        btnOpenMap: "📍 Open in Google Maps"
+        btnOpenMap: "📍 Open in Google Maps",
+          addressHeading: "Address",
+addressText: "Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer, Germany"
       },
       de: {
         clickToOpen: "✉️ Zum Öffnen bitte den Brief antippen",
@@ -1302,7 +1321,9 @@ detailsTitle: "Details",
     transitFreisingText: "Bus 666",
     hotelHeading: "Unterkunft",
     hotelText: "Zimmer können direkt im Schloss Hohenkammer gebucht werden.",
-        btnOpenMap: "📍 In Google Maps öffnen"
+        btnOpenMap: "📍 In Google Maps öffnen",
+          addressHeading: "Adresse",
+addressText: "Schloss Hohenkammer, Schlossstrasse 18-25, 85411 Hohenkammer"
       }
     };
 
