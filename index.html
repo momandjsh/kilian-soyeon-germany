@@ -238,7 +238,7 @@
       text-transform: uppercase;
     }
 
-    /* 상단 초대의 글 (DO NOT TOUCH TOP LETTER STYLING) */
+    /* 상단 초대의 글 */
     .letter-body {
       font-family: 'Caveat', 'Nanum Pen Script', cursive !important;
       font-size: 1.6rem !important;
@@ -251,14 +251,14 @@
     .invitation-name {
       font-family: 'Caveat', 'Nanum Pen Script', cursive !important;
       font-size: 1.9rem !important;
-      font-weight: 600;
+      font-weight: 600 !important;
       font-style: normal;
       display: inline-block;
       margin-top: 5px;
       color: var(--primary-color);
     }
 
-    /* D-Day 카운트다운 (Reduced Font Sizes) */
+    /* D-Day 카운트다운 */
     .countdown-container {
       margin-top: 20px;
       padding-top: 18px;
@@ -277,14 +277,14 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.04);
     }
     .time-box .num {
-      font-size: 18px; /* Reduced from 20px */
+      font-size: 18px;
       font-weight: 600;
       color: var(--primary-color);
       font-family: 'Cormorant Garamond', serif;
       line-height: 1.1;
     }
     .time-box .label {
-      font-size: 10px; /* Reduced size for days, hours, mins, secs */
+      font-size: 10px;
       color: #888;
       margin-top: 3px;
       text-transform: uppercase;
@@ -472,6 +472,7 @@
     .video-container {
       width: 100%;
       max-height: 500px;
+      position: relative;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -481,6 +482,7 @@
     .video-container video {
       width: 100%;
       height: 100%;
+      max-height: 600px;
       display: block;
       object-fit: cover;
       object-position: center bottom;
@@ -530,16 +532,15 @@
     }
 
     /* ========================================== */
-    /* 🇰🇷 CLEAN & UNIFIED KOREAN TYPOGRAPHY     */
+    /* 🇰🇷 CLEAN KOREAN TYPOGRAPHY                */
     /* ========================================== */
     [data-lang="ko"] {
       font-family: 'Gowun Batang', 'Noto Sans KR', serif;
     }
 
-    /* Standardize Korean Body & Element Sizes to match Schedule Entries (15px) */
+    /* Body & Content Standardized to 15px */
     [data-lang="ko"] #mainContent p,
-    [data-lang="ko"] #mainContent span,
-    [data-lang="ko"] #mainContent li,
+    [data-lang="ko"] #mainContent span:not(.invitation-name),
     [data-lang="ko"] #mainContent label,
     [data-lang="ko"] .timeline-desc,
     [data-lang="ko"] .travel-card,
@@ -547,13 +548,13 @@
     [data-lang="ko"] .travel-block p,
     [data-lang="ko"] .faq-question,
     [data-lang="ko"] .faq-answer {
-      font-size: 15px !important;
+      font-size: 15px;
       line-height: 1.6;
       letter-spacing: -0.2px;
       font-weight: 400;
     }
 
-    /* PROTECT & PRESERVE TOP LETTER (DO NOT TOUCH) */
+    /* TOP HANDWRITTEN LETTER - ORIGINAL SIZE RESTORED */
     [data-lang="ko"] .letter-body {
       font-family: 'Caveat', 'Nanum Pen Script', cursive !important;
       font-size: 1.6rem !important;
@@ -985,7 +986,7 @@
         shareTitle: "Share Invitation"
       },
       de: {
-        clickToOpen: "✉️️ Zum Öffnen bitte den Brief antippen",
+        clickToOpen: "✉ Zum Öffnen bitte den Brief antippen",
         invitationBody: "Liebe Freunde und Familie<br><br>Wir heiraten! <br>Wir laden euch herzlich ein, diesen besonderen Tag gemeinsam mit uns zu feiern.<br><br><span class=\"invitation-name\">🤵 Kilian Scheffter</span> <br> <span class=\"invitation-name\">👰 Soyeon Jun</span>",
         detailsTitle: "Details",
         detailsDesc: "<strong>📅 Datum:</strong> 12. Juni 2027<br><strong>📍 Ort:</strong> Schloss Hohenkammer<br><strong>🌿 Dress Code:</strong> Festliche Kleidung",
