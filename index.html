@@ -565,6 +565,11 @@
       font-size: 1.9rem !important;
       font-weight: 600 !important;
     }
+    /* 언어가 de(독일어) 또는 en(영어)일 때 공유 구역 전체를 숨김 */
+[data-lang="de"] .share-section,
+[data-lang="en"] .share-section {
+  display: none !important;
+}
   </style>
 </head>
 <body data-lang="ko">
