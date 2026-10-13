@@ -570,6 +570,73 @@
 [data-lang="en"] .share-section {
   display: none !important;
 }
+
+    /* ========================================== */
+    /* FULLSCREEN LIGHTBOX MODAL                  */
+    /* ========================================== */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 100000;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .lightbox-swiper {
+      width: 100%;
+      height: 100%;
+    }
+    .lightbox-swiper .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 20px;
+    }
+    .lightbox-swiper .swiper-slide img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 4px;
+      user-select: none;
+    }
+    /* Make gallery items look clickable */
+    .gallery-swiper .swiper-slide {
+      cursor: zoom-in;
+    }
+    
   </style>
 </head>
 <body data-lang="ko">
@@ -940,7 +1007,7 @@
       },
       en: {
         clickToOpen: "✉️ Click envelope to open",
-        invitationBody: "Dear family and friends<br><br>What began on opposite sides of the world becomes our shared story.<br>We are getting married! <br>We warmly invite you to join us on our special day as we celebrate our wedding in Germany.<br><br><span class=\"invitation-name\">🤵 Kilian Scheffter</span> <br> <span class=\"invitation-name\">👰 Soyeon Jun</span>",
+        invitationBody: "Dear family and friends,<br><br>What began on opposite sides of the world becomes our shared story.<br>We are getting married! <br>We warmly invite you to join us on our special day as we celebrate our wedding in Germany.<br><br><span class=\"invitation-name\">🤵 Kilian Scheffter</span> <br> <span class=\"invitation-name\">👰 Soyeon Jun</span>",
         detailsTitle: "Details",
         detailsDesc: "<strong>📅 Date:</strong> 12. June 2027 Saturday 3 PM<br><strong>📍 Venue:</strong> Schloss Hohenkammer<br><strong>🌿 Dress Code:</strong> Festive Attire",
         lblDays: "Days",
@@ -995,7 +1062,7 @@
       },
       de: {
         clickToOpen: "✉ Zum Öffnen bitte den Brief antippen",
-        invitationBody: "Liebe Familie und Freunde<br><br>Was auf zwei verschiedenen Seiten der Welt begann, wurde zu unserer gemeinsamen Geschichte.<br>Wir heiraten!<br>Wir laden euch herzlich ein, diesen besonderen Tag gemeinsam mit uns in Deutschland zu feiern.<br><br><span class=\"invitation-name\">🤵 Kilian Scheffter</span> <br> <span class=\"invitation-name\">👰 Soyeon Jun</span>",
+        invitationBody: "Liebe Familie und Freunde,<br><br>Was auf zwei verschiedenen Seiten der Welt begann, wird zu unserer gemeinsamen Geschichte.<br>Wir heiraten!<br>Wir laden euch herzlich ein, diesen besonderen Tag gemeinsam mit uns in Deutschland zu feiern.<br><br><span class=\"invitation-name\">🤵 Kilian Scheffter</span> <br> <span class=\"invitation-name\">👰 Soyeon Jun</span>",
         detailsTitle: "Details",
         detailsDesc: "<strong>📅 Datum:</strong> 12. Juni 2027 Samstag 15:00<br><strong>📍 Ort:</strong> Schloss Hohenkammer<br><strong>🌿 Dress Code:</strong> Festliche Kleidung",
         lblDays: "Tage",
@@ -1352,6 +1419,82 @@
       const initialLang = getInitialLanguage();
       setLanguage(initialLang);
     });
+    let lightboxSwiper = null;
+
+    // Initialize Lightbox by cloning gallery images
+    function initLightbox() {
+      const mainSlides = document.querySelectorAll('.gallery-swiper .swiper-slide img');
+      const lightboxWrapper = document.getElementById('lightboxWrapper');
+      if (!lightboxWrapper || mainSlides.length === 0) return;
+
+      lightboxWrapper.innerHTML = '';
+      mainSlides.forEach((img, idx) => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        const newImg = document.createElement('img');
+        newImg.src = img.src;
+        newImg.alt = img.alt || `Wedding Photo ${idx}`;
+        slide.appendChild(newImg);
+        lightboxWrapper.appendChild(slide);
+      });
+
+      // Add click event to main gallery slides
+      document.querySelectorAll('.gallery-swiper .swiper-slide').forEach((slide, idx) => {
+        slide.addEventListener('click', () => {
+          openLightbox(idx);
+        });
+      });
+    }
+
+    function openLightbox(index) {
+      const modal = document.getElementById('lightboxModal');
+      if (!modal) return;
+
+      modal.classList.add('active');
+
+      if (!lightboxSwiper) {
+        lightboxSwiper = new Swiper('.lightbox-swiper', {
+          loop: true,
+          spaceBetween: 30,
+          zoom: true,
+          pagination: {
+            el: '.lightbox-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.lightbox-button-next',
+            prevEl: '.lightbox-button-prev',
+          },
+        });
+      }
+
+      // Jump to the clicked photo index
+      lightboxSwiper.slideToLoop(index, 0);
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      if (modal) {
+        modal.classList.remove('active');
+      }
+    }
+
+    // Call initLightbox when document loads (or inside openLetter if preferred)
+    document.addEventListener('DOMContentLoaded', () => {
+      initLightbox();
+    });
   </script>
+  <!-- Fullscreen Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close Lightbox">&times;</button>
+    <div class="swiper lightbox-swiper">
+      <div class="swiper-wrapper" id="lightboxWrapper">
+        <!-- Dynamically populated from main gallery -->
+      </div>
+      <div class="swiper-pagination lightbox-pagination"></div>
+      <div class="swiper-button-next lightbox-button-next"></div>
+      <div class="swiper-button-prev lightbox-button-prev"></div>
+    </div>
+  </div>
 </body>
 </html>
