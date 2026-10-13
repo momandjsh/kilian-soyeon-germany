@@ -410,18 +410,22 @@
       border-top: 1px solid #eee;
     }
 
-    /* 갤러리 */
+    /* 갤러리 및 모던 호버 효과 */
     .gallery-swiper {
       width: 100%;
       padding-bottom: 35px;
       border-radius: 8px;
     }
-/* Modern Gallery Hover Effect */
     .gallery-swiper .swiper-slide {
       cursor: pointer;
       overflow: hidden;
       border-radius: 8px;
       position: relative;
+      width: 100%;
+      height: 520px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .gallery-swiper .swiper-slide img {
       width: 100%;
@@ -434,7 +438,6 @@
       transform: scale(1.04);
     }
 
-    /* Sleek Translucent Expand Badge on Hover */
     .gallery-hover-badge {
       position: absolute;
       inset: 0;
@@ -570,7 +573,6 @@
       font-family: 'Gowun Batang', 'Noto Sans KR', serif;
     }
 
-    /* Body & Content Standardized to 15px */
     [data-lang="ko"] #mainContent p,
     [data-lang="ko"] #mainContent span:not(.invitation-name),
     [data-lang="ko"] #mainContent label,
@@ -586,7 +588,6 @@
       font-weight: 400;
     }
 
-    /* TOP HANDWRITTEN LETTER - ORIGINAL SIZE RESTORED */
     [data-lang="ko"] .letter-body {
       font-family: 'Caveat', 'Nanum Pen Script', cursive !important;
       font-size: 1.6rem !important;
@@ -597,11 +598,11 @@
       font-size: 1.9rem !important;
       font-weight: 600 !important;
     }
-    /* 언어가 de(독일어) 또는 en(영어)일 때 공유 구역 전체를 숨김 */
-[data-lang="de"] .share-section,
-[data-lang="en"] .share-section {
-  display: none !important;
-}
+
+    [data-lang="de"] .share-section,
+    [data-lang="en"] .share-section {
+      display: none !important;
+    }
 
     /* ========================================== */
     /* FULLSCREEN LIGHTBOX MODAL                  */
@@ -657,18 +658,13 @@
       height: 100%;
       padding: 20px;
     }
-    .lightbox-swiper .swiper-slide img {
+    .lightbox-swiper .swiper-zoom-container img {
       max-width: 100%;
       max-height: 90vh;
       object-fit: contain;
       border-radius: 4px;
       user-select: none;
     }
-    /* Make gallery items look clickable */
-    .gallery-swiper .swiper-slide {
-      cursor: zoom-in;
-    }
-    
   </style>
 </head>
 <body data-lang="ko">
@@ -879,7 +875,7 @@
       </section>
 
       <!-- 갤러리 -->
-     <section class="content-section">
+      <section class="content-section">
         <h2 class="section-title" data-i18n="galleryTitle">Gallery</h2>
         <div class="swiper gallery-swiper">
           <div class="swiper-wrapper">
@@ -944,10 +940,10 @@
 
           <button type="submit" class="btn-submit" data-i18n="btnSubmit">Send RSVP</button>
         </form>
-      </section
+      </section>
 
-        <!-- 카카오톡 공유 SDK -->
-     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+      <!-- 카카오톡 공유 SDK -->
+      <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
       <!-- 공유 구역 -->
       <section class="share-section">
@@ -975,11 +971,23 @@
 
   </div>
 
+  <!-- Fullscreen Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close Lightbox">&times;</button>
+    <div class="swiper lightbox-swiper">
+      <div class="swiper-wrapper" id="lightboxWrapper"></div>
+      <div class="swiper-pagination lightbox-pagination"></div>
+      <div class="swiper-button-next lightbox-button-next"></div>
+      <div class="swiper-button-prev lightbox-button-prev"></div>
+    </div>
+  </div>
+
   <!-- Swiper.js 스크립트 -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
     let gallerySwiper = null;
+    let lightboxSwiper = null;
 
     const translations = {
       ko: {
@@ -1210,7 +1218,7 @@
       }
     }
 
-    // Swiper Gallery
+    // Swiper Gallery & Lightbox
     function initGallerySwiper() {
       if (gallerySwiper) gallerySwiper.destroy();
       gallerySwiper = new Swiper('.gallery-swiper', {
@@ -1220,6 +1228,70 @@
         autoplay: { delay: 3500, disableOnInteraction: false },
         navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
       });
+    }
+
+    function initLightbox() {
+      const mainSlides = document.querySelectorAll('.gallery-swiper .swiper-slide img');
+      const lightboxWrapper = document.getElementById('lightboxWrapper');
+      if (!lightboxWrapper || mainSlides.length === 0) return;
+
+      lightboxWrapper.innerHTML = '';
+      mainSlides.forEach((img, idx) => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        
+        const zoomContainer = document.createElement('div');
+        zoomContainer.className = 'swiper-zoom-container';
+        
+        const newImg = document.createElement('img');
+        newImg.src = img.src;
+        newImg.alt = img.alt || `Wedding Photo ${idx}`;
+        
+        zoomContainer.appendChild(newImg);
+        slide.appendChild(zoomContainer);
+        lightboxWrapper.appendChild(slide);
+      });
+
+      document.querySelectorAll('.gallery-swiper .swiper-slide').forEach((slide, idx) => {
+        slide.addEventListener('click', () => {
+          openLightbox(idx);
+        });
+      });
+    }
+
+    function openLightbox(index) {
+      const modal = document.getElementById('lightboxModal');
+      if (!modal) return;
+
+      modal.classList.add('active');
+
+      if (!lightboxSwiper) {
+        lightboxSwiper = new Swiper('.lightbox-swiper', {
+          loop: true,
+          spaceBetween: 30,
+          zoom: {
+            maxRatio: 3,
+            minRatio: 1,
+          },
+          pagination: {
+            el: '.lightbox-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.lightbox-button-next',
+            prevEl: '.lightbox-button-prev',
+          },
+        });
+      }
+
+      lightboxSwiper.slideToLoop(index, 0);
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      if (modal) {
+        modal.classList.remove('active');
+      }
     }
 
     // Countdown Timer
@@ -1353,7 +1425,6 @@
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
     }
 
-    // 카카오 SDK 안전 초기화
     if (typeof Kakao !== 'undefined') {
       if (!Kakao.isInitialized()) {
         Kakao.init('fcba721351b7e4a0a2b49a7ae6e8ee82');
@@ -1361,10 +1432,8 @@
     }
 
     function shareKakao() {
-      // 현재 접속 URL (파라미터 포함)
       let currentUrl = window.location.href;
 
-      // local 파일 경로 대응 안전장치
       if (!currentUrl.startsWith('https://momandjsh.github.io')) {
         const urlParams = new URLSearchParams(window.location.search);
         const currentLang = urlParams.get('lang') || 'ko';
@@ -1450,125 +1519,8 @@
     document.addEventListener('DOMContentLoaded', () => {
       const initialLang = getInitialLanguage();
       setLanguage(initialLang);
-    });
-let lightboxSwiper = null;
-
-    function initLightbox() {
-      const mainSlides = document.querySelectorAll('.gallery-swiper .swiper-slide img');
-      const lightboxWrapper = document.getElementById('lightboxWrapper');
-      if (!lightboxWrapper || mainSlides.length === 0) return;
-
-      lightboxWrapper.innerHTML = '';
-      mainSlides.forEach((img, idx) => {
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide';
-        
-        // Swiper requires .swiper-zoom-container for pinch/double-tap zoom to work on mobile
-        const zoomContainer = document.createElement('div');
-        zoomContainer.className = 'swiper-zoom-container';
-        
-        const newImg = document.createElement('img');
-        newImg.src = img.src;
-        newImg.alt = img.alt || `Wedding Photo ${idx}`;
-        
-        zoomContainer.appendChild(newImg);
-        slide.appendChild(zoomContainer);
-        lightboxWrapper.appendChild(slide);
-      });
-
-      // Add click event to main gallery slides
-      document.querySelectorAll('.gallery-swiper .swiper-slide').forEach((slide, idx) => {
-        slide.addEventListener('click', () => {
-          openLightbox(idx);
-        });
-      });
-    }
-
-    function openLightbox(index) {
-      const modal = document.getElementById('lightboxModal');
-      if (!modal) return;
-
-      modal.classList.add('active');
-
-      if (!lightboxSwiper) {
-        lightboxSwiper = new Swiper('.lightbox-swiper', {
-          loop: true,
-          spaceBetween: 30,
-          zoom: {
-            maxRatio: 3, // Allows zooming in up to 3x
-            minRatio: 1,
-          },
-          pagination: {
-            el: '.lightbox-pagination',
-            clickable: true,
-          },
-          navigation: {
-            nextEl: '.lightbox-button-next',
-            prevEl: '.lightbox-button-prev',
-          },
-        });
-      }
-
-      lightboxSwiper.slideToLoop(index, 0);
-    }
-
-      // Add click event to main gallery slides
-      document.querySelectorAll('.gallery-swiper .swiper-slide').forEach((slide, idx) => {
-        slide.addEventListener('click', () => {
-          openLightbox(idx);
-        });
-      });
-    }
-
-    function openLightbox(index) {
-      const modal = document.getElementById('lightboxModal');
-      if (!modal) return;
-
-      modal.classList.add('active');
-
-      if (!lightboxSwiper) {
-        lightboxSwiper = new Swiper('.lightbox-swiper', {
-          loop: true,
-          spaceBetween: 30,
-          zoom: true,
-          pagination: {
-            el: '.lightbox-pagination',
-            clickable: true,
-          },
-          navigation: {
-            nextEl: '.lightbox-button-next',
-            prevEl: '.lightbox-button-prev',
-          },
-        });
-      }
-
-      // Jump to the clicked photo index
-      lightboxSwiper.slideToLoop(index, 0);
-    }
-
-    function closeLightbox() {
-      const modal = document.getElementById('lightboxModal');
-      if (modal) {
-        modal.classList.remove('active');
-      }
-    }
-
-    // Call initLightbox when document loads (or inside openLetter if preferred)
-    document.addEventListener('DOMContentLoaded', () => {
       initLightbox();
     });
   </script>
-  <!-- Fullscreen Lightbox Modal -->
-  <div class="lightbox-modal" id="lightboxModal">
-    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close Lightbox">&times;</button>
-    <div class="swiper lightbox-swiper">
-      <div class="swiper-wrapper" id="lightboxWrapper">
-        <!-- Dynamically populated from main gallery -->
-      </div>
-      <div class="swiper-pagination lightbox-pagination"></div>
-      <div class="swiper-button-next lightbox-button-next"></div>
-      <div class="swiper-button-prev lightbox-button-prev"></div>
-    </div>
-  </div>
 </body>
 </html>
