@@ -58,11 +58,19 @@
     }
 
     /* 언어 선택 버튼 */
-    .lang-switcher {
+/* 상단 컨트롤 컨테이너 (음악 버튼 + 언어 선택) */
+    .top-controls {
       position: fixed;
       top: 15px;
       right: 15px;
       z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 언어 선택 버튼 */
+    .lang-switcher {
       background: rgba(255,255,255,0.92);
       padding: 6px 12px;
       border-radius: 20px;
@@ -80,23 +88,18 @@
     }
     .lang-btn.active { color: var(--primary-color); text-decoration: underline; }
 
-    /* BGM 버튼 */
+    /* BGM 버튼 (언어 버튼과 높이 및 스타일 통일) */
     .bgm-toggle-btn {
-      position: fixed;
-      top: 50px;
-      right: 20px;
-      z-index: 9999;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      background: rgba(255, 255, 255, 0.85);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      border: none;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 6px 12px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 13px;
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       transition: transform 0.2s ease, background 0.2s ease;
@@ -683,6 +686,23 @@
     <button class="lang-btn" id="btn-ko" onclick="setLanguage('ko')">한</button>
     <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
     <button class="lang-btn" id="btn-de" onclick="setLanguage('de')">DE</button>
+  </div>
+
+  <!-- BGM 태그 및 상단 컨트롤 버튼들 -->
+  <audio id="bgm" loop preload="auto">
+    <source src="image/jazz.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="top-controls">
+    <button class="bgm-toggle-btn" id="bgmToggleBtn" onclick="toggleBGM()" aria-label="Toggle Background Music">
+      <span id="bgmIcon">🎵</span>
+    </button>
+    
+    <div class="lang-switcher">
+      <button class="lang-btn" id="btn-ko" onclick="setLanguage('ko')">한</button>
+      <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" id="btn-de" onclick="setLanguage('de')">DE</button>
+    </div>
   </div>
 
   <div class="app-container">
