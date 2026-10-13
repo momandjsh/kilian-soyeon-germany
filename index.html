@@ -416,20 +416,52 @@
       padding-bottom: 35px;
       border-radius: 8px;
     }
+/* Modern Gallery Hover Effect */
     .gallery-swiper .swiper-slide {
-      width: 100%;
-      height: 520px;
-      border-radius: 8px;
+      cursor: pointer;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      border-radius: 8px;
+      position: relative;
     }
     .gallery-swiper .swiper-slide img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .gallery-swiper .swiper-slide:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Sleek Translucent Expand Badge on Hover */
+    .gallery-hover-badge {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 8px;
+    }
+    .gallery-swiper .swiper-slide:hover .gallery-hover-badge {
+      opacity: 1;
+    }
+    .gallery-hover-badge i {
+      color: #ffffff;
+      font-size: 18px;
+      background: rgba(0, 0, 0, 0.45);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
     .swiper-pagination-bullet-active { background-color: var(--primary-color) !important; }
     .swiper-button-next, .swiper-button-prev {
@@ -847,41 +879,41 @@
       </section>
 
       <!-- 갤러리 -->
-      <section class="content-section">
+     <section class="content-section">
         <h2 class="section-title" data-i18n="galleryTitle">Gallery</h2>
         <div class="swiper gallery-swiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="image/20260726_162618.jpg" alt="Wedding Snap 0"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03744.jpg" alt="Wedding Snap 1"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03853.jpg" alt="Wedding Snap 2"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03998.jpg" alt="Wedding Snap 3"></div>
-            <div class="swiper-slide"><img src="new_image/DSC04020.jpg" alt="Wedding Snap 4"></div>
-            <div class="swiper-slide"><img src="new_image/DSC04112.jpg" alt="Wedding Snap 5"></div>
-            <div class="swiper-slide"><img src="new_image/DSC04178.jpg" alt="Wedding Snap 6"></div>
-            <div class="swiper-slide"><img src="new_image/DSC04248.jpg" alt="Wedding Snap 7"></div>
-            <div class="swiper-slide"><img src="new_image/DSC04275.jpg" alt="Wedding Snap 8"></div>
-            <div class="swiper-slide"><img src="new_image/DSC04322.jpg" alt="Wedding Snap 9"></div>
-            <div class="swiper-slide"><img src="new_image/DSC04342.jpg" alt="Wedding Snap 10"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03400.jpg" alt="Wedding Snap 11"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03491.jpg" alt="Wedding Snap 12"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03622.jpg" alt="Wedding Snap 13"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03928.jpg" alt="Wedding Snap 14"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03810.jpg" alt="Wedding Snap 15"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03190.jpg" alt="Wedding Snap 16"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03282.jpg" alt="Wedding Snap 17"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03332.jpg" alt="Wedding Snap 18"></div>
-            <div class="swiper-slide"><img src="new_image/DSC04343.jpg" alt="Wedding Snap 19"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03413.jpg" alt="Wedding Snap 20"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03467.jpg" alt="Wedding Snap 21"></div>
-            <div class="swiper-slide"><img src="new_image/DSC02752.jpg" alt="Wedding Snap 22"></div>
-            <div class="swiper-slide"><img src="new_image/DSC02803.jpg" alt="Wedding Snap 23"></div>
-            <div class="swiper-slide"><img src="new_image/DSC02869.jpg" alt="Wedding Snap 24"></div>
-            <div class="swiper-slide"><img src="new_image/DSC02907.jpg" alt="Wedding Snap 25"></div>
-            <div class="swiper-slide"><img src="new_image/DSC02930.jpg" alt="Wedding Snap 26"></div>
-            <div class="swiper-slide"><img src="new_image/DSC02963.jpg" alt="Wedding Snap 27"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03047.jpg" alt="Wedding Snap 28"></div>
-            <div class="swiper-slide"><img src="new_image/DSC03173.jpg" alt="Wedding Snap 29"></div>
-            <div class="swiper-slide"><img src="new_image/DSC02741.jpg" alt="Wedding Snap 30"></div>
+            <div class="swiper-slide"><img src="image/20260726_162618.jpg" alt="Wedding Snap 0"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03744.jpg" alt="Wedding Snap 1"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03853.jpg" alt="Wedding Snap 2"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03998.jpg" alt="Wedding Snap 3"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC04020.jpg" alt="Wedding Snap 4"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC04112.jpg" alt="Wedding Snap 5"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC04178.jpg" alt="Wedding Snap 6"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC04248.jpg" alt="Wedding Snap 7"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC04275.jpg" alt="Wedding Snap 8"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC04322.jpg" alt="Wedding Snap 9"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC04342.jpg" alt="Wedding Snap 10"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03400.jpg" alt="Wedding Snap 11"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03491.jpg" alt="Wedding Snap 12"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03622.jpg" alt="Wedding Snap 13"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03928.jpg" alt="Wedding Snap 14"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03810.jpg" alt="Wedding Snap 15"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03190.jpg" alt="Wedding Snap 16"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03282.jpg" alt="Wedding Snap 17"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03332.jpg" alt="Wedding Snap 18"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC04343.jpg" alt="Wedding Snap 19"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03413.jpg" alt="Wedding Snap 20"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03467.jpg" alt="Wedding Snap 21"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC02752.jpg" alt="Wedding Snap 22"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC02803.jpg" alt="Wedding Snap 23"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC02869.jpg" alt="Wedding Snap 24"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC02907.jpg" alt="Wedding Snap 25"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC02930.jpg" alt="Wedding Snap 26"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC02963.jpg" alt="Wedding Snap 27"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03047.jpg" alt="Wedding Snap 28"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC03173.jpg" alt="Wedding Snap 29"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
+            <div class="swiper-slide"><img src="new_image/DSC02741.jpg" alt="Wedding Snap 30"><div class="gallery-hover-badge"><i class="fa-solid fa-expand"></i></div></div>
           </div>
           <div class="swiper-pagination"></div>
           <div class="swiper-button-next"></div>
@@ -1419,9 +1451,8 @@
       const initialLang = getInitialLanguage();
       setLanguage(initialLang);
     });
-    let lightboxSwiper = null;
+let lightboxSwiper = null;
 
-    // Initialize Lightbox by cloning gallery images
     function initLightbox() {
       const mainSlides = document.querySelectorAll('.gallery-swiper .swiper-slide img');
       const lightboxWrapper = document.getElementById('lightboxWrapper');
@@ -1431,12 +1462,55 @@
       mainSlides.forEach((img, idx) => {
         const slide = document.createElement('div');
         slide.className = 'swiper-slide';
+        
+        // Swiper requires .swiper-zoom-container for pinch/double-tap zoom to work on mobile
+        const zoomContainer = document.createElement('div');
+        zoomContainer.className = 'swiper-zoom-container';
+        
         const newImg = document.createElement('img');
         newImg.src = img.src;
         newImg.alt = img.alt || `Wedding Photo ${idx}`;
-        slide.appendChild(newImg);
+        
+        zoomContainer.appendChild(newImg);
+        slide.appendChild(zoomContainer);
         lightboxWrapper.appendChild(slide);
       });
+
+      // Add click event to main gallery slides
+      document.querySelectorAll('.gallery-swiper .swiper-slide').forEach((slide, idx) => {
+        slide.addEventListener('click', () => {
+          openLightbox(idx);
+        });
+      });
+    }
+
+    function openLightbox(index) {
+      const modal = document.getElementById('lightboxModal');
+      if (!modal) return;
+
+      modal.classList.add('active');
+
+      if (!lightboxSwiper) {
+        lightboxSwiper = new Swiper('.lightbox-swiper', {
+          loop: true,
+          spaceBetween: 30,
+          zoom: {
+            maxRatio: 3, // Allows zooming in up to 3x
+            minRatio: 1,
+          },
+          pagination: {
+            el: '.lightbox-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.lightbox-button-next',
+            prevEl: '.lightbox-button-prev',
+          },
+        });
+      }
+
+      lightboxSwiper.slideToLoop(index, 0);
+    }
 
       // Add click event to main gallery slides
       document.querySelectorAll('.gallery-swiper .swiper-slide').forEach((slide, idx) => {
